@@ -31,7 +31,47 @@
     "studentFeedback": "O‘quvchilarimiz fikrlari",
   "readyToStart": "Tayyormisiz yangi bilim sari?",
   "joinNowText": "Bugunoq bizga qo‘shiling va orzuyingizdagi kursga yoziling.",
-  "contactUs": "Biz bilan bog‘laning"
+  "contactUs": "Biz bilan bog‘laning",
+    "ourCourses": "Kurslarimiz",
+  "coursesIntroText": "Quyida siz Mega School taklif qilayotgan kurslar bilan tanishishingiz mumkin.",
+  "all": "Barchasi",
+  "languages": "Tillar",
+  "science": "Fanlar",
+  "itCourses": "IT kurslar",
+  "searchCourses": "Kurs nomi bo‘yicha qidiring...",
+  "noCoursesFound": "Hech qanday kurs topilmadi.",
+
+  "course_en": "Ingliz tili",
+  "course_ru": "Rus tili",
+  "course_uz": "O‘zbek tili",
+  "course_bio": "Biologiya",
+  "course_chem": "Kimyo",
+  "course_robot": "Robototexnika",
+  "course_frontend": "Frontend",
+  "course_backend": "Backend",
+  "course_cpp": "C++ dasturlash",
+  "course_scratch": "Scratch",
+  "course_python": "Python",
+  "aboutPage": {
+  "title": "Biz haqimizda",
+  "subtitle": "MegaSchool — bu zamonaviy o‘quv markazi bo‘lib, bolalar va kattalar uchun turli fanlardan ta’lim beradi."
+},
+"mission": {
+  "title": "Bizning maqsadimiz",
+  "description": "MegaSchool’ning maqsadi — har bir o‘quvchiga zamonaviy bilimlar va ko‘nikmalarni yuqori sifatda yetkazish. Biz IT, tillar va tabiiy fanlar bo‘yicha ishonchli va samarali ta’lim beramiz."
+},
+"whyChooseUs": {
+  "title": "Nega aynan biz?",
+  "items": [
+    "Zamonaviy va interaktiv ta’lim metodlari",
+    "O‘z sohasida tajribali va fidoyi ustozlar",
+    "Har bir o‘quvchi uchun individual yondashuv",
+    "Online va offline formatdagi qulay darslar"
+  ]
+}
+
+
+
 
 
 }

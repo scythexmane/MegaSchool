@@ -1,11 +1,11 @@
 import React from "react";
-import Hero from "../../components/home/Hero.jsx";
-import CoursesSection from "../../components/home/CoursesSection.jsx";
-import MarqueeSection from "../../components/home/MarqueeSection.jsx";
-import StatsSection from "../../components/home/StatsSection.jsx";
-import TestimonialsSection from "../../components/home/Feedback.jsx";
-import CTASection from "../../components/home/CTA.jsx";
-import PartnersSection from "../../components/home/PartnersSection.jsx";
+import Hero from "./Hero.jsx";
+import CoursesSection from "./CoursesSection.jsx";
+import MarqueeSection from "./MarqueeSection.jsx";
+import StatsSection from "./StatsSection.jsx";
+import TestimonialsSection from "./Feedback.jsx";
+import CTASection from "./CTA.jsx";
+import PartnersSection from "./PartnersSection.jsx";
 
 const Home = () => {
   return (
