@@ -58,11 +58,7 @@
   animation-delay: 2s;
 }
 body {
-  background: linear-gradient(
-    to bottom right,
-    #f0f4ff,
-    #f9f4ff
-  ); /* светлая тема */
+  background: linear-gradient(to bottom right, #f0f4ff, #f9f4ff); /* светлая тема */
   color: #1f2937; /* text-gray-900 */
   transition: background 0.5s ease, color 0.5s ease;
 }
@@ -94,71 +90,56 @@ body {
   animation-delay: 4s;
 }
 :root {
-  /* Custom colors for gradients */
-  --color-blue-base: #4a90e2;
-  --color-blue-accent: #6ecff6;
-  --color-purple-base: #7b41c7;
-  --color-purple-accent: #b26bf7;
-  --color-emerald-base: #4caf50;
-  --color-emerald-accent: #81c784;
-  --color-orange-base: #ff5722;
-  --color-orange-accent: #ff7043;
-  --color-amber-base: #ffc107;
-  --color-amber-accent: #ffd54f;
-  --color-cyan-base: #00bcd4;
-  --color-cyan-accent: #4dd0e1;
-  --color-lime-base: #8bc34a;
-  --color-lime-accent: #aed581;
-  --color-indigo-base: #3f51b5;
-  --color-indigo-accent: #5c6bc0;
-  --color-pink-base: #e91e63;
-  --color-pink-accent: #f06292;
-  --color-deep-orange-base: #ff9800;
-  --color-deep-orange-accent: #ffb74d;
-  --color-deep-purple-base: #9c27b0;
-  --color-deep-purple-accent: #ba68c8;
-  --color-teal-base: #009688;
-  --color-teal-accent: #4db6ac;
-}
+          /* Custom colors for gradients */
+          --color-blue-base: #4A90E2;
+          --color-blue-accent: #6ECFF6;
+          --color-purple-base: #7B41C7;
+          --color-purple-accent: #B26BF7;
+          --color-emerald-base: #4CAF50;
+          --color-emerald-accent: #81C784;
+          --color-orange-base: #FF5722;
+          --color-orange-accent: #FF7043;
+          --color-amber-base: #FFC107;
+          --color-amber-accent: #FFD54F;
+          --color-cyan-base: #00BCD4;
+          --color-cyan-accent: #4DD0E1;
+          --color-lime-base: #8BC34A;
+          --color-lime-accent: #AED581;
+          --color-indigo-base: #3F51B5;
+          --color-indigo-accent: #5C6BC0;
+          --color-pink-base: #E91E63;
+          --color-pink-accent: #F06292;
+          --color-deep-orange-base: #FF9800;
+          --color-deep-orange-accent: #FFB74D;
+          --color-deep-purple-base: #9C27B0;
+          --color-deep-purple-accent: #BA68C8;
+          --color-teal-base: #009688;
+          --color-teal-accent: #4DB6AC;
+        }
 
-/* Keyframes для анимированных градиентов */
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+        /* Keyframes для анимированных градиентов */
+        @keyframes gradient-animation {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
 
-/* Keyframes для пульсирующей тени */
-@keyframes pulse-shadow {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-}
+        /* Keyframes для пульсирующей тени */
+        @keyframes pulse-shadow {
+          0% { transform: scale(1); opacity: 0.4; }
+          50% { transform: scale(1.05); opacity: 0.6; }
+          100% { transform: scale(1); opacity: 0.4; }
+        }
 
-.animated-gradient-bg {
-  background-size: 200% 200%;
-  animation: gradient-animation 10s ease infinite;
-}
+        .animated-gradient-bg {
+          background-size: 200% 200%;
+          animation: gradient-animation 10s ease infinite;
+        }
 
-.pulsing-shadow {
-  animation: pulse-shadow 3s ease-in-out infinite;
-}
-body {
+        .pulsing-shadow {
+          animation: pulse-shadow 3s ease-in-out infinite;
+        }
+        body {
   background: linear-gradient(120deg, #0e1c47, #1a2b6d, #14264b);
   background-size: 400% 400%;
   animation: backgroundShift 15s ease infinite;
@@ -203,4 +184,64 @@ body {
 }
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes gradient-full {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-full {
+  background-size: 300% 300%;
+  animation: gradient-full 5s ease infinite;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient-text 3s linear infinite;
 }
