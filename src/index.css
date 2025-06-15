@@ -1,1 +1,206 @@
 @import "tailwindcss";
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.bg-size-200\% {
+  background-size: 200% 100%;
+}
+
+.bg-pos-0\% {
+  background-position: 0% 50%;
+}
+
+.bg-pos-100\% {
+  background-position: 100% 50%;
+}
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+.animate-blob {
+  animation: blob 7s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+body {
+  background: linear-gradient(
+    to bottom right,
+    #f0f4ff,
+    #f9f4ff
+  ); /* светлая тема */
+  color: #1f2937; /* text-gray-900 */
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-blob {
+  animation: blob 7s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+:root {
+  /* Custom colors for gradients */
+  --color-blue-base: #4a90e2;
+  --color-blue-accent: #6ecff6;
+  --color-purple-base: #7b41c7;
+  --color-purple-accent: #b26bf7;
+  --color-emerald-base: #4caf50;
+  --color-emerald-accent: #81c784;
+  --color-orange-base: #ff5722;
+  --color-orange-accent: #ff7043;
+  --color-amber-base: #ffc107;
+  --color-amber-accent: #ffd54f;
+  --color-cyan-base: #00bcd4;
+  --color-cyan-accent: #4dd0e1;
+  --color-lime-base: #8bc34a;
+  --color-lime-accent: #aed581;
+  --color-indigo-base: #3f51b5;
+  --color-indigo-accent: #5c6bc0;
+  --color-pink-base: #e91e63;
+  --color-pink-accent: #f06292;
+  --color-deep-orange-base: #ff9800;
+  --color-deep-orange-accent: #ffb74d;
+  --color-deep-purple-base: #9c27b0;
+  --color-deep-purple-accent: #ba68c8;
+  --color-teal-base: #009688;
+  --color-teal-accent: #4db6ac;
+}
+
+/* Keyframes для анимированных градиентов */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Keyframes для пульсирующей тени */
+@keyframes pulse-shadow {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+}
+
+.animated-gradient-bg {
+  background-size: 200% 200%;
+  animation: gradient-animation 10s ease infinite;
+}
+
+.pulsing-shadow {
+  animation: pulse-shadow 3s ease-in-out infinite;
+}
+body {
+  background: linear-gradient(120deg, #0e1c47, #1a2b6d, #14264b);
+  background-size: 400% 400%;
+  animation: backgroundShift 15s ease infinite;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes backgroundShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.35;
+  animation: blobMove 25s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes blobMove {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(80px, -100px) scale(1.4);
+  }
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}

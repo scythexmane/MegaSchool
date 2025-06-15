@@ -1,43 +1,179 @@
-import React, { useState } from "react";
-import CoursesIntro from "./CoursesIntro.jsx";
-import CategoryFilter from "./CategoryFilter.jsx";
-import CoursesGrid from "./CoursesGrid.jsx";
-import SearchBar from "./SearchBar.jsx";
-import Breadcrumb from "./Breadcrumb.jsx";
-import NoCoursesFound from "./NoCoursesFound.jsx";
-import CourseCard from "./CourseCard.jsx";
+import React, { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
 
-const allCourses = [
-  { id: 1, title: "course_en", category: "languages" },
-  { id: 2, title: "course_ru", category: "languages" },
-  { id: 3, title: "course_uz", category: "languages" },
-  { id: 4, title: "course_bio", category: "science" },
-  { id: 5, title: "course_chem", category: "science" },
-  { id: 6, title: "course_robot", category: "it" },
-  { id: 7, title: "course_frontend", category: "it" },
-  { id: 8, title: "course_backend", category: "it" },
-  { id: 9, title: "course_cpp", category: "it" },
-  { id: 10, title: "course_scratch", category: "it" },
-  { id: 11, title: "course_python", category: "it" },
+// Импортируем компоненты
+import CoursesIntro from "./CoursesIntro";
+import CategoryFilter from "./CategoryFilter";
+import CoursesGrid from "./CoursesGrid";
+import SearchBar from "./SearchBar";
+import Breadcrumb from "./Breadcrumb";
+import NoCoursesFound from "./NoCoursesFound";
+
+// --- Расширенные данные о курсах (ПРИМЕР) ---
+const ALL_COURSES_DATA = [
+  {
+    id: 1,
+    title: "course_en_title",
+    description: "course_en_description",
+    category: "languages",
+    image: "/images/courses/english.webp", // Добавьте изображения!
+    price: "150$",
+    level: "beginner",
+    duration: "3 months"
+  },
+  {
+    id: 2,
+    title: "course_ru_title",
+    description: "course_ru_description",
+    category: "languages",
+    image: "/images/courses/russian.webp",
+    price: "120$",
+    level: "beginner",
+    duration: "2 months"
+  },
+  {
+    id: 3,
+    title: "course_uz_title",
+    description: "course_uz_description",
+    category: "languages",
+    image: "/images/courses/uzbek.webp",
+    price: "100$",
+    level: "intermediate",
+    duration: "2.5 months"
+  },
+  {
+    id: 4,
+    title: "course_bio_title",
+    description: "course_bio_description",
+    category: "science",
+    image: "/images/courses/biology.webp",
+    price: "200$",
+    level: "advanced",
+    duration: "4 months"
+  },
+  {
+    id: 5,
+    title: "course_chem_title",
+    description: "course_chem_description",
+    category: "science",
+    image: "/images/courses/chemistry.webp",
+    price: "220$",
+    level: "intermediate",
+    duration: "3 months"
+  },
+  {
+    id: 6,
+    title: "course_robot_title",
+    description: "course_robot_description",
+    category: "it",
+    image: "/images/courses/robotics.webp",
+    price: "350$",
+    level: "beginner",
+    duration: "5 months"
+  },
+  {
+    id: 7,
+    title: "course_frontend_title",
+    description: "course_frontend_description",
+    category: "it",
+    image: "/images/courses/frontend.webp",
+    price: "400$",
+    level: "advanced",
+    duration: "6 months"
+  },
+  {
+    id: 8,
+    title: "course_backend_title",
+    description: "course_backend_description",
+    category: "it",
+    image: "/images/courses/backend.webp",
+    price: "450$",
+    level: "advanced",
+    duration: "7 months"
+  },
+  {
+    id: 9,
+    title: "course_cpp_title",
+    description: "course_cpp_description",
+    category: "it",
+    image: "/images/courses/cpp.webp",
+    price: "380$",
+    level: "intermediate",
+    duration: "5 months"
+  },
+  {
+    id: 10,
+    title: "course_scratch_title",
+    description: "course_scratch_description",
+    category: "it",
+    image: "/images/courses/scratch.webp",
+    price: "180$",
+    level: "beginner",
+    duration: "3 months"
+  },
+  {
+    id: 11,
+    title: "course_python_title",
+    description: "course_python_description",
+    category: "it",
+    image: "/images/courses/python.webp",
+    price: "300$",
+    level: "intermediate",
+    duration: "4 months"
+  },
 ];
 
 const Courses = () => {
-  const [category, setCategory] = useState("all");
-  const [search, setSearch] = useState("");
+  const { t } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredCourses = allCourses.filter((course) => {
-    const matchesCategory = category === "all" || course.category === category;
-    const matchesSearch = course.title.toLowerCase().includes(search.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  // Используем useMemo для оптимизации фильтрации
+  const filteredCourses = useMemo(() => {
+    return ALL_COURSES_DATA.filter((course) => {
+      const matchesCategory = selectedCategory === "all" || course.category === selectedCategory;
+      const matchesSearch = t(course.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            t(course.description).toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [selectedCategory, searchQuery, t]);
+
+  // Варианты анимации для появления сетки курсов
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1 // Делаем появление карточек каскадным
+      }
+    }
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      <Breadcrumb />
-      <CoursesIntro />
-      <SearchBar search={search} setSearch={setSearch} />
-      <CategoryFilter category={category} setCategory={setCategory} />
-      <CoursesGrid courses={filteredCourses} />
+    <div className="bg-gray-950 min-h-screen text-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        {/* Хлебные крошки */}
+        <Breadcrumb items={[{ label: t('home'), path: '/' }, { label: t('coursesPageTitle'), path: '/courses' }]} />
+
+        {/* Вводная секция */}
+        <CoursesIntro />
+
+        {/* Секция поиска и фильтров */}
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-between items-center mb-12 mt-10">
+          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          <CategoryFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+        </div>
+
+        {/* Сетка курсов или сообщение об отсутствии результатов */}
+        <AnimatePresence mode="wait">
+          {filteredCourses.length > 0 ? (
+            <CoursesGrid courses={filteredCourses} />
+          ) : (
+            <NoCoursesFound key="no-courses-found" />
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
