@@ -151,7 +151,7 @@ const Courses = () => {
   };
 
   return (
-    <div className="bg-gray-950 min-h-screen text-gray-200">
+    <div className="bg-gradient-to-br from-gray-950 to-gray-900 min-h-screen text-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
         {/* Хлебные крошки */}
         <Breadcrumb items={[{ label: t('home'), path: '/' }, { label: t('coursesPageTitle'), path: '/courses' }]} />

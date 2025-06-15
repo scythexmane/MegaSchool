@@ -1,11 +1,11 @@
 {
   "home": "Bosh sahifa",
   "courses": "Kurslar",
-  "about": "Biz haqimizda",
+  "aboutNav": "Biz haqimizda",
   "teachers": "O‘qituvchilar",
   "description": "Zamonaviy ta'lim markazi: IT, til, fan va robotexnika yo‘nalishlari bo‘yicha.",
   "quickLinks": "Tezkor havolalar",
-  "contact": "Kontakt",
+  "contact1": "Kontakt",
   "phone": "Telefon",
   "email": "Email",
   "address": "Manzil",
@@ -29,7 +29,7 @@
   "itCourses": "IT kurslar",
   "searchCourses": "Kurs nomi bo‘yicha qidiring...",
   "noCoursesFound": "Hech qanday kurs topilmadi.",
- "marqueeSectionTitle": "Bizning Asosiy Yo'nalishlarimiz",
+  "marqueeSectionTitle": "Bizning Asosiy Yo'nalishlarimiz",
   "python": "Python",
   "scratch": "Scratch",
   "frontend": "Frontend",
@@ -53,7 +53,7 @@
   "uzbek_lang": "O'zbek Tili",
   "data_science": "Ma'lumotlar Ilmi",
   "cyber_security": "Kibersxavfsizlik",
-    "knowledge": "Bilim",
+  "knowledge": "Bilim",
   "innovation": "Innovatsiya",
   "future": "Kelajak",
   "development": "Rivojlanish",
@@ -130,7 +130,7 @@
   "messagePlaceholder": "So'rovingiz haqida bizga xabar bering...",
   "sendMessage": "Xabar Yuborish",
   "formSubmittedMessage": "Xabaringiz uchun rahmat! Tez orada siz bilan bog'lanamiz.",
-   "footerDescription": "Zamonaviy texnologiyalar dunyosida muvaffaqiyatga erishish yo'lingiz.",
+  "footerDescription": "Zamonaviy texnologiyalar dunyosida muvaffaqiyatga erishish yo'lingiz.",
   "aboutUs": "Biz Haqimizda",
   "allCourses": "Barcha Kurslar",
   "blog": "Blog",
@@ -182,5 +182,179 @@
   "course_python_description": "Veb-dasturlash va ma'lumotlarni tahlil qilish uchun Python o'ring.",
   "beginner": "Boshlang",
   "intermediate": "O'rta",
-  "advanced": "Yuqori"
+  "advanced": "Yuqori",
+  "about": {
+    "intro": {
+      "title": "Kelajakni yaratamiz. Liderlarni o‘qitamiz.",
+      "subtitle": "Biz shunchaki o‘quv markazi emasmiz. Biz bilim orqali dunyoni o‘zgartirayotgan g‘ayratli insonlar, texnologlar va vizionerlar hamjamiyatimiz."
+    },
+    "mission": {
+      "heading": "Bizning Missiyamiz",
+      "title": "Sifatli ta’limdan foydalanishni demokratlashtirish.",
+      "text": "Biz ishonamizki, har bir inson, qayerda joylashganidan va tajribasidan qat’i nazar, raqamli iqtisodiyotda muvaffaqiyatli martaba qurish uchun eng yaxshi bilim va vositalarga ega bo‘lishga loyiqdir."
+    },
+    "whyUs": {
+      "title": "Nima uchun bizni tanlashadi?",
+      "subtitle": "Bizning yondashuvimiz amaliyotga, qo‘llab-quvvatlashga va karyerangiz uchun muhim bo‘lgan natijaga qaratilgan.",
+      "feature1": {
+        "title": "Ilg‘or dastur",
+        "description": "Yetakchi IT-kompaniyalar ekspertlari bilan hamkorlikda ishlab chiqilgan o‘quv rejalari."
+      },
+      "feature2": {
+        "title": "Amaliyotchi-mutaxassislar",
+        "description": "Har kuni real biznes muammolarini hal qiladigan mentorlardan bilim oling."
+      },
+      "feature3": {
+        "title": "Karyeraviy qo‘llab-quvvatlash",
+        "description": "Rezyume tuzish, suhbatga tayyorlanish va birinchi ishingizni topishga yordam beramiz."
+      },
+      "feature4": {
+        "title": "Moslashuvchan format",
+        "description": "Dunyoning istalgan nuqtasidan materiallarga 24/7 kirish imkoniyati bilan o‘z tezligingizda o‘qing."
+      }
+    },
+    "history": {
+      "title": "Muvaffaqiyat sari yo‘limiz",
+      "subtitle": "G‘oyadan ta’lim texnologiyalari liderigacha bo‘lgan yo‘l.",
+      "event1": {
+        "title": "Asos solinishi",
+        "description": "Kichik kovorkingda 10 nafar ishtiyoqmanddan iborat birinchi guruhning ishga tushirilishi."
+      },
+      "event2": {
+        "title": "Birinchi onlayn-kurs",
+        "description": "Biz onlayn platformaga o'tib, barcha hududlar uchun ta'limni ochiq qildik."
+      },
+      "event3": {
+        "title": "'EdTech Yutug‘i' mukofoti",
+        "description": "Innovatsion yondashuv uchun yilning eng yaxshi ta'lim startapi deb topildik."
+      },
+      "event4": {
+        "title": "Kelajak shu yerda",
+        "description": "To'liq sho'ng'ish uchun AI va VR yordamida kurslarni ishga tushirish rejalari."
+      }
+    },
+    "team": {
+      "title": "Kelajakni yaratayotgan insonlar",
+      "subtitle": "Bizning jamoamiz — bizning asosiy boyligimiz. O‘z ishiga mehr qo‘ygan professionallar.",
+      "roles": {
+        "ceo": "CEO & Asoschi",
+        "cto": "Texnik direktor (CTO)",
+        "head_of_edu": "Ta’lim dasturlari rahbari"
+      }
+    },
+    "testimonials": {
+      "title": "Talabalarimiz nima deydi",
+      "courses": {
+        "python_dev": "'Python-dasturchi' kursi",
+        "ux_design": "'UX/UI Dizayner' kursi",
+        "frontend_dev": "'Frontend-dasturchi' kursi"
+      },
+      "review1": "Bu mening karyeramni butunlay o'zgartirdi. 6 oy ichida men yangi boshlovchidan ishga joylashgan dasturchigacha bo'lgan yo'lni bosib o'tdim. Rahmat!",
+      "review2": "O'zimga kiritgan eng yaxshi sarmoya. O'qituvchilar — haqiqiy professionallar. Qo'llab-quvvatlash yuqori darajada.",
+      "review3": "Men nafaqat texnik ko'nikmalarga ega bo'ldim, balki dasturchi kabi fikrlashni ham o'rgandim. Kursda yaratilgan portfolio ish beruvchilarni hayratda qoldirdi."
+    },
+    "cta": {
+      "title": "O'z yo'lingizni boshlashga tayyormisiz?",
+      "subtitle": "Bizning yordamimiz bilan o‘z hayotini o‘zgartirgan minglab talabalarga qo‘shiling. Sizning muvaffaqiyat hikoyangiz shu yerdan boshlanadi.",
+      "email_placeholder": "Sizning emailingiz",
+      "button": "Qo‘shilish"
+    }
+  },
+  "header": {
+    "about": "Biz haqimizda"
+  },
+  "about1": {
+    "pageIntro": {
+      "title": "Innovatsion ta'lim orqali kelajak ufqlarini kengaytiramiz.",
+      "subtitle": "Iste'dodlarni rivojlantirish va mukammallikka erishishga intilayotgan o'quv markazimizning yo'nalishini kashf eting.",
+      "cta": "Dasturlarimiz haqida bilib oling",
+      "team": {
+        "title": "Bizning Jamoa: Innovatsiyaning Harakatlantiruvchi Kuchi",
+        "subtitle": "Muvaffaqiyatimiz ortida turgan va missiyamizni hayotga tatbiq etayotgan iste'dodli mutaxassislar bilan tanishing.",
+        "roles": {
+          "ceo_founder": "Bosh direktor va Asoschi",
+          "cto": "Texnik direktor",
+          "head_of_edu": "Ta'lim Dasturlari Rahbari",
+          "lead_developer": "Yetakchi Dasturchi",
+          "marketing_director": "Marketing Direktori",
+          "ux_ui_designer": "UX/UI Dizayner",
+          "community_manager": "Jamoa Menedjeri",
+          "data_scientist": "Ma'lumotlar Mutaxassisi"
+        },
+        "descriptions": {
+          "ceo_founder": "Cheksiz energiya va strategik fikrlash bilan missiyamizni oldinga siljituvchi vizioner. Uning yetakchiligi bizni ulkan yutuqlarga ilhomlantiradi.",
+          "cto": "Texnologiya ustasi, platformamizni nihoyatda aniqlik va innovatsiyalar bilan yaratadi. U yechimlarimizning texnik ustunligi uchun javobgardir.",
+          "head_of_edu": "Ta'lim dasturlarimizning bosh me'mori, keyingi avlodni ilhomlantiruvchi. U o'quvlarimizning dolzarbligi va samaradorligini ta'minlaydi.",
+          "lead_developer": "G'oyalarni benuqson kodga aylantiruvchi yetakchi dasturchi. Uning tafsilotlarga e'tibori va tajribasi barqarorlik va ishlash uchun juda muhimdir.",
+          "marketing_director": "Bizning xabarimizni dunyoga yetkazuvchi, kuchli mavjudlikni yaratuvchi strateg. U biz va auditoriyamiz o'rtasidagi ko'priklarni quradi.",
+          "ux_ui_designer": "Intuitiv va chiroyli foydalanuvchi interfeyslarini yaratuvchi rassom. U tufayli platformamiz nafaqat funksional, balki foydalanish uchun ham yoqimli.",
+          "community_manager": "Jamoamizning yuragi, barchani birlashtiruvchi va qo'llab-quvvatlovchi hamjamiyatni yaratuvchi. U foydalanuvchilarimizning ovozi va bog'lovchi bo'g'inidir.",
+          "data_scientist": "O'sishimizni optimallashtirish uchun yashirin qonuniyatlarni ochib beruvchi tahlilchi. Uning zukkoligi asosli qarorlar qabul qilishga va doimiy takomillashishga yordam beradi."
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "MegaSchool — ваш надежный партнер в образовании. Мы предлагаем инновационные программы для развития навыков будущего, которые помогут вам достичь ваших целей.",
+    "quickLinks": "Быстрые ссылки",
+    "contactInfo": "Контактная информация",
+    "address": "ул. Примерная, 123, Ташкент, Узбекистан",
+    "followUs": "Присоединяйтесь к нам",
+    "newsletter": "Будьте в курсе",
+    "yourEmailPlaceholder": "Введите ваш email",
+    "subscribe": "Подписаться",
+    "newsletterSuccess": "Вы успешно подписались на нашу рассылку!",
+    "allRightsReserved": "Все права защищены.",
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfService": "Условия использования"
+  },
+  "contact": {
+    "title": "Biz bilan bog'laning",
+    "subtitle": "Barcha savollaringizga javob berishga va kerakli ma'lumotlarni taqdim etishga tayyormiz. O'zingiz uchun qulay aloqa usulini tanlang.",
+    "mapTitle": "Bizning manzilimiz",
+    "mapClickToOpen": "Google Xaritalarda xaritani ochish uchun bosing",
+    "mapClickLabel": "MegaSchool joylashuvini xaritada ochish",
+    "mapLoading": "Xarita yuklanmoqda...",
+    "mapError": {
+      "loadFailed": "Xaritani yuklashda xato yuz berdi.",
+      "checkApiKey": "Iltimos, Google Xaritalar API kalitingizni va sozlamalarni tekshiring."
+    },
+    "branches": {
+      "tashkent": {
+        "name": "Toshkent filiali",
+        "address": "Amir Temur ko'chasi, 123, Toshkent, O'zbekiston",
+        "hours": "Dushanba-Juma: 9:00 - 18:00, Shanba: 10:00 - 15:00"
+      }
+    },
+    "form": {
+      "title": "Bizga xabar yuboring",
+      "name": "Ismingiz",
+      "namePlaceholder": "To'liq ismingizni kiriting",
+      "email": "Emailingiz",
+      "emailPlaceholder": "misol@domen.com",
+      "subject": "Mavzu",
+      "subjectPlaceholder": "Xabaringiz nima haqida?",
+      "message": "Xabar",
+      "messagePlaceholder": "Xabaringizni bu yerga yozing...",
+      "send": "Xabar yuborish",
+      "sending": "Yuborilmoqda...",
+      "successMessage": "Xabar muvaffaqiyatli yuborildi! Siz bilan tez orada bog'lanamiz. 💌",
+      "errorMessage": "Xabar yuborishda xato yuz berdi. Iltimos, qayta urinib ko'ring.",
+      "errors": {
+        "nameRequired": "Iltimos, ismingizni kiriting.",
+        "emailRequired": "Iltimos, emailingizni kiriting.",
+        "emailInvalid": "Iltimos, to'g'ri email kiriting.",
+        "subjectRequired": "Iltimos, xabar mavzusini kiriting.",
+        "messageRequired": "Iltimos, xabaringizni kiriting."
+      }
+    },
+    "realtime": {
+      "title": "Biz bilan real vaqtda bog'laning",
+      "description": "Tezkor yordam yoki javob olish uchun biz bilan mashhur messenjerlar orqali bog'lanishingiz yoki to'g'ridan-to'g'ri qo'ng'iroq qilishingiz mumkin.",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "Email",
+      "phone": "Qo'ng'iroq"
+    }
+  }
 }

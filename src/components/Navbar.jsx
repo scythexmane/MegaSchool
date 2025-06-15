@@ -54,9 +54,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   const navLinks = [
     { name: t("home"), path: "/" },
     { name: t("courses"), path: "/courses" },
-    { name: t("about"), path: "/about" },
-    { name: t("teachers"), path: "/teachers" },
-    { name: t("contact"), path: "/contact" },
+    { name: t("aboutNav"), path: "/about" },
+    { name: t("contact1"), path: "/contact" },
   ];
 
   return (

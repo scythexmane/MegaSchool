@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
-
+import { Link } from "react-router-dom"; // useLocation не используется, можно убрать
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -12,11 +11,8 @@ import {
   Linkedin,
   Youtube,
   Send, // Send для Telegram
+  ArrowRight, // Новая иконка для кнопки подписки
 } from "lucide-react";
-
-// Предполагаем, что у вас есть компонент Logo, который используется в Navbar
-// Если нет, замените его на <img> и <span> с текстом, как было ранее
-// import Logo from './Logo'; // Путь к вашему компоненту логотипа
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -32,28 +28,14 @@ const Footer = () => {
     },
   };
 
-  // Варианты для анимированных ссылок (как в Navbar с подчеркиванием)
+  // Варианты для анимированных ссылок (уже без подчеркивания, но с цветом)
   const linkVariants = {
-    rest: { opacity: 0.8, x: 0 },
+    rest: { opacity: 0.8, x: 0, color: "var(--tw-color-gray-400)" },
     hover: {
       opacity: 1,
-      x: 0, // Убираем смещение, чтобы фокус был на подчеркивании
-      color: "hsl(217, 91%, 60%)", // Tailwind blue-500 для текста при наведении
+      x: 5, // Небольшое смещение для интерактивности
+      color: "var(--tw-color-blue-400)", // Ярче синий при наведении
       transition: { duration: 0.2, ease: "easeOut" },
-    },
-  };
-
-  // Варианты для подчеркивания ссылок (для использования с :after)
-  const underlineVariants = {
-    rest: {
-      width: "0%",
-      left: "50%",
-      background: "linear-gradient(to right, #60A5FA, #A78BFA)",
-    }, // Tailwind blue-400 to purple-400
-    hover: {
-      width: "100%",
-      left: "0%",
-      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
@@ -63,7 +45,7 @@ const Footer = () => {
     hover: {
       scale: 1.15,
       opacity: 1,
-      filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))", // Мягкое синее свечение
+      filter: "drop-shadow(0 0 10px rgba(59, 130, 246, 0.7))", // Более заметное синее свечение
       transition: { duration: 0.2, ease: "easeOut" },
     },
   };
@@ -71,7 +53,7 @@ const Footer = () => {
   const handleSubmitNewsletter = (e) => {
     e.preventDefault();
     console.log("Newsletter subscribed:", e.target.email.value);
-    alert(t("newsletterSuccess"));
+    alert(t("footer.newsletterSuccess"));
     e.target.reset(); // Clear the form
   };
 
@@ -81,235 +63,181 @@ const Footer = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="bg-gray-900 text-gray-300 py-16 px-6 relative overflow-hidden
-                 border-t border-gray-700 shadow-xl"
+      className="relative bg-gray-950 text-gray-300 py-16 px-6 overflow-hidden
+                 border-t border-gray-800 shadow-lg"
     >
-      {/* Мягкий градиентный фон для глубины, как в Navbar */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950 opacity-20"></div>
+      {/* Очень тонкий фоновый градиент для глубины, почти незаметный */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-indigo-950 opacity-10"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 relative z-10">
-        {/* Column 1: Logo and Description */}
-        <Link
-          to="/"
-          className="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-white"
-          aria-label="MegaSchool Home"
-        >
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-            Mega
-          </span>
-          School
-        </Link>
+      {/* Абстрактные светящиеся "шары" для дополнительной атмосферы */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob-bounce-1" />
+      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-purple-500/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob-bounce-2 delay-700" />
 
-        {/* Column 2: Quick Links */}
-        <div className="flex flex-col gap-6">
-          <h4
-            className="text-xl font-semibold mb-2
-                       bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text"
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 relative z-10">
+        {/* Column 1: Logo & Description */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <Link
+            to="/"
+            className="text-4xl font-extrabold tracking-tight text-white mb-4" // Увеличил размер лого
+            aria-label="MegaSchool Home"
           >
-            {t("quickLinks")}
-          </h4>
-          <ul className="space-y-4">
-            {" "}
-            {/* Увеличен space-y для лучшего разделения */}
-            {["aboutUs", "allCourses", "blog", "faq"].map((key) => (
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+              Mega
+            </span>
+            School
+          </Link>
+          <p className="text-gray-400 text-base leading-relaxed max-w-sm">
+            {t("footer.description")}
+          </p>
+        </div>
+
+        {/* Column 2: Quick Links & Contact Info (Combined for cleaner layout) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              {t("footer.quickLinks")}
+            </h4>
+            <ul className="space-y-3">
+              {["aboutUs", "allCourses", "contact"].map((key) => (
+                <motion.li
+                  key={key}
+                  variants={linkVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  className="relative"
+                >
+                  <Link
+                    to={`/${key.toLowerCase().replace("all", "", ).replace("us", "", )}`}
+                    className="flex items-center text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {t(key)}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              {t("footer.contactInfo")}
+            </h4>
+            <ul className="space-y-3 text-gray-400">
               <motion.li
-                key={key}
                 variants={linkVariants}
                 initial="rest"
                 whileHover="hover"
-                className="relative inline-block w-full" // w-full для подчеркивания на всю ширину блока
+                className="flex items-center gap-3"
               >
-                <a
-                  href={`/${key.toLowerCase().replace("all", "")}`}
-                  className="block text-gray-300 hover:text-white transition-colors duration-200 py-1"
-                >
-                  {" "}
-                  {/* Добавлен py-1 для отступа */}
-                  {t(key)}
-                  <motion.span
-                    variants={underlineVariants}
-                    className="absolute bottom-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-400"
-                  ></motion.span>
+                <Phone size={20} className="text-blue-400 flex-shrink-0" />
+                <a href="tel:+998901234567" className="hover:text-blue-400 transition-colors duration-200">
+                  +998 90 123 45 67
                 </a>
               </motion.li>
-            ))}
-          </ul>
+              <motion.li
+                variants={linkVariants}
+                initial="rest"
+                whileHover="hover"
+                className="flex items-center gap-3"
+              >
+                <Mail size={20} className="text-purple-400 flex-shrink-0" />
+                <a href="mailto:info@megaschool.uz" className="hover:text-purple-400 transition-colors duration-200">
+                  info@megaschool.uz
+                </a>
+              </motion.li>
+              <motion.li
+                variants={linkVariants}
+                initial="rest"
+                whileHover="hover"
+                className="flex items-start gap-3"
+              >
+                <MapPin size={20} className="text-emerald-400 flex-shrink-0 mt-1" />
+                <address className="not-italic hover:text-emerald-400 transition-colors duration-200">
+                  {t("footer.address")}
+                </address>
+              </motion.li>
+            </ul>
+          </div>
         </div>
 
-        {/* Column 3: Contact Info */}
-        <div className="flex flex-col gap-6">
-          <h4
-            className="text-xl font-semibold mb-2
-                       bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"
-          >
-            {t("contactInfo")}
+        {/* Column 3: Social Media & Newsletter */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+            {t("footer.followUs")}
           </h4>
-          <ul className="space-y-4 text-gray-400">
-            {" "}
-            {/* Увеличен space-y */}
-            <motion.li
-              variants={linkVariants}
-              initial="rest"
-              whileHover="hover"
-              className="flex items-center gap-3 relative inline-block w-full"
-            >
-              <Phone size={20} className="text-blue-400 flex-shrink-0" />
-              <a
-                href="tel:+998901234567"
-                className="hover:text-white transition-colors duration-200 py-1"
-              >
-                +998 90 123 45 67
-                <motion.span
-                  variants={underlineVariants}
-                  className="absolute bottom-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-400"
-                ></motion.span>
-              </a>
-            </motion.li>
-            <motion.li
-              variants={linkVariants}
-              initial="rest"
-              whileHover="hover"
-              className="flex items-center gap-3 relative inline-block w-full"
-            >
-              <Mail size={20} className="text-purple-400 flex-shrink-0" />
-              <a
-                href="mailto:info@megaschool.uz"
-                className="hover:text-white transition-colors duration-200 py-1"
-              >
-                info@megaschool.uz
-                <motion.span
-                  variants={underlineVariants}
-                  className="absolute bottom-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-400"
-                ></motion.span>
-              </a>
-            </motion.li>
-            <motion.li
-              variants={linkVariants}
-              initial="rest"
-              whileHover="hover"
-              className="flex items-start gap-3 relative inline-block w-full"
-            >
-              <MapPin
-                size={20}
-                className="text-emerald-400 flex-shrink-0 mt-1"
-              />
-              <address className="not-italic hover:text-white transition-colors duration-200 py-1">
-                ул. Примерная, 123, Ташкент, Узбекистан
-                <motion.span
-                  variants={underlineVariants}
-                  className="absolute bottom-0 h-[2px] bg-gradient-to-r from-blue-400 to-purple-400"
-                ></motion.span>
-              </address>
-            </motion.li>
-          </ul>
-        </div>
-
-        {/* Column 4: Social Media & Newsletter */}
-        <div className="flex flex-col gap-6">
-          <h4
-            className="text-xl font-semibold mb-2
-                       bg-gradient-to-r from-emerald-400 to-cyan-400 text-transparent bg-clip-text"
-          >
-            {t("followUs")}
-          </h4>
-          <div className="flex space-x-5">
+          <div className="flex flex-wrap justify-center md:justify-start gap-5 mb-10"> {/* Увеличен gap */}
             {[
-              {
-                icon: Instagram,
-                href: "https://instagram.com/megaschool",
-                baseColor: "text-pink-400",
-              },
-              {
-                icon: Send,
-                href: "https://t.me/megaschool",
-                baseColor: "text-blue-400",
-              },
-              {
-                icon: Facebook,
-                href: "https://facebook.com/megaschool",
-                baseColor: "text-blue-500",
-              },
-              {
-                icon: Linkedin,
-                href: "https://linkedin.com/company/megaschool",
-                baseColor: "text-blue-600",
-              },
-              {
-                icon: Youtube,
-                href: "https://youtube.com/megaschool",
-                baseColor: "text-red-500",
-              },
+              { icon: Instagram, href: "https://instagram.com/megaschool", baseColor: "text-pink-400" },
+              { icon: Send, href: "https://t.me/megaschool", baseColor: "text-blue-400" },
+              { icon: Facebook, href: "https://facebook.com/megaschool", baseColor: "text-blue-500" },
+              { icon: Linkedin, href: "https://linkedin.com/company/megaschool", baseColor: "text-blue-600" },
+              { icon: Youtube, href: "http://youtube.com/megaschool", baseColor: "text-red-500" },
             ].map((social, index) => (
               <motion.a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`transition-colors duration-200 ${social.baseColor}`}
+                className={`transition-colors duration-220 ${social.baseColor} hover:text-white`} // Сделал hover-цвет белым
                 variants={socialIconVariants}
                 initial="rest"
                 whileHover="hover"
               >
-                <social.icon size={28} />
+                <social.icon size={30} /> {/* Увеличенный размер иконок */}
               </motion.a>
             ))}
           </div>
 
-          <h4
-            className="text-xl font-semibold mt-4 mb-2
-                       bg-gradient-to-r from-yellow-400 to-orange-400 text-transparent bg-clip-text"
-          >
-            {t("newsletter")}
+          <h4 className="text-xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
+            {t("footer.newsletter")}
           </h4>
-          <form
-            onSubmit={handleSubmitNewsletter}
-            className="flex flex-col gap-3"
-          >
+          <form onSubmit={handleSubmitNewsletter} className="flex flex-col gap-4 w-full max-w-sm">
             <input
               type="email"
               name="email"
-              placeholder={t("yourEmailPlaceholder")}
-              className="p-3 rounded-lg bg-gray-700 border border-gray-600
-                         text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500
-                         transition-all duration-200"
+              placeholder={t("footer.yourEmailPlaceholder")}
+              className="p-3 rounded-lg bg-gray-800 border border-gray-700
+                         text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500
+                         transition-all duration-200 shadow-inner" // Добавил тень для глубины
               required
             />
             <motion.button
               type="submit"
               whileHover={{
                 scale: 1.02,
-                backgroundColor: "#4F46E5",
-                boxShadow: "0 5px 15px rgba(59, 130, 246, 0.4)",
+                backgroundColor: "#4F46E5", // bg-indigo-600
+                boxShadow: "0 5px 20px rgba(79, 70, 229, 0.5)", // Более сильная тень
               }}
               whileTap={{ scale: 0.98 }}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg
                          flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
             >
-              <Send size={20} /> {t("subscribe")}
+              {t("footer.subscribe")} <ArrowRight size={20} /> {/* Иконка справа */}
             </motion.button>
           </form>
         </div>
       </div>
 
       {/* Footer Bottom */}
-      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-700/50 text-center text-gray-400 text-sm relative z-10">
-        <p>
-          © {currentYear} MegaSchool. {t("allRightsReserved")}
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800/50 text-center text-gray-500 text-sm relative z-10">
+        <p className="mb-2">
+          © {currentYear} MegaSchool. {t("footer.allRightsReserved")}
         </p>
-        <p className="mt-2">
-          <a
-            href="/privacy-policy"
-            className="hover:text-white transition-colors duration-200 mx-2"
+        <p>
+          <Link
+            to="/privacy-policy"
+            className="hover:text-white transition-colors duration-200 mx-2 text-gray-500 hover:text-blue-400"
           >
-            {t("privacyPolicy")}
-          </a>
-          <span className="text-gray-600">|</span>
-          <a
-            href="/terms-of-service"
-            className="hover:text-white transition-colors duration-200 mx-2"
+            {t("footer.privacyPolicy")}
+          </Link>
+          <span className="text-gray-700">|</span>
+          <Link
+            to="/terms-of-service"
+            className="hover:text-white transition-colors duration-200 mx-2 text-gray-500 hover:text-blue-400"
           >
-            {t("termsOfService")}
-          </a>
+            {t("footer.termsOfService")}
+          </Link>
         </p>
       </div>
     </motion.footer>

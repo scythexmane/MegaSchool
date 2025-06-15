@@ -8,8 +8,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home/Home.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import About from "./pages/About/About.jsx";
-import Teachers from "./pages/Teachers/Teachers.jsx";
-import Contact from "./pages/Contact/Contact.jsx";
+import ContactPage from "./pages/Contact/ContactPage.jsx";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,8 +27,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
-            <Route path="/teachers" element={<Teachers />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
 
