@@ -8,29 +8,24 @@ const GoogleMapSection = () => {
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
   return (
     <motion.section
-      className="w-full h-full p-4 md:p-8 bg-gray-900 rounded-2xl shadow-xl flex flex-col items-center justify-center relative overflow-hidden"
+      className="w-full h-full p-4 md:p-8 bg-[var(--card-bg)] rounded-2xl shadow-xl flex flex-col items-center justify-center relative overflow-hidden border border-[var(--card-border)]"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-8 text-center drop-shadow-lg">
+      <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] mb-8 text-center drop-shadow-[0_0_10px_var(--gradient-from)]">
         {t("contact.mapTitle")}
       </h2>
 
       <div className="w-full flex-grow relative flex flex-col items-center justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
-        {/* Загрузка на всякий случай */}
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-          <Loader2 className="animate-spin text-blue-500" size={48} />
+          <Loader2 className="animate-spin text-[var(--gradient-from)]" size={48} />
         </div>
 
         <iframe
@@ -40,10 +35,10 @@ const GoogleMapSection = () => {
           height="100%"
           loading="lazy"
           allowFullScreen
-          className="w-full h-full rounded-xl border border-gray-700 shadow-xl z-0"
+          className="w-full h-full rounded-xl border border-[var(--card-border)] shadow-xl z-0"
           style={{
             minHeight: "400px",
-            border: "1px solid rgba(55, 65, 81, 1)",
+            border: "1px solid var(--card-border)",
             borderRadius: "0.75rem",
             boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)",
           }}
@@ -51,27 +46,27 @@ const GoogleMapSection = () => {
         />
       </div>
 
-      <div className="mt-8 text-center bg-gray-900 p-6 rounded-xl shadow-inner border border-gray-700/50">
+      <div className="mt-8 text-center bg-[var(--card-bg)] p-6 rounded-xl shadow-inner border border-[var(--card-border)]">
         <motion.p
-          className="text-lg text-gray-300 mb-2 flex items-center justify-center"
+          className="text-lg text-[var(--text-secondary)] mb-2 flex items-center justify-center"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <MapPin size={22} className="inline-block mr-3 text-purple-400 animate-bounce-subtle" />
-          <span className="font-semibold text-white">
+          <MapPin size={22} className="inline-block mr-3 text-[var(--gradient-from)] animate-bounce-subtle" />
+          <span className="font-semibold text-[var(--text-primary)]">
             {t("contact.branches.tashkent.address")}
           </span>
         </motion.p>
         <motion.p
-          className="text-md text-gray-400 flex items-center justify-center"
+          className="text-md text-[var(--text-secondary)] flex items-center justify-center"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ delay: 0.7, duration: 0.5 }}
         >
-          <span className="font-semibold text-green-400 mr-3 text-2xl">🕒</span>
+          <span className="font-semibold text-[var(--gradient-to)] mr-3 text-2xl">🕒</span>
           {t("contact.branches.tashkent.hours")}
         </motion.p>
       </div>

@@ -1,49 +1,25 @@
 import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send, Globe } from "lucide-react"; // Иконки
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 
-// --- Mock Data for Branches (для выпадающего списка и отображения информации) ---
 const branches = [
-  {
-    id: 1,
-    name: "MegaSchool Center (Центральный)",
-    address: "ул. Амира Темура, 107, Ташкент",
-    phone: "+998 71 234 56 78",
-    email: "center@megaschool.uz",
-  },
-  {
-    id: 2,
-    name: "MegaSchool Chilanzar (Чиланзар)",
-    address: "Чиланзарский район, квартал 15, дом 20",
-    phone: "+998 71 271 22 33",
-    email: "chilanzar@megaschool.uz",
-  },
-  {
-    id: 3,
-    name: "MegaSchool Mirzo-Ulugbek (Мирзо-Улугбек)",
-    address: "Мирзо-Улугбекский район, ул. Буюк Ипак Йули, 12",
-    phone: "+998 71 267 89 00",
-    email: "ulugbek@megaschool.uz",
-  },
-  {
-    id: 4,
-    name: "MegaSchool Yunusabad (Юнусабад)",
-    address: "Юнусабадский район, Ц-5, дом 35",
-    phone: "+998 71 200 55 66",
-    email: "yunusabad@megaschool.uz",
-  }
+  { id: 1, name: "MegaSchool Center", address: "Amir Temur St, 107, Tashkent", phone: "+998 71 234 56 78", email: "center@megaschool.uz" },
+  { id: 2, name: "MegaSchool Chilanzar", address: "Chilanzar, Block 15, House 20", phone: "+998 71 271 22 33", email: "chilanzar@megaschool.uz" },
+  { id: 3, name: "MegaSchool Mirzo-Ulugbek", address: "Buyuk Ipak Yuli St, 12, Mirzo-Ulugbek", phone: "+998 71 267 89 00", email: "ulugbek@megaschool.uz" },
+  { id: 4, name: "MegaSchool Yunusabad", address: "Yunusabad, C-5, House 35", phone: "+998 71 200 55 66", email: "yunusabad@megaschool.uz" },
 ];
 
 const ContactSection = () => {
   const { t } = useTranslation();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    branch: "", // Для выбора филиала в форме
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", branch: "" });
+  const [mapCardTransform, setMapCardTransform] = useState({
+    rotateX: 0,
+    rotateY: 0,
+    scale: 1,
+    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
   });
+  const mapCardRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,73 +33,72 @@ const ContactSection = () => {
     setFormData({ name: "", email: "", message: "", branch: "" });
   };
 
-  // --- Animation Variants ---
+  const handleMouseMove = (e) => {
+    if (!mapCardRef.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = mapCardRef.current.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) / (width / 2);
+    const y = (clientY - (top + height / 2)) / (height / 2);
+    const rotateY = x * 8;
+    const rotateX = -y * 8;
+    setMapCardTransform({
+      rotateX,
+      rotateY,
+      scale: 1.01,
+      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 10 + 15}px ${
+        (Math.abs(x) + Math.abs(y)) * 20 + 40
+      }px rgba(0,0,0,0.3), 0 0 25px rgba(59,130,246,0.3)`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setMapCardTransform({
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+    });
+  };
+
   const sectionVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
-  // Варианты для карточек контактов и обертки карты
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 100, damping: 15 },
+    },
     hover: {
       scale: 1.02,
-      boxShadow: "0 15px 30px rgba(0,0,0,0.2), 0 0 20px rgba(74,144,226,0.2)",
-      transition: { duration: 0.2, ease: "easeOut" }
+      boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
+      transition: { duration: 0.2 },
     },
   };
 
-  // Варианты для полей ввода формы
   const inputVariants = {
-    rest: { borderColor: "#4B5563", boxShadow: "0 0 0px transparent" },
+    rest: { borderColor: "var(--card-border)", boxShadow: "0 0 0px transparent" },
     focus: {
-      borderColor: "#3B82F6", // Blue-600
-      boxShadow: "0 0 15px rgba(59,130,246,0.6), 0 0 25px rgba(123,65,199,0.3)",
-      transition: { duration: 0.3, ease: "easeOut" }
-    }
+      borderColor: "var(--gradient-from)",
+      boxShadow: "0 0 15px rgba(59,130,246,0.6)",
+      transition: { duration: 0.3 },
+    },
   };
 
-  // Варианты для кнопки отправки формы
   const submitButtonVariants = {
     rest: { scale: 1, backgroundPosition: "0% 50%" },
     hover: {
       scale: 1.03,
-      backgroundPosition: "100% 50%", // Анимируем фон градиента
-      boxShadow: "0 10px 25px rgba(59,130,246,0.6), 0 0 40px rgba(123,65,199,0.4)",
-      transition: { duration: 0.3, ease: "easeOut" }
+      backgroundPosition: "100% 50%",
+      boxShadow: "0 10px 25px rgba(59,130,246,0.6)",
+      transition: { duration: 0.3 },
     },
-    tap: { scale: 0.97 }
+    tap: { scale: 0.97 },
   };
-
-  // --- Mouse move effect for map card (тот же, что и раньше, для качества) ---
-  const [mapCardTransform, setMapCardTransform] = useState({ rotateX: 0, rotateY: 0, scale: 1, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" });
-  const mapCardRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!mapCardRef.current) return;
-
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = mapCardRef.current.getBoundingClientRect();
-
-    const x = (clientX - (left + width / 2)) / (width / 2); // -1 to 1
-    const y = (clientY - (top + height / 2)) / (height / 2); // -1 to 1
-
-    const rotateY = x * 8; // Max 8 degrees rotation
-    const rotateX = -y * 8; // Max 8 degrees rotation
-
-    setMapCardTransform({
-        rotateX,
-        rotateY,
-        scale: 1.01,
-        boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 10 + 15}px ${(Math.abs(x) + Math.abs(y)) * 20 + 40}px rgba(0,0,0,0.3), 0 0 25px rgba(74,144,226,0.3)` // Динамическая тень
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setMapCardTransform({ rotateX: 0, rotateY: 0, scale: 1, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" });
-  };
-
 
   return (
     <motion.section
@@ -131,36 +106,48 @@ const ContactSection = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="py-20 md:py-32 bg-white dark:bg-gray-950 text-gray-900 dark:text-white relative overflow-hidden"
-      // Без фоновых анимаций, просто чистый цвет
+      className="py-20 md:py-32 animated-bg relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Background blobs */}
+      <div className="absolute inset-0 z-0 opacity-20 dark:opacity-30">
+        <div
+          className="absolute top-1/4 left-[10%] w-64 h-64 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"
+          style={{ backgroundColor: "var(--blob-blue)" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 right-[15%] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"
+          style={{ backgroundColor: "var(--blob-purple)" }}
+        ></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-16
-                     bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text
-                     drop-shadow-lg" // Добавим тень для глубины текста
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
         >
           {t("contactUsTitleSimple")}
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column: Map and Branch Selector */}
+          {/* Branches and Map */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.2, staggerChildren: 0.1 }} // Анимация детей с задержкой
+            transition={{ delay: 0.2, staggerChildren: 0.1 }}
             className="flex flex-col gap-6"
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
               {t("ourBranches")}
             </h3>
-            <motion.div variants={cardVariants} whileHover="hover"> {/* Общий эффект для селектора */}
-              <label htmlFor="branch-select" className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-3">
+            <motion.div variants={cardVariants} whileHover="hover">
+              <label
+                htmlFor="branch-select"
+                className="block text-[var(--text-secondary)] text-lg font-medium mb-3"
+              >
                 {t("selectBranch")}
               </label>
               <select
@@ -168,9 +155,7 @@ const ContactSection = () => {
                 name="branch"
                 onChange={handleChange}
                 value={formData.branch}
-                className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700
-                           text-gray-900 dark:text-gray-100 shadow-sm focus:ring-blue-500 focus:border-blue-500
-                           transition-colors duration-200"
+                className="w-full p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-colors duration-200"
               >
                 <option value="">{t("chooseBranchOption")}</option>
                 {branches.map((branch) => (
@@ -181,11 +166,10 @@ const ContactSection = () => {
               </select>
             </motion.div>
 
-            {/* Карта Ташкента - теперь с интерактивной оберткой */}
             <motion.div
               ref={mapCardRef}
               variants={cardVariants}
-              initial="hidden" // Анимируем появление
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               style={{
@@ -194,7 +178,7 @@ const ContactSection = () => {
               }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 transition-all duration-100 ease-out" // Более чистый фон
+              className="rounded-2xl overflow-hidden bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-100 ease-out"
             >
               <iframe
                 src="https://maps.google.com/?cid=11937127517559049112"
@@ -208,39 +192,50 @@ const ContactSection = () => {
               ></iframe>
             </motion.div>
 
-            {/* Информация о выбранном филиале - с более плавными анимациями */}
             {formData.branch && (
               <motion.div
                 initial={{ opacity: 0, y: 20, height: 0 }}
                 animate={{ opacity: 1, y: 0, height: "auto" }}
                 exit={{ opacity: 0, y: -20, height: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="mt-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700
-                           flex flex-col gap-2 overflow-hidden" // overflow-hidden для анимации height
+                className="mt-6 bg-[var(--card-bg)] rounded-lg p-6 shadow-lg border border-[var(--card-border)] flex flex-col gap-2 overflow-hidden"
               >
-                <h4 className="font-bold text-xl mb-2 text-blue-600 dark:text-blue-400">{formData.branch}</h4>
-                <p className="text-gray-700 dark:text-gray-300 flex items-center gap-2"><MapPin size={18} className="text-purple-600 dark:text-purple-400" /> {branches.find(b => b.name === formData.branch)?.address}</p>
-                <p className="text-gray-700 dark:text-gray-300 flex items-center gap-2"><Phone size={18} className="text-cyan-600 dark:text-cyan-400" /> {branches.find(b => b.name === formData.branch)?.phone}</p>
-                <p className="text-gray-700 dark:text-gray-300 flex items-center gap-2"><Mail size={18} className="text-emerald-600 dark:text-emerald-400" /> {branches.find(b => b.name === formData.branch)?.email}</p>
+                <h4 className="font-bold text-xl bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
+                  {formData.branch}
+                </h4>
+                <p className="text-[var(--text-secondary)] flex items-center gap-2">
+                  <MapPin size={18} className="text-[var(--gradient-to)]" />{" "}
+                  {branches.find((b) => b.name === formData.branch)?.address}
+                </p>
+                <p className="text-[var(--text-secondary)] flex items-center gap-2">
+                  <Phone size={18} className="text-[var(--gradient-from)]" />{" "}
+                  {branches.find((b) => b.name === formData.branch)?.phone}
+                </p>
+                <p className="text-[var(--text-secondary)] flex items-center gap-2">
+                  <Mail size={18} className="text-[var(--gradient-to)]" />{" "}
+                  {branches.find((b) => b.name === formData.branch)?.email}
+                </p>
               </motion.div>
             )}
           </motion.div>
 
-          {/* Right Column: Contact Form */}
+          {/* Contact Form */}
           <motion.div
-            variants={cardVariants} // Используем те же варианты для появления
+            variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 md:p-10 shadow-lg border border-gray-200 dark:border-gray-700"
+            className="bg-[var(--card-bg)] rounded-2xl p-8 md:p-10 shadow-xl border border-[var(--card-border)]"
           >
-            <h3 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8 bg-gradient-to-r from-cyan-600 to-emerald-600 text-transparent bg-clip-text">
+            <h3 className="text-3xl font-extrabold text-center mb-8 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
               {t("sendUsAMessage")}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                >
                   {t("yourName")}
                 </label>
                 <motion.input
@@ -250,16 +245,17 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t("namePlaceholder")}
-                  className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600
-                             text-gray-900 dark:text-gray-100 shadow-sm focus:ring-blue-500 focus:border-blue-500
-                             transition-all duration-200"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
-                  variants={inputVariants} // Применяем варианты анимации
-                  whileFocus="focus" // Анимация при фокусе
+                  variants={inputVariants}
+                  whileFocus="focus"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                >
                   {t("yourEmail")}
                 </label>
                 <motion.input
@@ -269,16 +265,17 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t("emailPlaceholder")}
-                  className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600
-                             text-gray-900 dark:text-gray-100 shadow-sm focus:ring-blue-500 focus:border-blue-500
-                             transition-all duration-200"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
                   variants={inputVariants}
                   whileFocus="focus"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                >
                   {t("yourMessage")}
                 </label>
                 <motion.textarea
@@ -288,13 +285,11 @@ const ContactSection = () => {
                   onChange={handleChange}
                   rows="5"
                   placeholder={t("messagePlaceholder")}
-                  className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600
-                             text-gray-900 dark:text-gray-100 shadow-sm focus:ring-blue-500 focus:border-blue-500 resize-y
-                             transition-all duration-200"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
                   variants={inputVariants}
                   whileFocus="focus"
-                ></motion.textarea>
+                />
               </div>
               <motion.button
                 type="submit"
@@ -302,19 +297,11 @@ const ContactSection = () => {
                 initial="rest"
                 whileHover="hover"
                 whileTap="tap"
-                className="w-full flex items-center justify-center gap-3
-                           bg-gradient-to-r from-blue-600 to-purple-600 text-white
-                           px-6 py-3 rounded-full font-bold text-lg
-                           transition-all duration-300 ease-in-out shadow-lg
-                           bg-size-200% bg-pos-0% hover:bg-pos-100% relative overflow-hidden" // bg-size-200% и bg-pos-0% для анимации градиента
+                className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden flex items-center justify-center gap-2"
               >
-                <Send size={20} className="group-hover:rotate-6 transition-transform" />
-                {t("sendMessage")}
-                {/* Эффект свечения при наведении */}
-                <span
-                  className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10
-                             transition-opacity duration-300 pointer-events-none"
-                ></span>
+                <span className="relative z-10">{t("submit")}</span>
+                <Send size={20} className="relative z-10" />
+                <span className="absolute inset-0 bg-gradient-to-r from-[var(--gradient-to)] to-[var(--gradient-from)] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
               </motion.button>
             </form>
           </motion.div>

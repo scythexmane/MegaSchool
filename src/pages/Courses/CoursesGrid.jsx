@@ -1,19 +1,15 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import CourseCard from './CourseCard';
-import NoCoursesFound from './NoCoursesFound';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import CourseCard from "./CourseCard";
+import NoCoursesFound from "./NoCoursesFound";
 
 const CoursesGrid = ({ courses }) => {
-  // Варианты анимации для сетки контейнера
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.08, // Карточки будут появляться по очереди с небольшой задержкой
-        delayChildren: 0.1 // Небольшая задержка перед началом анимации первой карточки
-      }
-    }
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    },
   };
 
   if (courses.length === 0) {
@@ -26,11 +22,10 @@ const CoursesGrid = ({ courses }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden" // Для AnimatePresence
+      exit="hidden"
     >
       <AnimatePresence>
         {courses.map((course) => (
-          // CourseCard уже имеет свою анимацию 'hidden' и 'visible'
           <CourseCard key={course.id} course={course} />
         ))}
       </AnimatePresence>

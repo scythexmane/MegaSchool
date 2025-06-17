@@ -1,15 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // Импортируем Framer Motion
-import LanguageSwitcher from "./LanguageSwitcher.jsx"; // Предполагаем, что они переработаны для нового стиля
-import DarkModeToggle from "./DarkModeToggle.jsx"; // Предполагаем, что они переработаны для нового стиля
+import { motion, AnimatePresence } from "framer-motion";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import DarkModeToggle from "./DarkModeToggle.jsx";
 import { useTranslation } from "react-i18next";
 
-// Иконка гамбургера (меню)
+// Hamburger Icon
 const HamburgerIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6 text-gray-800 dark:text-gray-200"
+    className="h-6 w-6 text-[var(--text-primary)]"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -23,11 +23,11 @@ const HamburgerIcon = () => (
   </svg>
 );
 
-// Иконка закрытия (крестик)
+// Close Icon
 const CloseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6 text-gray-800 dark:text-gray-200"
+    className="h-6 w-6 text-[var(--text-primary)]"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -44,9 +44,9 @@ const CloseIcon = () => (
 const Navbar = ({ darkMode, setDarkMode }) => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation(); // Для определения активной ссылки
+  const location = useLocation();
 
-  // Закрываем мобильное меню при изменении маршрута
+  // Close mobile menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
@@ -63,45 +63,42 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="bg-white dark:bg-gray-950 shadow-lg shadow-black/5 sticky top-0 z-50 backdrop-blur-md bg-opacity-80 dark:bg-opacity-80"
-      // Добавляем backdrop-blur-md и bg-opacity для эффекта полупрозрачности
+      className="sticky top-0 z-50 backdrop-blur-md bg-[var(--card-bg)] border-b border-[var(--card-border)]"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Логотип */}
+        {/* Logo */}
         <Link
           to="/"
-          className="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-white"
+          className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)]"
           aria-label="MegaSchool Home"
         >
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
             Mega
           </span>
           School
         </Link>
 
-        {/* Десктопное меню */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <div key={link.path} className="relative group">
               <Link
                 to={link.path}
                 className={`
-                  relative
-                  text-gray-600 dark:text-gray-300
-                  font-medium text-lg
+                  relative text-[var(--text-secondary)] font-medium text-lg
                   transition-colors duration-300 ease-in-out
-                  hover:text-blue-600 dark:hover:text-blue-400
-                  ${location.pathname === link.path ? "text-blue-600 dark:text-blue-400" : ""}
+                  hover:bg-gradient-to-r hover:from-[var(--gradient-from)] hover:to-[var(--gradient-to)] hover:text-transparent hover:bg-clip-text
+                  ${location.pathname === link.path ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text" : ""}
                 `}
                 aria-current={location.pathname === link.path ? "page" : undefined}
               >
                 {link.name}
-                {/* Анимированное подчеркивание для активной/ховер ссылки */}
+                {/* Animated underline for active/hover link */}
                 {location.pathname === link.path && (
                   <motion.span
                     layoutId="underline"
-                    className="absolute left-0 bottom-[-4px] h-[2px] bg-blue-600 dark:bg-blue-400 w-full"
-                    // transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    className="absolute left-0 bottom-[-4px] h-[2px] bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] w-full"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 )}
               </Link>
@@ -109,13 +106,13 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           ))}
         </div>
 
-        {/* Переключатели и кнопка мобильного меню */}
+        {/* Toggles and Mobile Menu Button */}
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
           <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            className="md:hidden p-2 rounded-md hover:bg-[var(--card-border)] transition-colors duration-200"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -123,7 +120,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         </div>
       </div>
 
-      {/* Мобильное меню (Framer Motion для анимации) */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -131,8 +128,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden flex flex-col items-center gap-4 pb-6 pt-2
-                       bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800"
+            className="md:hidden flex flex-col items-center gap-4 pb-6 pt-2 bg-[var(--card-bg)] border-t border-[var(--card-border)]"
           >
             {navLinks.map((link) => (
               <Link
@@ -140,11 +136,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
                 className={`
-                  text-gray-700 dark:text-gray-200
-                  font-medium text-lg py-2 w-full text-center
-                  hover:bg-gray-50 dark:hover:bg-gray-800
-                  transition-colors duration-200 rounded-md
-                  ${location.pathname === link.path ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-800" : ""}
+                  text-[var(--text-primary)] font-medium text-lg py-2 w-full text-center
+                  hover:bg-[var(--card-border)] transition-colors duration-200 rounded-md
+                  ${location.pathname === link.path ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text bg-[var(--card-border)]" : ""}
                 `}
               >
                 {link.name}

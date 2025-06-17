@@ -1,22 +1,21 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const categories = [
-  { value: "all", label: "all" }, // <-- ИЗМЕНЕНО: было "allCategories"
-  { value: "languages", label: "languages" }, // <-- ИЗМЕНЕНО: было "languagesCategory"
-  { value: "it", label: "itCourses" }, // <-- ИЗМЕНЕНО: было "itCategory"
-  { value: "science", label: "science" }, // <-- ИЗМЕНЕНО: было "scienceCategory"
-  // Добавьте другие категории по мере необходимости
+  { value: "all", label: "all" },
+  { value: "languages", label: "languages" },
+  { value: "it", label: "itCourses" },
+  { value: "science", label: "science" },
 ];
 
 const CategoryFilter = ({ selectedCategory, setSelectedCategory }) => {
   const { t } = useTranslation();
 
   const buttonVariants = {
-    rest: { scale: 1, backgroundColor: 'rgba(55, 65, 81, 0.5)' }, // bg-gray-700 with opacity
-    hover: { scale: 1.05, backgroundColor: 'rgba(59, 130, 246, 0.7)' }, // blue-500 with opacity
-    active: { scale: 1.05, backgroundColor: 'rgb(59, 130, 246)' } // solid blue-500
+    rest: { scale: 1, backgroundColor: "var(--card-bg)" },
+    hover: { scale: 1.05, backgroundColor: "rgba(59,130,246,0.7)" },
+    active: { scale: 1.05, backgroundColor: "var(--gradient-from)" },
   };
 
   return (
@@ -34,8 +33,11 @@ const CategoryFilter = ({ selectedCategory, setSelectedCategory }) => {
           initial="rest"
           animate={selectedCategory === cat.value ? "active" : "rest"}
           whileHover="hover"
-          className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md
-                      ${selectedCategory === cat.value ? 'bg-blue-600 text-white' : 'bg-gray-700/50 text-gray-300 hover:bg-blue-500/70'}`}
+          className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md ${
+            selectedCategory === cat.value
+              ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white"
+              : "bg-[var(--card-bg)] text-[var(--text-secondary)] hover:bg-[var(--gradient-from)]/70"
+          }`}
         >
           {t(cat.label)}
         </motion.button>

@@ -11,15 +11,10 @@ const Breadcrumb = ({ items }) => {
     hidden: { opacity: 0, x: -10 },
     visible: { opacity: 1, x: 0 },
   };
-  <Breadcrumb
-    items={[
-      { label: "home", path: "/" },
-      { label: "courses", path: "/courses" },
-    ]}
-  />;
+
   return (
     <nav
-      className="flex items-center text-sm text-gray-400 mb-8"
+      className="flex items-center text-sm text-[var(--text-secondary)] mb-8"
       aria-label="Breadcrumb"
     >
       <ol className="inline-flex items-center space-x-2">
@@ -33,17 +28,17 @@ const Breadcrumb = ({ items }) => {
             transition={{ delay: index * 0.1 }}
           >
             {index > 0 && (
-              <ChevronRight size={16} className="mx-2 text-gray-500" />
+              <ChevronRight size={16} className="mx-2 text-[var(--text-secondary)]" />
             )}
             {item.path ? (
               <Link
                 to={item.path}
-                className="hover:text-blue-400 transition-colors duration-200"
+                className="hover:text-[var(--gradient-from)] transition-colors duration-200"
               >
                 {t(item.label)}
               </Link>
             ) : (
-              <span className="text-gray-300 font-medium">{t(item.label)}</span>
+              <span className="text-[var(--text-primary)] font-medium">{t(item.label)}</span>
             )}
           </motion.li>
         ))}

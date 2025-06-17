@@ -5,7 +5,7 @@ const NoCoursesFound = () => {
   const { t } = useTranslation();
 
   return (
-    <p className="text-center text-lg text-gray-500 dark:text-gray-400">
+    <p className="text-center text-lg text-[var(--text-secondary)]">
       {t("noCoursesFound")}
     </p>
   );
