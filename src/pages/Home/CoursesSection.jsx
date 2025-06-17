@@ -3,37 +3,137 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  BookOpen, Code, FlaskConical, Brain, Languages, Bot, Atom, Palette, Megaphone, Laptop,
+  BookOpen,
+  Code,
+  FlaskConical,
+  Brain,
+  Languages,
+  Bot,
+  Atom,
+  Palette,
+  Megaphone,
+  Laptop,
 } from "lucide-react";
 
 const courseColors = {
-  english: { base: '#4A90E2', accent: '#6ECFF6', iconBg: 'linear-gradient(45deg, #4A90E2, #6ECFF6)', shadow: 'rgba(74, 144, 226, 0.4)' },
-  russian: { base: '#7B41C7', accent: '#B26BF7', iconBg: 'linear-gradient(45deg, #7B41C7, #B26BF7)', shadow: 'rgba(123, 65, 199, 0.4)' },
-  uzbek: { base: '#4CAF50', accent: '#81C784', iconBg: 'linear-gradient(45deg, #4CAF50, #81C784)', shadow: 'rgba(76, 175, 80, 0.4)' },
-  chemistry: { base: '#FF5722', accent: '#FF7043', iconBg: 'linear-gradient(45deg, #FF5722, #FF7043)', shadow: 'rgba(255, 87, 34, 0.4)' },
-  biology: { base: '#FFC107', accent: '#FFD54F', iconBg: 'linear-gradient(45deg, #FFC107, #FFD54F)', shadow: 'rgba(255, 193, 7, 0.4)' },
-  robotics: { base: '#00BCD4', accent: '#4DD0E1', iconBg: 'linear-gradient(45deg, #00BCD4, #4DD0E1)', shadow: 'rgba(0, 188, 212, 0.4)' },
-  programming: { base: '#8BC34A', accent: '#AED581', iconBg: 'linear-gradient(45deg, #8BC34A, #AED581)', shadow: 'rgba(139, 195, 74, 0.4)' },
-  physics: { base: '#3F51B5', accent: '#5C6BC0', iconBg: 'linear-gradient(45deg, #3F51B5, #5C6BC0)', shadow: 'rgba(63, 81, 181, 0.4)' },
-  math: { base: '#E91E63', accent: '#F06292', iconBg: 'linear-gradient(45deg, #E91E63, #F06292)', shadow: 'rgba(233, 30, 99, 0.4)' },
-  marketing: { base: '#FF9800', accent: '#FFB74D', iconBg: 'linear-gradient(45deg, #FF9800, #FFB74D)', shadow: 'rgba(255, 152, 0, 0.4)' },
-  design: { base: '#9C27B0', accent: '#BA68C8', iconBg: 'linear-gradient(45deg, #9C27B0, #BA68C8)', shadow: 'rgba(156, 39, 176, 0.4)' },
-  web_development: { base: '#009688', accent: '#4DB6AC', iconBg: 'linear-gradient(45deg, #009688, #4DB6AC)', shadow: 'rgba(0, 150, 136, 0.4)' },
+  english: {
+    base: "#1A6AA5",
+    accent: "#3FA0D5",
+    iconBg: "linear-gradient(45deg, #1A6AA5, #3FA0D5)",
+    shadow: "rgba(26, 106, 165, 0.6)",
+  },
+  russian: {
+    base: "#4B2A80",
+    accent: "#7C4FC0",
+    iconBg: "linear-gradient(45deg, #4B2A80, #7C4FC0)",
+    shadow: "rgba(75, 42, 128, 0.6)",
+  },
+  chemistry: {
+    base: "#BF360C",
+    accent: "#E64A19",
+    iconBg: "linear-gradient(45deg, #BF360C, #E64A19)",
+    shadow: "rgba(191, 54, 12, 0.6)",
+  },
+  biology: {
+    base: "#FF8F00",
+    accent: "#FFB300",
+    iconBg: "linear-gradient(45deg, #FF8F00, #FFB300)",
+    shadow: "rgba(255, 143, 0, 0.6)",
+  },
+  robotics: {
+    base: "#006064",
+    accent: "#00838F",
+    iconBg: "linear-gradient(45deg, #006064, #00838F)",
+    shadow: "rgba(0, 96, 100, 0.6)",
+  },
+  it: {
+    base: "#558B2F",
+    accent: "#7CB342",
+    iconBg: "linear-gradient(45deg, #558B2F, #7CB342)",
+    shadow: "rgba(85, 139, 47, 0.6)",
+  },
+  physics: {
+    base: "#283593",
+    accent: "#3F51B5",
+    iconBg: "linear-gradient(45deg, #283593, #3F51B5)",
+    shadow: "rgba(40, 53, 147, 0.6)",
+  },
+  math: {
+    base: "#C2185B",
+    accent: "#D81B60",
+    iconBg: "linear-gradient(45deg, #C2185B, #D81B60)",
+    shadow: "rgba(194, 24, 91, 0.6)",
+  },
+  marketing: {
+    base: "#E65100",
+    accent: "#FB8C00",
+    iconBg: "linear-gradient(45deg, #E65100, #FB8C00)",
+    shadow: "rgba(230, 81, 0, 0.6)",
+  },
+  computerLiteracy: {
+    base: "#004D40",
+    accent: "#00695C",
+    iconBg: "linear-gradient(45deg, #004D40, #00695C)",
+    shadow: "rgba(0, 77, 64, 0.6)",
+  },
 };
 
 const courses = [
-  { id: "english", titleKey: "english", icon: <Languages size={48} />, colorKey: "english" },
-  { id: "russian", titleKey: "russian", icon: <Languages size={48} />, colorKey: "russian" },
-  { id: "uzbek", titleKey: "uzbek", icon: <Languages size={48} />, colorKey: "uzbek" },
-  { id: "chemistry", titleKey: "chemistry", icon: <FlaskConical size={48} />, colorKey: "chemistry" },
-  { id: "biology", titleKey: "biology", icon: <Brain size={48} />, colorKey: "biology" },
-  { id: "robotics", titleKey: "robotics", icon: <Bot size={48} />, colorKey: "robotics" },
-  { id: "programming", titleKey: "programming", icon: <Code size={48} />, colorKey: "programming" },
-  { id: "physics", titleKey: "physics", icon: <Atom size={48} />, colorKey: "physics" },
-  { id: "math", titleKey: "math", icon: <BookOpen size={48} />, colorKey: "math" },
-  { id: "marketing", titleKey: "marketing", icon: <Megaphone size={48} />, colorKey: "marketing" },
-  { id: "design", titleKey: "design", icon: <Palette size={48} />, colorKey: "design" },
-  { id: "web_development", titleKey: "web_development", icon: <Laptop size={48} />, colorKey: "web_development" },
+  {
+    id: "english",
+    titleKey: "english",
+    icon: <Languages size={48} />,
+    colorKey: "english",
+  },
+  {
+    id: "russian",
+    titleKey: "russian",
+    icon: <Languages size={48} />,
+    colorKey: "russian",
+  },
+  {
+    id: "chemistry",
+    titleKey: "chemistry",
+    icon: <FlaskConical size={48} />,
+    colorKey: "chemistry",
+  },
+  {
+    id: "biology",
+    titleKey: "biology",
+    icon: <Brain size={48} />,
+    colorKey: "biology",
+  },
+  {
+    id: "robotics",
+    titleKey: "robotics",
+    icon: <Bot size={48} />,
+    colorKey: "robotics",
+  },
+  { id: "it", titleKey: "it", icon: <Code size={48} />, colorKey: "it" },
+  {
+    id: "physics",
+    titleKey: "physics",
+    icon: <Atom size={48} />,
+    colorKey: "physics",
+  },
+  {
+    id: "math",
+    titleKey: "math",
+    icon: <BookOpen size={48} />,
+    colorKey: "math",
+  },
+  {
+    id: "marketing",
+    titleKey: "marketing",
+    icon: <Megaphone size={48} />,
+    colorKey: "marketing",
+  },
+  {
+    id: "computerLiteracy",
+    titleKey: " computerLiteracy",
+    icon: <Laptop size={48} />,
+    colorKey: "computerLiteracy",
+  },
 ];
 
 const CoursesSection = () => {
@@ -74,12 +174,18 @@ const CoursesSection = () => {
     <section className="py-24 lg:py-40 relative overflow-hidden animated-bg">
       {/* Background blobs */}
       <div className="absolute inset-0 z-0 opacity-20 dark:opacity-30">
-        <div className="absolute top-1/4 left-[5%] w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"
-             style={{ backgroundColor: 'var(--blob-blue)' }}></div>
-        <div className="absolute bottom-1/3 right-[10%] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"
-             style={{ backgroundColor: 'var(--blob-purple)' }}></div>
-        <div className="absolute top-1/2 left-[20%] w-64 h-64 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"
-             style={{ backgroundColor: 'var(--blob-pink)' }}></div>
+        <div
+          className="absolute top-1/4 left-[5%] w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"
+          style={{ backgroundColor: "var(--blob-blue)" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 right-[10%] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"
+          style={{ backgroundColor: "var(--blob-purple)" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-[20%] w-64 h-64 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"
+          style={{ backgroundColor: "var(--blob-pink)" }}
+        ></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
@@ -97,7 +203,12 @@ const CoursesSection = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, delay: 0.2, type: "spring", stiffness: 100 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.2,
+            type: "spring",
+            stiffness: 100,
+          }}
           className="text-xl md:text-2xl text-[var(--text-secondary)] mb-16 max-w-3xl mx-auto leading-relaxed"
         >
           {t("coursesSectionSubtitle")}
@@ -126,13 +237,13 @@ const CoursesSection = () => {
                 style={{
                   boxShadow: `0px 15px 30px ${colors.shadow}`,
                 }}
-                onMouseEnter={e => {
+                onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = `0px 25px 50px ${colors.shadow}, 0px 0px 40px ${colors.shadow} inset`;
                   e.currentTarget.style.borderColor = `${colors.accent}80`;
                 }}
-                onMouseLeave={e => {
+                onMouseLeave={(e) => {
                   e.currentTarget.style.boxShadow = `0px 15px 30px ${colors.shadow}`;
-                  e.currentTarget.style.borderColor = 'var(--card-border)';
+                  e.currentTarget.style.borderColor = "var(--card-border)";
                 }}
               >
                 <div
@@ -183,7 +294,9 @@ const CoursesSection = () => {
                   style={{
                     boxShadow: `0px 4px 15px ${colors.shadow}`,
                   }}
-                  aria-label={t("learnMoreAbout", { courseName: t(course.titleKey) })}
+                  aria-label={t("learnMoreAbout", {
+                    courseName: t(course.titleKey),
+                  })}
                 >
                   {t("learnMore")}
                   <motion.span
@@ -204,7 +317,12 @@ const CoursesSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.5,
+            type: "spring",
+            stiffness: 100,
+          }}
           className="mt-20"
         >
           <Link

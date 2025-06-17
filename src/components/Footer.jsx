@@ -96,7 +96,7 @@ const Footer = () => {
               {t("footer.quickLinks")}
             </h4>
             <ul className="space-y-3">
-              {["aboutUs", "allCourses", "contact"].map((key) => (
+              {["aboutUs", "allCourses", "contact1"].map((key) => (
                 <motion.li
                   key={key}
                   variants={linkVariants}
@@ -108,7 +108,10 @@ const Footer = () => {
                     to={`/${key
                       .toLowerCase()
                       .replace("all", "")
-                      .replace("us", "")}`}
+                      .replace("us", "")}`
+                      .replace("1", "")}
+                    
+                      
                     className="flex items-center text-[var(--text-secondary)] transition-colors duration-200"
                   >
                     {t(key)}
