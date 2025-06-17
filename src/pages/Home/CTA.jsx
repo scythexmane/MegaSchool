@@ -197,7 +197,7 @@ const ContactSection = () => {
               className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 transition-all duration-100 ease-out" // Более чистый фон
             >
               <iframe
-                src="https://maps.google.com/?cid=11937127517559049112"
+                src="https://maps.app.goo.gl/yyvNqPn4yzLduGveA"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
