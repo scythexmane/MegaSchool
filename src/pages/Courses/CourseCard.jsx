@@ -1,6 +1,8 @@
+// src/components/CourseCard.jsx
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // <-- Импортируем Link
 import {
   DollarSign,
   Calendar,
@@ -56,82 +58,90 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <motion.div
-      className="bg-[var(--card-bg)] rounded-xl overflow-hidden shadow-xl flex flex-col h-full cursor-pointer relative transition-all duration-300 ease-in-out border border-[var(--card-border)] hover:border-[var(--gradient-from)]"
-      whileHover={{ scale: 1.02, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
-      onClick={() => console.log(`Navigating to course: ${course.title}`)}
-    >
+    // Оборачиваем всю карточку в Link
+    <Link to={`/courses/${course.id}`} className="block h-full"> {/* <-- Добавляем Link здесь */}
       <motion.div
-        className="relative h-48 bg-gradient-to-tr from-[var(--bg-from)] to-[var(--bg-to)] flex items-center justify-center"
-        initial="initial"
-        whileHover="hover"
+        className="bg-[var(--card-bg)] rounded-xl overflow-hidden shadow-xl flex flex-col h-full cursor-pointer relative transition-all duration-300 ease-in-out border border-[var(--card-border)] hover:border-[var(--gradient-from)]"
+        whileHover={{ scale: 1.02, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
+        // Убрал onClick отсюда, так как Link уже управляет навигацией
       >
-        {course.category === "development" ? (
-          <motion.img
-            src={getProgrammingLogo(course)}
-            alt={course.language}
-            className="h-20 w-20 object-contain"
-            variants={iconVariants}
-          />
-        ) : (
-          <motion.div variants={iconVariants}>
-            {categoryIcons[course.category?.toLowerCase()] || categoryIcons.default}
-          </motion.div>
-        )}
-        <span className="absolute bottom-3 left-4 text-sm font-semibold bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] px-3 py-1 rounded-full text-white shadow-md">
-          {t(course.category + "Category")}
-        </span>
-      </motion.div>
-      <div className="p-6 flex flex-col justify-between flex-grow">
-        <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-3 leading-tight">
-          {t(course.title)}
-        </h3>
-        <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
-          {t(course.description)}
-        </p>
-        <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-[var(--text-secondary)] mb-6">
-          <div className="flex items-center gap-2">
-            <IconWrapper color="rgba(59,130,246,0.2)">
-              <DollarSign size={18} className="text-[var(--gradient-from)]" />
-            </IconWrapper>
-            <span>{course.price || t("priceNotSpecified")}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <IconWrapper color="rgba(59,130,246,0.2)">
-              <TrendingUp size={18} className="text-[var(--gradient-to)]" />
-            </IconWrapper>
-            <span>{t("level")}: {t(course.level)}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <IconWrapper color="rgba(59,130,246,0.2)">
-              <Calendar size={18} className="text-[var(--gradient-from)]" />
-            </IconWrapper>
-            <span>{course.duration || t("durationNotSpecified")}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <IconWrapper color="rgba(59,130,246,0.2)">
-              <BookOpen size={18} className="text-[var(--gradient-to)]" />
-            </IconWrapper>
-            <span>{t("lessonsCount", { count: course.lessons || 0 })}</span>
-          </div>
-          {course.instructor && (
-            <div className="flex items-center gap-2 col-span-2">
-              <IconWrapper color="rgba(59,130,246,0.2)">
-                <UserRound size={18} className="text-[var(--gradient-from)]" />
-              </IconWrapper>
-              <span>{t("instructor")}: {course.instructor}</span>
-            </div>
-          )}
-        </div>
-        <motion.button
-          className="mt-auto bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--gradient-from)]"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+        <motion.div
+          className="relative h-48 bg-gradient-to-tr from-[var(--bg-from)] to-[var(--bg-to)] flex items-center justify-center"
+          initial="initial"
+          whileHover="hover"
         >
-          <Info size={20} /> {t("learnMore")}
-        </motion.button>
-      </div>
-    </motion.div>
+          {course.category === "development" ? (
+            <motion.img
+              src={getProgrammingLogo(course)}
+              alt={course.language}
+              className="h-20 w-20 object-contain"
+              variants={iconVariants}
+            />
+          ) : (
+            <motion.div variants={iconVariants}>
+              {categoryIcons[course.category?.toLowerCase()] || categoryIcons.default}
+            </motion.div>
+          )}
+          <span className="absolute bottom-3 left-4 text-sm font-semibold bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] px-3 py-1 rounded-full text-white shadow-md">
+            {t(course.category + "Category")}
+          </span>
+        </motion.div>
+        <div className="p-6 flex flex-col justify-between flex-grow">
+          <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-3 leading-tight">
+            {t(course.title)}
+          </h3>
+          <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
+            {t(course.description)}
+          </p>
+          <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-[var(--text-secondary)] mb-6">
+            <div className="flex items-center gap-2">
+              <IconWrapper color="rgba(59,130,246,0.2)">
+                <DollarSign size={18} className="text-[var(--gradient-from)]" />
+              </IconWrapper>
+              <span>{course.price || t("priceNotSpecified")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <IconWrapper color="rgba(59,130,246,0.2)">
+                <TrendingUp size={18} className="text-[var(--gradient-to)]" />
+              </IconWrapper>
+              <span>{t("level")}: {t(course.level)}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <IconWrapper color="rgba(59,130,246,0.2)">
+                <Calendar size={18} className="text-[var(--gradient-from)]" />
+              </IconWrapper>
+              <span>{course.duration || t("durationNotSpecified")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <IconWrapper color="rgba(59,130,246,0.2)">
+                <BookOpen size={18} className="text-[var(--gradient-to)]" />
+              </IconWrapper>
+              <span>{t("lessonsCount", { count: course.lessons || 0 })}</span>
+            </div>
+            {course.instructor && (
+              <div className="flex items-center gap-2 col-span-2">
+                <IconWrapper color="rgba(59,130,246,0.2)">
+                  <UserRound size={18} className="text-[var(--gradient-from)]" />
+                </IconWrapper>
+                <span>{t("instructor")}: {course.instructor}</span>
+              </div>
+            )}
+          </div>
+          {/* Кнопка "Узнать больше" теперь не обязательна, так как вся карточка кликабельна,
+              но если хотите оставить, она будет просто частью ссылки */}
+          <motion.button
+            className="mt-auto bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--gradient-from)]"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            // Этот onClick не нужен, так как Link уже перенаправляет.
+            // Если вы хотите сделать что-то еще при клике на кнопку,
+            // можно добавить onClick, но он будет вызван после навигации.
+          >
+            <Info size={20} /> {t("learnMore")}
+          </motion.button>
+        </div>
+      </motion.div>
+    </Link> // <-- Закрываем Link здесь
   );
 };
 

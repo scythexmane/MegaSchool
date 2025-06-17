@@ -1,3 +1,4 @@
+// src/components/CoursesGrid.jsx
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CourseCard from "./CourseCard";
@@ -26,6 +27,7 @@ const CoursesGrid = ({ courses }) => {
     >
       <AnimatePresence>
         {courses.map((course) => (
+          // Здесь CourseCard уже обернут в Link внутри себя
           <CourseCard key={course.id} course={course} />
         ))}
       </AnimatePresence>
