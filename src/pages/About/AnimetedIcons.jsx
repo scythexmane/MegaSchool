@@ -1,9 +1,8 @@
-// src/components/ui/AnimatedIcon.jsx
-import React from 'react';
-import * as LucideIcons from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import * as LucideIcons from "lucide-react";
+import { motion } from "framer-motion";
 
-const AnimatedIcon = ({ name, size = 24, className = '', animateProps = {}, initialProps = {} }) => {
+const AnimatedIcon = ({ name, size = 24, className = "", animateProps = {}, initialProps = {} }) => {
   const IconComponent = LucideIcons[name];
 
   if (!IconComponent) {
@@ -12,11 +11,7 @@ const AnimatedIcon = ({ name, size = 24, className = '', animateProps = {}, init
   }
 
   return (
-    <motion.div
-      initial={initialProps}
-      animate={animateProps}
-      className={className}
-    >
+    <motion.div initial={initialProps} animate={animateProps} className={className}>
       <IconComponent size={size} />
     </motion.div>
   );

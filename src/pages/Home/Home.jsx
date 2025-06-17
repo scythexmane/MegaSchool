@@ -9,7 +9,7 @@ import PartnersSection from "./PartnersSection.jsx";
 
 const Home = () => {
   return (
-    <div className="space-y-20">
+    <div className="space-y-20 bg-[var(--bg-from)] dark:bg-[var(--bg-to)]">
       <Hero />
       <CoursesSection />
       <MarqueeSection />

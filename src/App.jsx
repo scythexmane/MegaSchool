@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-black dark:text-white">
+      <div className="min-h-screen flex flex-col bg-[var(--bg-from)] text-[var(--text-primary)]">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         
         <main className="flex-grow">
