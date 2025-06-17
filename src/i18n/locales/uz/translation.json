@@ -35,6 +35,30 @@
   "frontend": "Frontend",
   "backend": "Backend",
   "cpp": "C++",
+  "about1": {
+    "team": {
+      "roles": {
+        "ceo_founder": "Bosh direktor va asoschi",
+        "cto": "Texnik direktor",
+        "head_of_edu": "Taʼlim bo‘limi boshligʻi",
+        "lead_developer": "Bosh dasturchi",
+        "marketing_director": "Marketing direktori",
+        "ux_ui_designer": "UX/UI dizayner",
+        "community_manager": "Hamjamiyat menejeri",
+        "data_scientist": "Ma'lumotlar olimi"
+      },
+      "descriptions": {
+        "ceo_founder": "Cheksiz energiya va strategik tafakkur bilan bizning missiyamizni oldinga siljitayotgan vizyoner.",
+        "cto": "Platformamizni yuqori aniqlik va innovatsiya bilan barpo etayotgan texnologiyalar ustasi.",
+        "head_of_edu": "Bizning ta'lim dasturlarimiz me'mori, keyingi avlodni ilhomlantiruvchi shaxs.",
+        "lead_developer": "Gʻoyalarni mukammal kodga aylantiruvchi yetakchi dasturchi.",
+        "marketing_director": "Dunyoga xabarimizni kuchli mavjudlik bilan yetkazuvchi strateg.",
+        "ux_ui_designer": "Foydalanuvchilar uchun intuitiv va goʻzal interfeyslar yaratuvchi sanʼatkor.",
+        "community_manager": "Jamoamiz yuragi, barchani birlashtiruvchi va qoʻllab-quvvatlovchi hamjamiyat yaratuvchisi.",
+        "data_scientist": "Oʻsishimizni optimallashtirish uchun yashirin qonuniyatlarni ochib beruvchi tahlilchi."
+      }
+    }
+  },
   "studentFeedback": "O‘quvchilarimiz Nimalar Deyishadi",
   "zuhraComment": "MegaSchoolda IT kurslariga qatnashdim va juda ko‘p narsalarni o‘rgandim! O'qituvchilar yuqori saviyada va amaliy yondashuv juda yordam berdi.",
   "bekzodComment": "Ingliz tili kurslari orqali IELTS ballim sezilarli darajada oshdi. O‘qituvchilar juda kuchli va qo‘llab-quvvatlovchi!",
@@ -406,37 +430,7 @@
   "header": {
     "about": "Biz haqimizda"
   },
-  "about1": {
-    "pageIntro": {
-      "title": "Innovatsion ta'lim orqali kelajak ufqlarini kengaytiramiz.",
-      "subtitle": "Iste'dodlarni rivojlantirish va mukammallikka erishishga intilayotgan o'quv markazimizning yo'nalishini kashf eting.",
-      "cta": "Dasturlarimiz haqida bilib oling",
-      "team": {
-        "title": "Bizning Jamoa: Innovatsiyaning Harakatlantiruvchi Kuchi",
-        "subtitle": "Muvaffaqiyatimiz ortida turgan va missiyamizni hayotga tatbiq etayotgan iste'dodli mutaxassislar bilan tanishing.",
-        "roles": {
-          "ceo_founder": "Bosh direktor va Asoschi",
-          "cto": "Texnik direktor",
-          "head_of_edu": "Ta'lim Dasturlari Rahbari",
-          "lead_developer": "Yetakchi Dasturchi",
-          "marketing_director": "Marketing Direktori",
-          "ux_ui_designer": "UX/UI Dizayner",
-          "community_manager": "Jamoa Menedjeri",
-          "data_scientist": "Ma'lumotlar Mutaxassisi"
-        },
-        "descriptions": {
-          "ceo_founder": "Cheksiz energiya va strategik fikrlash bilan missiyamizni oldinga siljituvchi vizioner. Uning yetakchiligi bizni ulkan yutuqlarga ilhomlantiradi.",
-          "cto": "Texnologiya ustasi, platformamizni nihoyatda aniqlik va innovatsiyalar bilan yaratadi. U yechimlarimizning texnik ustunligi uchun javobgardir.",
-          "head_of_edu": "Ta'lim dasturlarimizning bosh me'mori, keyingi avlodni ilhomlantiruvchi. U o'quvlarimizning dolzarbligi va samaradorligini ta'minlaydi.",
-          "lead_developer": "G'oyalarni benuqson kodga aylantiruvchi yetakchi dasturchi. Uning tafsilotlarga e'tibori va tajribasi barqarorlik va ishlash uchun juda muhimdir.",
-          "marketing_director": "Bizning xabarimizni dunyoga yetkazuvchi, kuchli mavjudlikni yaratuvchi strateg. U biz va auditoriyamiz o'rtasidagi ko'priklarni quradi.",
-          "ux_ui_designer": "Intuitiv va chiroyli foydalanuvchi interfeyslarini yaratuvchi rassom. U tufayli platformamiz nafaqat funksional, balki foydalanish uchun ham yoqimli.",
-          "community_manager": "Jamoamizning yuragi, barchani birlashtiruvchi va qo'llab-quvvatlovchi hamjamiyatni yaratuvchi. U foydalanuvchilarimizning ovozi va bog'lovchi bo'g'inidir.",
-          "data_scientist": "O'sishimizni optimallashtirish uchun yashirin qonuniyatlarni ochib beruvchi tahlilchi. Uning zukkoligi asosli qarorlar qabul qilishga va doimiy takomillashishga yordam beradi."
-        }
-      }
-    }
-  },
+  
   "footer": {
     "description": "MegaSchool — ваш надежный партнер в образовании. Мы предлагаем инновационные программы для развития навыков будущего, которые помогут вам достичь ваших целей.",
     "quickLinks": "Быстрые ссылки",

@@ -2,18 +2,18 @@
 
 :root {
   /* Light mode colors */
-  --bg-from: #F8F8FF; /* Gray-100 */
-  --bg-to: #F8F8FF; /* Blue-50 */
-  --text-primary: #1F2937; /* Gray-800 */
-  --text-secondary: #4B5563; /* Gray-600 */
+  --bg-from: #f8f8ff; /* Gray-100 */
+  --bg-to: #f8f8ff; /* Blue-50 */
+  --text-primary: #1f2937; /* Gray-800 */
+  --text-secondary: #4b5563; /* Gray-600 */
   --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: rgba(209, 213, 219, 0.5); /* Gray-300 */
-  --gradient-from: #3B82F6; /* Blue-600 */
-  --gradient-to: #7C3AED; /* Purple-600 */
-  --blob-blue: #60A5FA; /* Blue-400 */
-  --blob-purple: #A78BFA; /* Purple-400 */
-  --blob-pink: #F472B6; /* Pink-400 */
-  --marquee-fade-from: #FFFFFF;
+  --gradient-from: #3b82f6; /* Blue-600 */
+  --gradient-to: #7c3aed; /* Purple-600 */
+  --blob-blue: #60a5fa; /* Blue-400 */
+  --blob-purple: #a78bfa; /* Purple-400 */
+  --blob-pink: #f472b6; /* Pink-400 */
+  --marquee-fade-from: #ffffff;
   --marquee-fade-to: rgba(255, 255, 255, 0);
 }
 
@@ -21,39 +21,68 @@
   /* Dark mode colors */
   --bg-from: #030712; /* Dark Gray */
   --bg-to: #030712; /* Slightly lighter dark */
-  --text-primary: #F8F8FF; /* Off-white */
+  --text-primary: #f8f8ff; /* Off-white */
   --text-secondary: #606060; /* Light gray */
   --card-bg: rgba(22, 27, 34, 0.9); /* Semi-transparent dark */
   --card-border: rgba(48, 54, 61, 0.5); /* Gray-700 */
-  --gradient-from: #3B82F6; /* Blue-600 */
-  --gradient-to: #7C3AED; /* Purple-600 */
-  --blob-blue: #1E40AF; /* Darker blue */
-  --blob-purple: #5B21B6; /* Darker purple */
-  --blob-pink: #BE185D; /* Darker pink */
+  --gradient-from: #3b82f6; /* Blue-600 */
+  --gradient-to: #7c3aed; /* Purple-600 */
+  --blob-blue: #1e40af; /* Darker blue */
+  --blob-purple: #5b21b6; /* Darker purple */
+  --blob-pink: #be185d; /* Darker pink */
   --marquee-fade-from: rgb(3, 7, 18);
   --marquee-fade-to: rgba(3, 7, 18, 0);
 }
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
+body.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+body {
+  background-color: #0a0f1c;
+}
 /* Animations */
 @keyframes gradient-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes blob {
-  0% { transform: translate(0%, 0%) scale(1); }
-  33% { transform: translate(30%, -20%) scale(1.1); }
-  66% { transform: translate(-20%, 20%) scale(0.9); }
-  100% { transform: translate(0%, 0%) scale(1); }
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  33% {
+    transform: translate(30%, -20%) scale(1.1);
+  }
+  66% {
+    transform: translate(-20%, 20%) scale(0.9);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1);
+  }
 }
 
 .animate-blob {
   animation: blob 10s ease-in-out infinite;
 }
 
-.animation-delay-2000 { animation-delay: 2s; }
-.animation-delay-4000 { animation-delay: 4s; }
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
 
 .animated-bg {
   background: linear-gradient(to top, var(--bg-from), var(--bg-to));
@@ -62,9 +91,18 @@
 }
 
 @keyframes pulse-shadow {
-  0% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.05); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 0.4; }
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
 }
 
 .pulsing-shadow {
@@ -72,8 +110,15 @@
 }
 
 @keyframes logo-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.08); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
 }
 
 .pulse:hover {
@@ -82,9 +127,17 @@
 
 /* Marquee fade edges */
 .marquee-fade-left {
-  background: linear-gradient(to right, var(--marquee-fade-from), var(--marquee-fade-to));
+  background: linear-gradient(
+    to right,
+    var(--marquee-fade-from),
+    var(--marquee-fade-to)
+  );
 }
 
 .marquee-fade-right {
-  background: linear-gradient(to left, var(--marquee-fade-from), var(--marquee-fade-to));
+  background: linear-gradient(
+    to left,
+    var(--marquee-fade-from),
+    var(--marquee-fade-to)
+  );
 }

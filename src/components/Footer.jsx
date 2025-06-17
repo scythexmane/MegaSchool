@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -14,11 +14,31 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import logoDark from "../assets/bl-logo.png"; // светлый логотип (на темной теме)
+import logoLight from "../assets/wh-logo.png"; // тёмный логотип (на светлой теме)
+
 const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
-  // Variants for Framer Motion animations
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Обновляем тему при изменении className на html
+  useEffect(() => {
+    const checkTheme = () =>
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const footerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -29,21 +49,19 @@ const Footer = () => {
   };
 
   const linkVariants = {
-    rest: { opacity: 0.8, x: 0, color: "var(--text-secondary)" },
+    rest: { opacity: 0.8, x: 0 },
     hover: {
       opacity: 1,
       x: 5,
-      color: "var(--gradient-from)",
       transition: { duration: 0.2, ease: "easeOut" },
     },
   };
 
   const socialIconVariants = {
-    rest: { scale: 1, opacity: 0.7, filter: "none" },
+    rest: { scale: 1, opacity: 0.7 },
     hover: {
       scale: 1.15,
       opacity: 1,
-      filter: "drop-shadow(0 0 10px rgba(59, 130, 246, 0.7))",
       transition: { duration: 0.2, ease: "easeOut" },
     },
   };
@@ -63,36 +81,30 @@ const Footer = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="relative bg-[var(--bg-from)] text-[var(--text-secondary)] py-16 px-6 overflow-hidden border-t border-[var(--card-border)] shadow-lg"
     >
-      {/* Subtle background gradient */}
+      {/* Абстрактные фоны */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg-from)] via-[var(--bg-to)] to-[var(--gradient-to)] opacity-10"></div>
-
-      {/* Abstract glowing blobs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[var(--gradient-from)]/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob-bounce-1" />
-      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-[var(--gradient-to)]/5 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob-bounce-2 delay-700" />
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[var(--gradient-from)]/5 rounded-full mix-blend-screen blur-3xl opacity-50 animate-blob-bounce-1" />
+      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-[var(--gradient-to)]/5 rounded-full mix-blend-screen blur-3xl opacity-50 animate-blob-bounce-2 delay-700" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 relative z-10">
-        {/* Column 1: Logo & Description */}
+        {/* Лого и описание */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <Link
-            to="/"
-            className="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-4"
-            aria-label="MegaSchool Home"
-          >
-            <span className="bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
-              Mega
-            </span>
-            School
+          <Link to="/" className="flex-shrink-0" aria-label="Home">
+            <img
+              src={isDarkMode ? logoDark : logoLight}
+              alt="Логотип"
+              className="h-10 md:h-14 w-auto transition-all duration-500"
+            />
           </Link>
-          <p className="text-[var(--text-secondary)] text-base leading-relaxed max-w-sm">
+          <p className="text-base leading-relaxed max-w-sm mt-4">
             {t("footer.description")}
           </p>
         </div>
 
-        {/* Column 2: Quick Links & Contact Info */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-          {/* Quick Links */}
+        {/* Быстрые ссылки и контакты */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
+            <h4 className="text-xl font-semibold mb-6 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
               {t("footer.quickLinks")}
             </h4>
             <ul className="space-y-3">
@@ -105,14 +117,8 @@ const Footer = () => {
                   className="relative"
                 >
                   <Link
-                    to={`/${key
-                      .toLowerCase()
-                      .replace("all", "")
-                      .replace("us", "")}`
-                      .replace("1", "")}
-                    
-                      
-                    className="flex items-center text-[var(--text-secondary)] transition-colors duration-200"
+                    to={`/${key.toLowerCase().replace("all", "").replace("us", "").replace("1", "")}`}
+                    className="transition-colors duration-200"
                   >
                     {t(key)}
                   </Link>
@@ -120,30 +126,20 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="absolute top-1/4 right-4/4 w-72 h-72 bg-[var(--gradient-from)]/10 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob-bounce-1" />
-          <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-[var(--gradient-to)]/10 rounded-full mix-blend-screen filter blur-3xl opacity-60 animate-blob-bounce-2 delay-700" />
-          {/* Contact Info */}
+
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
+            <h4 className="text-xl font-semibold mb-6 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
               {t("footer.contactInfo")}
             </h4>
-            <ul className="space-y-3 text-[var(--text-secondary)]">
+            <ul className="space-y-3">
               <motion.li
                 variants={linkVariants}
                 initial="rest"
                 whileHover="hover"
                 className="flex items-center gap-3"
               >
-                <Phone
-                  size={20}
-                  className="text-[var(--gradient-from)] flex-shrink-0"
-                />
-                <a
-                  href="tel:+998901234567"
-                  className="transition-colors duration-200"
-                >
-                  +998 90 123 45 67
-                </a>
+                <Phone size={20} />
+                <a href="tel:+998901234567">+998 90 123 45 67</a>
               </motion.li>
               <motion.li
                 variants={linkVariants}
@@ -151,16 +147,8 @@ const Footer = () => {
                 whileHover="hover"
                 className="flex items-center gap-3"
               >
-                <Mail
-                  size={20}
-                  className="text-[var(--gradient-to)] flex-shrink-0"
-                />
-                <a
-                  href="mailto:info@megaschool.uz"
-                  className="transition-colors duration-200"
-                >
-                  info@megaschool.uz
-                </a>
+                <Mail size={20} />
+                <a href="mailto:info@megaschool.uz">info@megaschool.uz</a>
               </motion.li>
               <motion.li
                 variants={linkVariants}
@@ -168,88 +156,54 @@ const Footer = () => {
                 whileHover="hover"
                 className="flex items-start gap-3"
               >
-                <MapPin
-                  size={20}
-                  className="text-[var(--gradient-from)] flex-shrink-0 mt-1"
-                />
-                <address className="not-italic transition-colors duration-200">
-                  {t("footer.address")}
-                </address>
+                <MapPin size={20} className="mt-1" />
+                <address className="not-italic">{t("footer.address")}</address>
               </motion.li>
             </ul>
           </div>
         </div>
 
-        {/* Column 3: Social Media & Newsletter */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
+        {/* Соцсети и подписка */}
+        <div className="flex flex-col items-center md:items-start">
+          <h4 className="text-xl font-semibold mb-6 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
             {t("footer.followUs")}
           </h4>
-          <div className="flex flex-wrap justify-center md:justify-start gap-5 mb-10">
-            {[
-              {
-                icon: Instagram,
-                href: "https://instagram.com/megaschool",
-                baseColor: "text-[var(--gradient-from)]",
-              },
-              {
-                icon: Send,
-                href: "https://t.me/megaschool",
-                baseColor: "text-[var(--gradient-to)]",
-              },
-              {
-                icon: Facebook,
-                href: "https://facebook.com/megaschool",
-                baseColor: "text-[var(--gradient-from)]",
-              },
-              {
-                icon: Linkedin,
-                href: "https://linkedin.com/company/megaschool",
-                baseColor: "text-[var(--gradient-to)]",
-              },
-              {
-                icon: Youtube,
-                href: "http://youtube.com/megaschool",
-                baseColor: "text-[var(--gradient-from)]",
-              },
-            ].map((social, index) => (
+          <div className="flex flex-wrap gap-4 mb-8">
+            {[Instagram, Send, Facebook, Linkedin, Youtube].map((Icon, i) => (
               <motion.a
-                key={index}
-                href={social.href}
+                key={i}
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`transition-colors duration-200 ${social.baseColor}`}
+                className="text-[var(--text-secondary)] hover:text-[var(--gradient-from)] transition"
                 variants={socialIconVariants}
                 initial="rest"
                 whileHover="hover"
               >
-                <social.icon size={30} />
+                <Icon size={26} />
               </motion.a>
             ))}
           </div>
 
-          <h4 className="text-xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
+          <h4 className="text-xl font-semibold mb-4 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
             {t("footer.newsletter")}
           </h4>
           <form
             onSubmit={handleSubmitNewsletter}
-            className="flex flex-col gap-4 w-full max-w-sm"
+            className="flex flex-col gap-3 w-full max-w-sm"
           >
             <input
               type="email"
               name="email"
               placeholder={t("footer.yourEmailPlaceholder")}
-              className="p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--gradient-from)] transition-all duration-200 shadow-inner"
               required
+              className="p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] placeholder-[var(--text-secondary)] focus:outline-none"
             />
             <motion.button
               type="submit"
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 5px 20px rgba(59, 130, 246, 0.5)",
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2"
             >
               {t("footer.subscribe")} <ArrowRight size={20} />
             </motion.button>
@@ -257,23 +211,17 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-[var(--card-border)] text-center text-[var(--text-secondary)] text-sm relative z-10">
+      {/* Нижняя часть */}
+      <div className="max-w-7xl mx-auto mt-10 pt-8 border-t border-[var(--card-border)] text-center text-sm relative z-10 text-[var(--text-secondary)]">
         <p className="mb-2">
           © {currentYear} MegaSchool. {t("footer.allRightsReserved")}
         </p>
         <p>
-          <Link
-            to="/privacy-policy"
-            className="transition-colors duration-200 mx-2 text-[var(--text-secondary)] hover:text-[var(--gradient-from)]"
-          >
+          <Link to="/privacy-policy" className="hover:text-[var(--gradient-from)] mx-2">
             {t("footer.privacyPolicy")}
           </Link>
-          <span className="text-[var(--text-secondary)]">|</span>
-          <Link
-            to="/terms-of-service"
-            className="transition-colors duration-200 mx-2 text-[var(--text-secondary)] hover:text-[var(--gradient-from)]"
-          >
+          |
+          <Link to="/terms-of-service" className="hover:text-[var(--gradient-from)] mx-2">
             {t("footer.termsOfService")}
           </Link>
         </p>
