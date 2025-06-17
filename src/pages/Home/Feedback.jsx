@@ -7,19 +7,84 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
-import { Pagination, Navigation, Autoplay, EffectCoverflow } from "swiper/modules";
+import {
+  Pagination,
+  Navigation,
+  Autoplay,
+  EffectCoverflow,
+} from "swiper/modules";
 
 const allTestimonials = [
-  { id: 1, name: "Zuhra Karimova", commentKey: "zuhraComment", rating: 5, avatar: "https://randomuser.me/api/portraits/women/1.jpg" },
-  { id: 2, name: "Bekzod Akhmedov", commentKey: "bekzodComment", rating: 4, avatar: "https://randomuser.me/api/portraits/men/2.jpg" },
-  { id: 3, name: "Malika Tursunova", commentKey: "malikaComment", rating: 5, avatar: "https://randomuser.me/api/portraits/women/3.jpg" },
-  { id: 4, name: "Alisher Nematov", commentKey: "alisherComment", rating: 5, avatar: "https://randomuser.me/api/portraits/men/4.jpg" },
-  { id: 5, name: "Diyora Rustamova", commentKey: "diyoraComment", rating: 4, avatar: "https://randomuser.me/api/portraits/women/5.jpg" },
-  { id: 6, name: "Javlon Saidov", commentKey: "javlonComment", rating: 3, avatar: "https://randomuser.me/api/portraits/men/6.jpg" },
-  { id: 7, name: "Dilnoza Rashidova", commentKey: "dilnozaComment", rating: 5, avatar: "https://randomuser.me/api/portraits/women/7.jpg" },
-  { id: 8, name: "Sarvar Khakimov", commentKey: "sarvarComment", rating: 4, avatar: "https://randomuser.me/api/portraits/men/8.jpg" },
-  { id: 9, name: "Madina G'aniyeva", commentKey: "madinaComment", rating: 5, avatar: "https://randomuser.me/api/portraits/women/9.jpg" },
-  { id: 10, name: "Otabek Komilov", commentKey: "otabekComment", rating: 3, avatar: "https://randomuser.me/api/portraits/men/10.jpg" },
+  {
+    id: 1,
+    name: "Zuhra Karimova",
+    commentKey: "zuhraComment",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+  },
+  {
+    id: 2,
+    name: "Bekzod Akhmedov",
+    commentKey: "bekzodComment",
+    rating: 4,
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg",
+  },
+  {
+    id: 3,
+    name: "Malika Tursunova",
+    commentKey: "malikaComment",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+  },
+  {
+    id: 4,
+    name: "Alisher Nematov",
+    commentKey: "alisherComment",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/4.jpg",
+  },
+  {
+    id: 5,
+    name: "Diyora Rustamova",
+    commentKey: "diyoraComment",
+    rating: 4,
+    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+  {
+    id: 6,
+    name: "Javlon Saidov",
+    commentKey: "javlonComment",
+    rating: 3,
+    avatar: "https://randomuser.me/api/portraits/men/6.jpg",
+  },
+  {
+    id: 7,
+    name: "Dilnoza Rashidova",
+    commentKey: "dilnozaComment",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/7.jpg",
+  },
+  {
+    id: 8,
+    name: "Sarvar Khakimov",
+    commentKey: "sarvarComment",
+    rating: 4,
+    avatar: "https://randomuser.me/api/portraits/men/8.jpg",
+  },
+  {
+    id: 9,
+    name: "Madina G'aniyeva",
+    commentKey: "madinaComment",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/9.jpg",
+  },
+  {
+    id: 10,
+    name: "Otabek Komilov",
+    commentKey: "otabekComment",
+    rating: 3,
+    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
+  },
 ];
 
 const Feedback = () => {
@@ -27,7 +92,7 @@ const Feedback = () => {
   const [selectedRating, setSelectedRating] = useState(0);
 
   const filteredTestimonials = selectedRating
-    ? allTestimonials.filter(item => item.rating === selectedRating)
+    ? allTestimonials.filter((item) => item.rating === selectedRating)
     : allTestimonials;
 
   const fadeIn = {
@@ -37,15 +102,23 @@ const Feedback = () => {
 
   const starVariants = {
     hidden: { scale: 0, opacity: 0 },
-    visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 12 } },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 200, damping: 12 },
+    },
   };
 
   return (
     <section className="py-20 md:py-32 relative overflow-hidden animated-bg">
-      <div className="absolute top-0 left-[10%] w-64 h-64 rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-blob"
-           style={{ backgroundColor: 'var(--blob-blue)' }}></div>
-      <div className="absolute bottom-0 right-[15%] w-72 h-72 rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-blob animation-delay-3000"
-           style={{ backgroundColor: 'var(--blob-purple)' }}></div>
+      <div
+        className="absolute top-0 left-[10%] w-64 h-64 rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-blob"
+        style={{ backgroundColor: "var(--blob-blue)" }}
+      ></div>
+      <div
+        className="absolute bottom-0 right-[15%] w-72 h-72 rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-blob animation-delay-3000"
+        style={{ backgroundColor: "var(--blob-purple)" }}
+      ></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <motion.h2
@@ -70,7 +143,11 @@ const Feedback = () => {
             onClick={() => setSelectedRating(0)}
             className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ease-in-out
                         bg-[var(--card-bg)] text-[var(--text-primary)] hover:bg-gray-100 dark:hover:bg-gray-800
-                        ${selectedRating === 0 ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white" : ""}`}
+                        ${
+                          selectedRating === 0
+                            ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white"
+                            : ""
+                        }`}
           >
             {t("allReviews")} ({allTestimonials.length})
           </button>
@@ -81,11 +158,20 @@ const Feedback = () => {
               className={`px-6 py-2 rounded-full text-lg font-medium transition-all duration-300 ease-in-out
                           bg-[var(--card-bg)] text-[var(--text-primary)] hover:bg-gray-100 dark:hover:bg-gray-800
                           flex items-center gap-2
-                          ${selectedRating === rating ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white" : ""}`}
+                          ${
+                            selectedRating === rating
+                              ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white"
+                              : ""
+                          }`}
             >
               {rating} <FaStar className="text-yellow-400" />
               <span className="text-sm opacity-75">
-                ({allTestimonials.filter(item => item.rating === rating).length})
+                (
+                {
+                  allTestimonials.filter((item) => item.rating === rating)
+                    .length
+                }
+                )
               </span>
             </button>
           ))}
@@ -97,7 +183,13 @@ const Feedback = () => {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={"auto"}
-            coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: false, // ← Важно: отключает черные тени
+            }}
             pagination={{ clickable: true }}
             navigation={true}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -139,7 +231,11 @@ const Feedback = () => {
                         custom={i}
                       >
                         <FaStar
-                          className={i < item.rating ? "text-yellow-400" : "text-gray-500 opacity-50"}
+                          className={
+                            i < item.rating
+                              ? "text-yellow-400"
+                              : "text-gray-500 opacity-50"
+                          }
                         />
                       </motion.div>
                     ))}

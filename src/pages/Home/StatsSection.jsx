@@ -177,7 +177,7 @@ const StatsSection = () => {
         id="stats-section"
         className="py-20 md:py-32 relative overflow-hidden
                    animated-section-background
-                    bg-gradient-to-tb   from-purple-50/50 to-blue-50/5 dark:from-black dark:to-gray-900"
+                    bg-gradient-to-tb   from-from-gray-950 to-to-gray-950 dark:from-gray-950 dark:to-gray-950"
       >
         {/* Decorative background blobs/shapes for added dynamism */}
         <div className="absolute top-1/4 left-[5%] w-72 h-72 bg-blue-500 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 animate-blob animation-delay-0"></div>

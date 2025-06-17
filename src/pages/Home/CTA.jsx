@@ -17,7 +17,7 @@ const ContactSection = () => {
     rotateX: 0,
     rotateY: 0,
     scale: 1,
-    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.05)", // Уменьшена интенсивность тени
   });
   const mapCardRef = useRef(null);
 
@@ -45,9 +45,7 @@ const ContactSection = () => {
       rotateX,
       rotateY,
       scale: 1.01,
-      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 10 + 15}px ${
-        (Math.abs(x) + Math.abs(y)) * 20 + 40
-      }px rgba(0,0,0,0.3), 0 0 25px rgba(59,130,246,0.3)`,
+      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 5 + 10}px ${(Math.abs(x) + Math.abs(y)) * 10 + 20}px rgba(0,0,0,0.1), 0 0 15px rgba(59,130,246,0.2)`, // Легкая тень без затемнения
     });
   };
 
@@ -56,7 +54,7 @@ const ContactSection = () => {
       rotateX: 0,
       rotateY: 0,
       scale: 1,
-      boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
     });
   };
 
@@ -75,7 +73,7 @@ const ContactSection = () => {
     },
     hover: {
       scale: 1.02,
-      boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
+      boxShadow: "0 15px 30px rgba(0,0,0,0.1)", // Легкая тень при наведении
       transition: { duration: 0.2 },
     },
   };
@@ -108,7 +106,6 @@ const ContactSection = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="py-20 md:py-32 animated-bg relative overflow-hidden"
     >
-      {/* Background blobs */}
       <div className="absolute inset-0 z-0 opacity-20 dark:opacity-30">
         <div
           className="absolute top-1/4 left-[10%] w-64 h-64 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"
@@ -132,7 +129,6 @@ const ContactSection = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Branches and Map */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -155,7 +151,7 @@ const ContactSection = () => {
                 name="branch"
                 onChange={handleChange}
                 value={formData.branch}
-                className="w-full p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-colors duration-200"
+                className="w-full p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-colors duration-200"
               >
                 <option value="">{t("chooseBranchOption")}</option>
                 {branches.map((branch) => (
@@ -175,10 +171,11 @@ const ContactSection = () => {
               style={{
                 transform: `perspective(1000px) rotateX(${mapCardTransform.rotateX}deg) rotateY(${mapCardTransform.rotateY}deg) scale(${mapCardTransform.scale})`,
                 boxShadow: mapCardTransform.boxShadow,
+                backgroundColor: "var(--card-bg)", // Убедимся, что фон карточки светлый
               }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="rounded-2xl overflow-hidden bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-100 ease-out"
+              className="rounded-2xl overflow-hidden border border-[var(--card-border)] transition-all duration-100 ease-out"
             >
               <iframe
                 src="https://maps.app.goo.gl/yyvNqPn4yzLduGveA"
@@ -219,7 +216,6 @@ const ContactSection = () => {
             )}
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -245,7 +241,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t("namePlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
                   variants={inputVariants}
                   whileFocus="focus"
@@ -265,7 +261,7 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t("emailPlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
                   variants={inputVariants}
                   whileFocus="focus"
@@ -285,7 +281,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   rows="5"
                   placeholder={t("messagePlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] shadow-sm focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
+                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
                   required
                   variants={inputVariants}
                   whileFocus="focus"

@@ -121,7 +121,7 @@ const Hero = () => {
                 className="inline-flex items-center justify-center px-8 py-4
                            bg-[var(--card-bg)] border border-[var(--card-border)]
                            text-[var(--text-primary)] font-semibold text-lg rounded-xl
-                           hover:bg-gray-100 dark:hover:bg-gray-800
+                           hover:bg-gray-100 dark:hover:bg-gray-300
                            shadow-md transition-all duration-300 ease-in-out"
               >
                 {t("contactUs")}

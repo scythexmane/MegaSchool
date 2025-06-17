@@ -105,7 +105,10 @@ const Footer = () => {
                   className="relative"
                 >
                   <Link
-                    to={`/${key.toLowerCase().replace("all", "").replace("us", "")}`}
+                    to={`/${key
+                      .toLowerCase()
+                      .replace("all", "")
+                      .replace("us", "")}`}
                     className="flex items-center text-[var(--text-secondary)] transition-colors duration-200"
                   >
                     {t(key)}
@@ -114,7 +117,8 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
+          <div className="absolute top-1/4 right-4/4 w-72 h-72 bg-[var(--gradient-from)]/10 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob-bounce-1" />
+          <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-[var(--gradient-to)]/10 rounded-full mix-blend-screen filter blur-3xl opacity-60 animate-blob-bounce-2 delay-700" />
           {/* Contact Info */}
           <div>
             <h4 className="text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
@@ -127,8 +131,14 @@ const Footer = () => {
                 whileHover="hover"
                 className="flex items-center gap-3"
               >
-                <Phone size={20} className="text-[var(--gradient-from)] flex-shrink-0" />
-                <a href="tel:+998901234567" className="transition-colors duration-200">
+                <Phone
+                  size={20}
+                  className="text-[var(--gradient-from)] flex-shrink-0"
+                />
+                <a
+                  href="tel:+998901234567"
+                  className="transition-colors duration-200"
+                >
                   +998 90 123 45 67
                 </a>
               </motion.li>
@@ -138,8 +148,14 @@ const Footer = () => {
                 whileHover="hover"
                 className="flex items-center gap-3"
               >
-                <Mail size={20} className="text-[var(--gradient-to)] flex-shrink-0" />
-                <a href="mailto:info@megaschool.uz" className="transition-colors duration-200">
+                <Mail
+                  size={20}
+                  className="text-[var(--gradient-to)] flex-shrink-0"
+                />
+                <a
+                  href="mailto:info@megaschool.uz"
+                  className="transition-colors duration-200"
+                >
                   info@megaschool.uz
                 </a>
               </motion.li>
@@ -149,7 +165,10 @@ const Footer = () => {
                 whileHover="hover"
                 className="flex items-start gap-3"
               >
-                <MapPin size={20} className="text-[var(--gradient-from)] flex-shrink-0 mt-1" />
+                <MapPin
+                  size={20}
+                  className="text-[var(--gradient-from)] flex-shrink-0 mt-1"
+                />
                 <address className="not-italic transition-colors duration-200">
                   {t("footer.address")}
                 </address>
@@ -165,11 +184,31 @@ const Footer = () => {
           </h4>
           <div className="flex flex-wrap justify-center md:justify-start gap-5 mb-10">
             {[
-              { icon: Instagram, href: "https://instagram.com/megaschool", baseColor: "text-[var(--gradient-from)]" },
-              { icon: Send, href: "https://t.me/megaschool", baseColor: "text-[var(--gradient-to)]" },
-              { icon: Facebook, href: "https://facebook.com/megaschool", baseColor: "text-[var(--gradient-from)]" },
-              { icon: Linkedin, href: "https://linkedin.com/company/megaschool", baseColor: "text-[var(--gradient-to)]" },
-              { icon: Youtube, href: "http://youtube.com/megaschool", baseColor: "text-[var(--gradient-from)]" },
+              {
+                icon: Instagram,
+                href: "https://instagram.com/megaschool",
+                baseColor: "text-[var(--gradient-from)]",
+              },
+              {
+                icon: Send,
+                href: "https://t.me/megaschool",
+                baseColor: "text-[var(--gradient-to)]",
+              },
+              {
+                icon: Facebook,
+                href: "https://facebook.com/megaschool",
+                baseColor: "text-[var(--gradient-from)]",
+              },
+              {
+                icon: Linkedin,
+                href: "https://linkedin.com/company/megaschool",
+                baseColor: "text-[var(--gradient-to)]",
+              },
+              {
+                icon: Youtube,
+                href: "http://youtube.com/megaschool",
+                baseColor: "text-[var(--gradient-from)]",
+              },
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -189,7 +228,10 @@ const Footer = () => {
           <h4 className="text-xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]">
             {t("footer.newsletter")}
           </h4>
-          <form onSubmit={handleSubmitNewsletter} className="flex flex-col gap-4 w-full max-w-sm">
+          <form
+            onSubmit={handleSubmitNewsletter}
+            className="flex flex-col gap-4 w-full max-w-sm"
+          >
             <input
               type="email"
               name="email"

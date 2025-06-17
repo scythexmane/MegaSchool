@@ -9,7 +9,7 @@ import Home from "./pages/Home/Home.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import About from "./pages/About/About.jsx";
 import ContactPage from "./pages/Contact/ContactPage.jsx";
-
+import CoursePage from "./pages/Courses/CoursePage.jsx";
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -21,13 +21,14 @@ const App = () => {
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-[var(--bg-from)] text-[var(--text-primary)]">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        
+
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/courses/:id" element={<CoursePage />} />
           </Routes>
         </main>
 

@@ -2,8 +2,8 @@
 
 :root {
   /* Light mode colors */
-  --bg-from: #F3F4F6; /* Gray-100 */
-  --bg-to: #EFF6FF; /* Blue-50 */
+  --bg-from: #F8F8FF; /* Gray-100 */
+  --bg-to: #F8F8FF; /* Blue-50 */
   --text-primary: #1F2937; /* Gray-800 */
   --text-secondary: #4B5563; /* Gray-600 */
   --card-bg: rgba(255, 255, 255, 0.9);
@@ -19,10 +19,10 @@
 
 .dark {
   /* Dark mode colors */
-  --bg-from: #0D1117; /* Dark Gray */
-  --bg-to: #1C2526; /* Slightly lighter dark */
-  --text-primary: #E6EDF3; /* Off-white */
-  --text-secondary: #8B949E; /* Light gray */
+  --bg-from: #030712; /* Dark Gray */
+  --bg-to: #030712; /* Slightly lighter dark */
+  --text-primary: #F8F8FF; /* Off-white */
+  --text-secondary: #606060; /* Light gray */
   --card-bg: rgba(22, 27, 34, 0.9); /* Semi-transparent dark */
   --card-border: rgba(48, 54, 61, 0.5); /* Gray-700 */
   --gradient-from: #3B82F6; /* Blue-600 */
@@ -30,8 +30,8 @@
   --blob-blue: #1E40AF; /* Darker blue */
   --blob-purple: #5B21B6; /* Darker purple */
   --blob-pink: #BE185D; /* Darker pink */
-  --marquee-fade-from: #0D1117;
-  --marquee-fade-to: rgba(13, 17, 23, 0);
+  --marquee-fade-from: rgb(3, 7, 18);
+  --marquee-fade-to: rgba(3, 7, 18, 0);
 }
 
 /* Animations */

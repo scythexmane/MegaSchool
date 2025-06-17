@@ -52,7 +52,7 @@ const PageIntro = () => {
     >
       <FloatingStars />
       <div className="absolute inset-0 z-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--gradient-from)]/10 to-[var(--gradient-to)]/10 animate-gradient-shift"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--gradient-from)]/1 to-[var(--gradient-to)]/1 animate-gradient-shift"></div>
       </div>
       <div className="relative z-10 max-w-5xl px-6 sm:px-12 lg:px-20 mx-auto">
         <motion.div variants={fadeInUp}>
