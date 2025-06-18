@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -55,7 +57,7 @@ const coursesData = {
     descriptionKey: "englishDescriptionLong",
     costUSD: 599,
     costUZS: 7500000,
-    durationKey: "6 месяцев",
+    durationKey: "6",
     studentsEnrolled: 1250,
     averageRating: 4.8,
     difficulty: "Средняя",
@@ -97,7 +99,7 @@ const coursesData = {
     descriptionKey: "mathDescriptionLong",
     costUSD: 450,
     costUZS: 5600000,
-    durationKey: "4 месяца",
+    durationKey: "4",
     studentsEnrolled: 980,
     averageRating: 4.6,
     difficulty: "Высокая",
@@ -135,7 +137,7 @@ const coursesData = {
     descriptionKey: "biologyDescriptionLong",
     costUSD: 520,
     costUZS: 6500000,
-    durationKey: "5 месяцев",
+    durationKey: "5",
     studentsEnrolled: 720,
     averageRating: 4.5,
     difficulty: "Средняя",
@@ -177,7 +179,7 @@ const coursesData = {
     descriptionKey: "chemistryDescriptionLong",
     costUSD: 480,
     costUZS: 6000000,
-    durationKey: "4 месяца",
+    durationKey: "4",
     studentsEnrolled: 650,
     averageRating: 4.7,
     difficulty: "Высокая",
@@ -215,7 +217,7 @@ const coursesData = {
     descriptionKey: "itDescriptionLong",
     costUSD: 899,
     costUZS: 11200000,
-    durationKey: "8 месяцев",
+    durationKey: "8",
     studentsEnrolled: 2100,
     averageRating: 4.9,
     difficulty: "Высокая",
@@ -261,7 +263,7 @@ const coursesData = {
     descriptionKey: "roboticsDescriptionLong",
     costUSD: 750,
     costUZS: 9400000,
-    durationKey: "7 месяцев",
+    durationKey: "7",
     studentsEnrolled: 500,
     averageRating: 4.7,
     difficulty: "Очень высокая",
@@ -303,7 +305,7 @@ const coursesData = {
     descriptionKey: "physicsDescriptionLong",
     costUSD: 399,
     costUZS: 5000000,
-    durationKey: "3 месяца",
+    durationKey: "3",
     studentsEnrolled: 400,
     averageRating: 4.3,
     difficulty: "Средняя",
@@ -341,7 +343,7 @@ const coursesData = {
     descriptionKey: "russianDescriptionLong",
     costUSD: 499,
     costUZS: 6200000,
-    durationKey: "5 месяцев",
+    durationKey: "5",
     studentsEnrolled: 890,
     averageRating: 4.7,
     difficulty: "Легкая",
@@ -704,34 +706,7 @@ const CoursePage = () => {
                     {course.studentsEnrolled.toLocaleString()}
                   </span>
                 </div>
-                <div
-                  className="flex items-center gap-3 bg-[var(--card-bg)] rounded-xl p-4 shadow-inner"
-                  style={{
-                    backdropFilter: "blur(10px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(10px) saturate(150%)",
-                  }}
-                >
-                  <Star
-                    size={24}
-                    className="text-yellow-400"
-                    fill="currentColor"
-                  />
-                  <span>
-                    <strong>{t("rating")}:</strong> {course.averageRating} / 5.0
-                  </span>
-                </div>
-                <div
-                  className="flex items-center gap-3 bg-[var(--card-bg)] rounded-xl p-4 shadow-inner"
-                  style={{
-                    backdropFilter: "blur(10px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(10px) saturate(150%)",
-                  }}
-                >
-                  <Hourglass size={24} className="text-[var(--accent-color)]" />
-                  <span>
-                    <strong>{t("difficulty")}:</strong> {t(course.difficulty)}
-                  </span>
-                </div>
+                
               </motion.div>
 
               <motion.div variants={itemVariants} className="mt-10">
@@ -764,12 +739,13 @@ const CoursePage = () => {
               </motion.div>
 
               <motion.div variants={itemVariants} className="mt-12">
-                <a
-                  href="#enroll"
+    
+                 <Link
+                to="/contact"
                   className="inline-block px-10 py-5 rounded-full text-xl font-bold text-white bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out relative z-10"
                 >
                   {t("enrollNow")}
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
 
