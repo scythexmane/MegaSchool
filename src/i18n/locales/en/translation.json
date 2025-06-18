@@ -1,0 +1,817 @@
+{
+  "home": "Home",
+  "courses": "Courses",
+  "aboutNav": "About Us",
+  "teachers": "Teachers",
+  "contact1": "Contact",
+  "description": "Modern educational center: IT, languages, sciences, and robotics.",
+  "phone": "Phone",
+  "email": "Email",
+  "address": "Address",
+  "rights": "All rights reserved",
+  "yourFutureStartsHere": "Your future starts here",
+  "heroSubtitle": "Learn modern sciences and technologies with us",
+  "exploreCourses": "Explore Courses",
+  "ourAchievements": "Our Achievements",
+  "students": "Students",
+  "coursesCount": "Courses",
+  "teachersCount": "Teachers",
+  "yearsExperience": "Years of Experience",
+  "readyToStart": "Ready to start learning?",
+  "joinNowText": "Join us today and begin your journey to knowledge.",
+  "contactUs": "Contact Us",
+  "ourCourses": "Our Courses",
+  "coursesIntroText": "Below you can explore the courses offered by Mega School.",
+  "course_en": "English Language",
+  "course_ru": "Russian Language",
+  "course_uz": "Uzbek Language",
+  "course_bio": "Biology",
+  "course_chem": "Chemistry",
+  "course_robot": "Robotics",
+  "course_frontend": "Frontend",
+  "course_backend": "Backend",
+  "course_cpp": "C++ Programming",
+  "course_scratch": "Scratch",
+  "course_python": "Python",
+  "aboutPage": {
+    "title": "About Us",
+    "subtitle": "MegaSchool is a modern educational center providing training in various subjects for children and adults."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "MegaSchool’s goal is to provide every student with high-quality modern knowledge and skills. We offer reliable and effective training in IT, languages, and natural sciences."
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us?",
+    "items": [
+      "Modern and interactive teaching methods",
+      "Experienced and dedicated teachers",
+      "Individual approach to each student",
+      "Convenient online and offline classes"
+    ]
+  },
+  "english": "English Language",
+  "englishDescriptionLong": "The English language course focuses on developing speaking, reading, writing, and listening skills. Suitable for all levels.",
+  "certificateEnglish1": "Certificate of Basic English",
+  "certificateEnglish2": "Certificate of Intermediate English",
+  "englishModule1": "Fundamentals of Grammar and Vocabulary",
+  "englishModule1Desc": "Learning basic grammatical structures and vocabulary for everyday communication.",
+  "englishModule2": "Conversational Practice",
+  "englishModule2Desc": "Practicing oral speech through dialogues and role-playing games.",
+  "englishModule3": "Reading and Writing",
+  "englishModule3Desc": "Developing skills in reading texts and writing essays.",
+  "englishModule4": "Listening",
+  "englishModule4Desc": "Training in understanding English speech by ear.",
+  "englishModule5": "Exam Preparation",
+  "englishModule5Desc": "Preparation for international exams such as IELTS or TOEFL.",
+  "math": "Mathematics",
+  "mathDescriptionLong": "The mathematics course covers algebra, geometry, and the basics of mathematical analysis for schoolchildren and students.",
+  "certificateMath1": "Certificate in Basic Mathematics",
+  "certificateMath2": "Certificate in Advanced Mathematics",
+  "mathModule1": "Algebra",
+  "mathModule1Desc": "Studying equations, functions, and systems of equations.",
+  "mathModule2": "Geometry",
+  "mathModule2Desc": "Fundamentals of geometry, including theorems and construction problems.",
+  "mathModule3": "Trigonometry",
+  "mathModule3Desc": "Trigonometric functions and their applications.",
+  "mathModule4": "Introduction to Analysis",
+  "mathModule4Desc": "Fundamentals of differential and integral calculus.",
+  "biology": "Biology",
+  "biologyDescriptionLong": "The biology course explores the fundamentals of living nature, including cellular biology, genetics, and ecology.",
+  "certificateBiology1": "Certificate in General Biology",
+  "certificateBiology2": "Certificate in Molecular Biology",
+  "biologyModule1": "Cellular Biology",
+  "biologyModule1Desc": "Structure and functions of cells in living organisms.",
+  "biologyModule2": "Genetics",
+  "biologyModule2Desc": "Fundamentals of heredity and genetic processes.",
+  "biologyModule3": "Ecology",
+  "biologyModule3Desc": "Interaction of organisms with their environment.",
+  "biologyModule4": "Evolution",
+  "biologyModule4Desc": "Study of evolutionary processes and their mechanisms.",
+  "biologyModule5": "Physiology",
+  "biologyModule5Desc": "Fundamentals of human and animal physiology.",
+  "chemistry": "Chemistry",
+  "chemistryDescriptionLong": "The chemistry course covers the basics of inorganic and organic chemistry, including reactions and laboratory skills.",
+  "certificateChemistry1": "Certificate in Inorganic Chemistry",
+  "certificateChemistry2": "Certificate in Organic Chemistry",
+  "chemistryModule1": "Fundamentals of Chemistry",
+  "chemistryModule1Desc": "Introduction to chemical elements and their properties.",
+  "chemistryModule2": "Inorganic Chemistry",
+  "chemistryModule2Desc": "Study of inorganic compounds and reactions.",
+  "chemistryModule3": "Organic Chemistry",
+  "chemistryModule3Desc": "Fundamentals of organic compounds and their properties.",
+  "chemistryModule4": "Laboratory Skills",
+  "chemistryModule4Desc": "Practical skills in conducting chemical experiments.",
+  "it": "Information Technology",
+  "itDescriptionLong": "The IT course teaches programming, database management, and the basics of web development.",
+  "certificateIt1": "Certificate in Programming Fundamentals",
+  "certificateIt2": "Certificate in Web Development",
+  "certificateIt3": "Certificate in Databases",
+  "itModule1": "Introduction to Programming",
+  "itModule1Desc": "Fundamentals of programming languages like Python.",
+  "itModule2": "Web Development",
+  "itModule2Desc": "Creating websites using HTML, CSS, and JavaScript.",
+  "itModule3": "Databases",
+  "itModule3Desc": "Working with SQL and managing databases.",
+  "itModule4": "Algorithms",
+  "itModule4Desc": "Studying basic algorithms and data structures.",
+  "itModule5": "Application Development",
+  "itModule5Desc": "Creating simple applications.",
+  "itModule6": "Cybersecurity",
+  "itModule6Desc": "Fundamentals of data protection and network security.",
+  "robotics": "Robotics",
+  "roboticsDescriptionLong": "The robotics course teaches the creation and programming of robots using modern technologies.",
+  "certificateRobotics1": "Certificate in Robotics Fundamentals",
+  "certificateRobotics2": "Certificate in Robot Programming",
+  "roboticsModule1": "Introduction to Robotics",
+  "roboticsModule1Desc": "Fundamentals of mechanics and electronics in robots.",
+  "roboticsModule2": "Robot Programming",
+  "roboticsModule2Desc": "Programming microcontrollers and sensors.",
+  "roboticsModule3": "Sensors and Actuators",
+  "roboticsModule3Desc": "Working with sensors and actuators.",
+  "roboticsModule4": "Project Module",
+  "roboticsModule4Desc": "Creating your own robot.",
+  "roboticsModule5": "Artificial Intelligence",
+  "roboticsModule5Desc": "Fundamentals of AI for autonomous robots.",
+  "physics": "Physics",
+  "physicsDescriptionLong": "The physics course explores the laws of nature, including mechanics, electricity, and optics.",
+  "certificatePhysics1": "Certificate in General Physics",
+  "certificatePhysics2": "Certificate in Experimental Physics",
+  "physicsModule1": "Mechanics",
+  "physicsModule1Desc": "Studying the laws of motion and forces.",
+  "physicsModule2": "Electricity and Magnetism",
+  "physicsModule2Desc": "Fundamentals of electric circuits and magnetic fields.",
+  "physicsModule3": "Optics",
+  "physicsModule3Desc": "Study of light and optical phenomena.",
+  "physicsModule4": "Thermodynamics",
+  "physicsModule4Desc": "Laws of heat and energy.",
+  "russian": "Russian Language",
+  "russianDescriptionLong": "The Russian language course focuses on improving grammar, spelling, and communication skills.",
+  "certificateRussian1": "Certificate in Basic Russian",
+  "certificateRussian2": "Certificate in Advanced Russian",
+  "russianModule1": "Grammar",
+  "russianModule1Desc": "Fundamentals of Russian grammar and syntax.",
+  "russianModule2": "Spelling and Punctuation",
+  "russianModule2Desc": "Rules of writing and punctuation.",
+  "russianModule3": "Reading and Text Analysis",
+  "russianModule3Desc": "Working with literary and journalistic texts.",
+  "russianModule4": "Oral Speech",
+  "russianModule4Desc": "Developing oral communication and presentation skills.",
+  "russianModule5": "Written Practice",
+  "russianModule5Desc": "Writing essays and business texts.",
+  "marketing": "Public Speaking",
+  "marketingDescriptionLong": "The public speaking course teaches confident public performance and effective communication.",
+  "certificateMarketing1": "Certificate in Public Speaking Fundamentals",
+  "certificateMarketing2": "Certificate in Advanced Public Speaking Techniques",
+  "marketingModule1": "Fundamentals of Public Speaking",
+  "marketingModule1Desc": "Techniques for preparing and structuring a speech.",
+  "marketingModule2": "Working with the Audience",
+  "marketingModule2Desc": "Skills for interaction and engaging attention.",
+  "marketingModule3": "Voice and Diction",
+  "marketingModule3Desc": "Practicing voice clarity and speech delivery.",
+  "marketingModule4": "Improvisation",
+  "marketingModule4Desc": "Skills for improvisation and responding to questions.",
+  "computerLiteracy": "Computer Literacy",
+  "computerLiteracyDescriptionLong": "The computer literacy course teaches the basics of working with computers and office software.",
+  "certificateComputerLiteracy1": "Certificate in Computer Literacy Fundamentals",
+  "certificateComputerLiteracy2": "Certificate in Office Software",
+  "computerLiteracyModule1": "Fundamentals of Computer Use",
+  "computerLiteracyModule1Desc": "Working with the operating system and file management.",
+  "computerLiteracyModule2": "Microsoft Word",
+  "computerLiteracyModule2Desc": "Creating and formatting text documents.",
+  "computerLiteracyModule3": "Microsoft Excel",
+  "computerLiteracyModule3Desc": "Working with spreadsheets and formulas.",
+  "computerLiteracyModule4": "Internet and Security",
+  "computerLiteracyModule4Desc": "Fundamentals of safe internet use and cybersecurity.",
+  "coursesSectionTitle": "Explore Our Diverse Courses",
+  "coursesSectionSubtitle": "Dive into a world of knowledge with cutting-edge programs designed for your success.",
+  "englishDescription": "Master the global language with comprehensive English courses from beginner to advanced.",
+  "russianDescription": "Unlock new opportunities by learning Russian, ideal for travel, business, or cultural immersion.",
+  "uzbek": "Uzbek Language",
+  "uzbekDescription": "Discover Uzbekistan’s rich heritage through the Uzbek language, taught by experienced instructors.",
+  "chemistryDescription": "Unravel the mysteries of matter and its transformations with our comprehensive chemistry courses.",
+  "biologyDescription": "Explore the wonders of life sciences, from molecular biology to ecology, in an engaging way.",
+  "roboticsDescription": "Create and program intelligent machines. Explore the future of automation and AI.",
+  "itDescription": "Become a coding wizard! Learn to build anything you imagine, from web development to data science.",
+  "physicsDescription": "Understand the fundamental laws of the universe, from classical mechanics to quantum physics.",
+  "mathDescription": "Enhance your analytical skills with advanced math courses covering algebra, calculus, and more.",
+  "marketingDescription": "Learn to connect with audiences and grow businesses with cutting-edge digital marketing strategies.",
+  "design": "Design",
+  "designDescription": "Unleash your creative potential with graphic design and UI/UX courses, mastering visual communication.",
+  "computerLiteracy": "Web Development",
+  "computerLiteracyDescription": "Build stunning, responsive, and functional websites from scratch using the latest web technologies.",
+  "learnMoreAbout": "Learn More About {{courseName}}",
+  "viewAllCourses": "View All Courses",
+  "marqueeSectionTitle": "Our Core Directions",
+  "studentFeedback": "What Our Students Say",
+  "zuhraComment": "I took IT courses at MegaSchool and learned so much! The teachers are top-notch, and the practical approach really helped.",
+  "bekzodComment": "Thanks to the English courses, my IELTS scores improved significantly. The teachers are strong and supportive!",
+  "malikaComment": "I gained deep knowledge in chemistry and biology. The method is very useful and modern, highly recommend.",
+  "alisherComment": "MegaSchool provides an excellent learning environment. The programming intensive courses are demanding but extremely rewarding. Best investment!",
+  "diyoraComment": "Math and physics courses helped me get into my dream university. Thanks for the professional guidance!",
+  "javlonComment": "The Python course was good, but I wish there were more advanced topics. Still, a great start for beginners.",
+  "dilnozaComment": "Fantastic! The individual approach to learning is what sets MegaSchool apart. My communication skills have improved significantly.",
+  "sarvarComment": "Great value for money. The robotics lab is impressive, and I loved working on real projects.",
+  "madinaComment": "The best place to learn new skills. From zero to hero in web development, I couldn’t ask for more!",
+  "otabekComment": "There were some initial issues with the platform, but the support team responded quickly. The C++ course content was top-notch.",
+  "allReviews": "All Reviews",
+  "noReviewsFound": "No reviews found for this rating.",
+  "python": "Python",
+  "scratch": "Scratch",
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "cpp": "C++",
+  "english_lang": "English Language",
+  "russian_lang": "Russian Language",
+  "uzbek_lang": "Uzbek Language",
+  "data_science": "Data Science",
+  "cyber_security": "Cybersecurity",
+  "knowledge": "Knowledge",
+  "innovation": "Innovation",
+  "future": "Future",
+  "development": "Development",
+  "discovery": "Discovery",
+  "exploration": "Exploration",
+  "infinity_concept": "Infinity",
+  "contactUsTitleSimple": "Contact Us",
+  "ourBranches": "Our Branches",
+  "selectBranch": "Select a Branch:",
+  "chooseBranchOption": "Choose a MegaSchool branch...",
+  "sendUsAMessage": "Send Us a Message",
+  "yourName": "Your Name",
+  "namePlaceholder": "Enter your full name",
+  "yourEmail": "Your Email",
+  "emailPlaceholder": "Enter your email address",
+  "yourMessage": "Your Message",
+  "messagePlaceholder": "Tell us about your request...",
+  "sendMessage": "Send Message",
+  "formSubmittedMessage": "Thank you for your message! We’ll get back to you soon.",
+  "footerDescription": "Your path to success in the world of modern technologies.",
+  "quickLinks": "Quick Links",
+  "aboutUs": "About Us",
+  "allCourses": "All Courses",
+  "blog": "Blog",
+  "faq": "FAQ",
+  "contactInfo": "Contact Information",
+  "followUs": "Follow Us on Social Media",
+  "newsletter": "Newsletter",
+  "yourEmailPlaceholder": "Your email address",
+  "subscribe": "Subscribe",
+  "newsletterSuccess": "Thank you for subscribing to our newsletter!",
+  "allRightsReserved": "All rights reserved.",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "noCoursesFoundTitle": "No Courses Found",
+  "noCoursesFoundMessage": "Try adjusting your search criteria or filters. You might find something interesting in other categories!",
+  "resetFilters": "Reset Filters",
+  "coursesPageTitle": "Our Courses",
+  "coursesPageDescription": "Explore a wide range of courses in languages, IT, and sciences, designed for various levels.",
+  "searchCoursesPlaceholder": "Search courses...",
+  "noCoursesFound": "No courses found",
+  "all": "All Categories",
+  "languages": "Languages",
+  "itCourses": "IT Courses",
+  "science": "Science",
+  "languagesCategory": "Languages",
+  "itCategory": "IT",
+  "scienceCategory": "Science",
+  "learnMore": "Learn More",
+  "priceNotSpecified": "Price not specified",
+  "durationNotSpecified": "Duration not specified",
+  "level": "Level",
+  "lessonsCount_one": "{{count}} lesson",
+  "lessonsCount_few": "{{count}} lessons",
+  "lessonsCount_many": "{{count}} lessons",
+  "instructor": "Instructor",
+  "course_en_title": "English Language Course",
+  "course_en_description": "Master English from scratch to confident communication.",
+  "course_ru_title": "Russian Language Course",
+  "course_ru_description": "Learn Russian for everyday communication and work.",
+  "course_uz_title": "Uzbek Language Course",
+  "course_uz_description": "Dive into learning the Uzbek language and culture.",
+  "course_bio_title": "Biology Course",
+  "course_bio_description": "In-depth study of biology for students and professionals.",
+  "course_chem_title": "Chemistry Course",
+  "course_chem_description": "Practical chemistry learning with laboratory work.",
+  "course_robot_title": "Robotics Course",
+  "course_robot_description": "Create your own robots and learn programming basics.",
+  "course_frontend_title": "Frontend Development Course",
+  "course_frontend_description": "Learn to create modern web interfaces using React.",
+  "course_backend_title": "Backend Development Course",
+  "course_backend_description": "Master server development and database management.",
+  "course_cpp_title": "C++ Programming Course",
+  "course_cpp_description": "Learn C++ for developing high-performance applications.",
+  "course_scratch_title": "Scratch Course for Kids",
+  "course_scratch_description": "Introduction to programming for children using Scratch.",
+  "course_python_title": "Python Course",
+  "course_python_description": "Learn Python for web development and data analysis.",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced",
+  "about": {
+    "pageIntro": {
+      "title": "Empowering the future through innovative education.",
+      "subtitle": "Discover the journey of our educational center, dedicated to excellence and nurturing talent.",
+      "cta": "Explore Our Programs"
+    },
+    "mission": {
+      "heading": "Our Mission",
+      "title": "Democratic access to quality education.",
+      "text": "We believe that everyone, regardless of location or background, deserves access to the best knowledge and tools to build a successful career in the digital economy."
+    },
+    "whyUs": {
+      "title": "Why Choose Us?",
+      "subtitle": "Our approach is based on practice, support, and results that matter for your career.",
+      "feature1": {
+        "title": "Cutting-Edge Curriculum",
+        "description": "Educational programs developed in collaboration with experts from leading IT companies."
+      },
+      "feature2": {
+        "title": "Practicing Professionals",
+        "description": "Learn from mentors who solve real business challenges every day."
+      },
+      "feature3": {
+        "title": "Career Support",
+        "description": "We help with resume building, interview preparation, and landing your first job."
+      },
+      "feature4": {
+        "title": "Flexible Format",
+        "description": "Learn at your own pace with 24/7 access to materials from anywhere in the world."
+      }
+    },
+    "history": {
+      "title": "Our Path to Success",
+      "subtitle": "From an idea to a leader in educational technology.",
+      "event1": {
+        "title": "Foundation",
+        "description": "Launched with the first group of 10 enthusiastic students in a small coworking space."
+      },
+      "event2": {
+        "title": "First Online Course",
+        "description": "We went online, making education accessible to all regions."
+      },
+      "event3": {
+        "title": "'EdTech Breakthrough' Award",
+        "description": "Recognized as the best educational startup of the year for our innovative approach."
+      },
+      "event4": {
+        "title": "The Future is Here",
+        "description": "Plans to launch courses with AI and VR for full immersion."
+      }
+    },
+    "team": {
+      "title": "People Building the Future",
+      "subtitle": "Our team is our core value. Professionals passionate about their work.",
+      "roles": {
+        "ceo": "CEO and Founder",
+        "cto": "Chief Technology Officer (CTO)",
+        "head_of_edu": "Head of Educational Programs"
+      }
+    },
+    "testimonials": {
+      "title": "What Our Students Say",
+      "courses": {
+        "python_dev": "Python Developer Course",
+        "ux_design": "UX/UI Designer Course",
+        "frontend_dev": "Frontend Developer Course"
+      },
+      "review1": "This completely changed my career. In 6 months, I went from a beginner to a hired developer. Thank you!",
+      "review2": "The best investment in myself. The teachers are true professionals. The support is top-notch.",
+      "review3": "I not only gained technical skills but also learned to think like a developer. The portfolio created during the course impressed employers."
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "subtitle": "Join thousands of students who have transformed their lives. Your success story begins here.",
+      "email_placeholder": "Your email",
+      "button": "Join Now"
+    }
+  },
+  "header": {
+    "about": "About Us"
+  },
+  "about1": {
+    "pageIntro": {
+      "title": "Empowering the future through innovative education.",
+      "subtitle": "Discover the journey of our educational center, dedicated to excellence and nurturing talent.",
+      "cta": "Learn About Our Programs"
+    },
+    "team": {
+      "title": "Our Team: The Driving Force of Innovation",
+      "subtitle": "Meet the talented professionals behind our success, bringing our mission to life.",
+      "roles": {
+        "ceo_founder": "CEO and Founder",
+        "cto": "Chief Technology Officer",
+        "head_of_edu": "Head of Educational Programs",
+        "lead_developer": "Lead Developer",
+        "marketing_director": "Marketing Director",
+        "ux_ui_designer": "UX/UI Designer",
+        "community_manager": "Community Manager",
+        "data_scientist": "Data Scientist"
+      },
+      "descriptions": {
+        "ceo_founder": "A visionary driving our mission with boundless energy and strategic thinking. Their leadership inspires us to achieve greatness.",
+        "cto": "A technology maestro crafting our platform with exceptional precision and innovation. They ensure the technical excellence of our solutions.",
+        "head_of_edu": "The chief architect of our educational programs, inspiring the next generation. They ensure our education is relevant and effective.",
+        "lead_developer": "A lead developer turning ideas into flawless code. Their attention to detail and expertise are crucial for stability and performance.",
+        "marketing_director": "A strategist spreading our message to the world, creating a strong presence. They build bridges between us and our audience.",
+        "ux_ui_designer": "An artist creating intuitive and beautiful user interfaces. Thanks to them, our platform is not only functional but also enjoyable to use.",
+        "community_manager": "The heart of our team, building a supportive and united community. They are the voice and link for our users.",
+        "data_scientist": "An analyst uncovering hidden patterns to optimize our growth. Their insight helps us make informed decisions and continuously improve."
+      }
+    }
+  },
+  "footer": {
+    "description": "MegaSchool is your trusted partner in education. We offer innovative programs to develop future skills, helping you achieve your goals.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "address": "Example Street, 123, Tashkent, Uzbekistan",
+    "followUs": "Join Us",
+    "newsletter": "Stay Updated",
+    "yourEmailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "newsletterSuccess": "Successfully subscribed to the newsletter!",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We’re ready to answer all your questions and provide the information you need. Choose a convenient contact method.",
+    "mapTitle": "Our Location",
+    "mapClickToOpen": "Click to open the map in Google Maps",
+    "mapClickLabel": "Open MegaSchool location on the map",
+    "mapLoading": "Map is loading...",
+    "mapError": {
+      "loadFailed": "Failed to load the map.",
+      "checkApiKey": "Please check your Google Maps API key and settings."
+    },
+    "branches": {
+      "tashkent": {
+        "name": "Tashkent Branch",
+        "address": "Amir Temur Street, 123, Tashkent, Uzbekistan",
+        "hours": "Mon-Fri: 9:00 AM - 6:00 PM, Sat: 10:00 AM - 3:00 PM"
+      }
+    },
+    "form": {
+      "title": "Write Us a Message",
+      "name": "Your Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Your Email",
+      "emailPlaceholder": "example@domain.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What’s your message about?",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "successMessage": "Message sent successfully! We’ll get back to you soon. 💌",
+      "errorMessage": "An error occurred while sending the message. Please try again.",
+      "errors": {
+        "nameRequired": "Please enter your name.",
+        "emailRequired": "Please enter your email.",
+        "emailInvalid": "Please enter a valid email.",
+        "subjectRequired": "Please enter the message subject.",
+        "messageRequired": "Please enter your message."
+      }
+    },
+    "realtime": {
+      "title": "Connect with Us in Real Time",
+      "description": "Reach out via popular messengers or call us directly for immediate assistance or quick responses.",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "Email",
+      "phone": "Call"
+    }
+  },
+  "back": "Back",
+  "enrollNow": "Enroll in the Course",
+  "courseNotFound": "Course Not Found",
+  "backToHome": "Back to Home",
+  "cost": "Cost",
+  "costSuffix": "UZS",
+  "duration": "Course Duration",
+  "certification": "Certification",
+  "learningStages": "Learning Stages",
+  "module": "Module",
+  "courses1": {
+    "english": {
+      "title": "Fluent English: Global Communication",
+      "descriptionLong": "Dive into mastering English with our 'Fluent English: Global Communication' course. Designed based on the world’s best practices, this course transforms your language skills from theory to confident practice. Discover new opportunities in your career and travels, learn to express your thoughts freely, and understand the nuances of English-speaking cultures. We offer interactive real-life dialogue simulations, individual coaching sessions with native speakers, and access to an exclusive library of materials.",
+      "duration": "6 months",
+      "certificates": {
+        "certificate1": "Fluent English: Global Communication Course Completion Certificate",
+        "certificate2": "Recommendation Letter from the Instructor (upon request)"
+      },
+      "modules": {
+        "module1": {
+          "title": "Fundamentals of Communication and Grammar",
+          "description": "Reinforcing basic rules and vocabulary for everyday communication."
+        },
+        "module2": {
+          "title": "Vocabulary Expansion and Idioms",
+          "description": "Learning advanced vocabulary, phrasal verbs, and idiomatic expressions."
+        },
+        "module3": {
+          "title": "Business Correspondence and Presentations",
+          "description": "Skills for effective business communication: letters, reports, public speaking."
+        },
+        "module4": {
+          "title": "Cultural Nuances and Accents",
+          "description": "Understanding regional accents and cultural subtleties of English-speaking countries."
+        },
+        "module5": {
+          "title": "International Exam Preparation (IELTS/TOEFL)",
+          "description": "Learning strategies and tactics for successfully passing international language exams."
+        }
+      }
+    },
+    "math": {
+      "title": "Logic and Beyond: Mathematics for the Future",
+      "descriptionLong": "Discover the beauty and logic of mathematics with our 'Logic and Beyond: Mathematics for the Future' course. This course is not just about formulas and numbers; it’s about developing analytical thinking, solving complex problems, and applying mathematical concepts in real life. We use interactive visualizations, gamified teaching methods, and practical case studies to make math engaging and understandable. Ideal for university preparation or enhancing critical thinking.",
+      "duration": "4 months",
+      "certificates": {
+        "certificate1": "Logic and Beyond: Mathematics for the Future Course Completion Certificate",
+        "certificate2": "'Master of Logical Thinking' Badge"
+      },
+      "modules": {
+        "module1": {
+          "title": "Fundamentals of Algebra and Functions",
+          "description": "In-depth exploration of algebraic expressions, equations, and functions."
+        },
+        "module2": {
+          "title": "Geometry: From Euclid to Fractals",
+          "description": "Learning planimetry, stereometry, and an introduction to non-Euclidean geometry."
+        },
+        "module3": {
+          "title": "Probability Theory and Statistics",
+          "description": "Fundamentals of probability theory, statistical data analysis, and forecasting."
+        },
+        "module4": {
+          "title": "Mathematical Analysis: Derivatives and Integrals",
+          "description": "Derivatives, integrals, and their applications in various fields."
+        }
+      }
+    },
+    "biology": {
+      "title": "BioSphere: From Cell to Ecosystem",
+      "descriptionLong": "Unlock the secrets of life with the 'BioSphere: From Cell to Ecosystem' course. This course offers an in-depth and engaging journey through biology, from microscopic organisms to complex ecosystems. You’ll conduct virtual lab work, analyze real scientific data, and participate in discussions on the latest discoveries. Ideal for future doctors, biologists, and those curious about the natural world.",
+      "duration": "5 months",
+      "certificates": {
+        "certificate1": "BioSphere Biology Specialist Certificate",
+        "certificate2": "One-year access to a database of scientific articles and research"
+      },
+      "modules": {
+        "module1": {
+          "title": "Molecular Biology and Genetics",
+          "description": "Studying DNA, RNA, proteins, and the basics of heredity."
+        },
+        "module2": {
+          "title": "Cellular Biology and Microorganisms",
+          "description": "Structure and functions of cells, and the world of bacteria and viruses."
+        },
+        "module3": {
+          "title": "Human Anatomy and Physiology",
+          "description": "Functioning and interaction of human organ systems."
+        },
+        "module4": {
+          "title": "Ecology and Biodiversity",
+          "description": "Studying ecosystems, interconnections in nature, and species conservation issues."
+        },
+        "module5": {
+          "title": "Evolution and the Origin of Life",
+          "description": "Evolutionary theories, adaptations, and the history of life on Earth."
+        }
+      }
+    },
+    "chemistry": {
+      "title": "Alchemy Secrets: Modern Chemistry",
+      "descriptionLong": "Master the language of atoms and molecules with the 'Alchemy Secrets: Modern Chemistry' course. This course transforms complex chemical processes into understandable and fascinating phenomena. You’ll conduct virtual experiments, analyze spectra, and learn to predict reactions. Ideal for those pursuing academic goals or simply curious about understanding the world of substances at a molecular level.",
+      "duration": "4 months",
+      "certificates": {
+        "certificate1": "Alchemy Secrets: Modern Chemistry Course Completion Certificate",
+        "certificate2": "Six-month access to a chemical reaction simulator"
+      },
+      "modules": {
+        "module1": {
+          "title": "General Chemistry: Fundamentals of Matter Structure",
+          "description": "Studying atoms, molecules, chemical bonds, and the periodic table."
+        },
+        "module2": {
+          "title": "Inorganic Chemistry: Elements and Compounds",
+          "description": "Properties and applications of key inorganic compounds."
+        },
+        "module3": {
+          "title": "Organic Chemistry: The World of Carbon",
+          "description": "Studying hydrocarbons, functional groups, and reactions of organic compounds."
+        },
+        "module4": {
+          "title": "Physical Chemistry and Kinetics",
+          "description": "Reaction energetics, equilibrium, and the speed of chemical processes."
+        }
+      }
+    },
+    "it": {
+      "title": "Digital Flame: From Idea to Code",
+      "descriptionLong": "Step into the world of the future with the 'Digital Flame: From Idea to Code' course. This intensive IT course is designed for those who want to become in-demand specialists in the field of information technology. You’ll master programming, web application development, databases, and cybersecurity basics. Practical tasks, real projects, and mentorship from leading IT professionals ensure a fast and effective start to your career.",
+      "duration": "8 months",
+      "certificates": {
+        "certificate1": "Full-Stack Developer Diploma (upon successful completion)",
+        "certificate2": "Certificate of Participation in an Open Source Project",
+        "certificate3": "Portfolio with 3 real projects"
+      },
+      "modules": {
+        "module1": {
+          "title": "Programming Fundamentals (Python/JavaScript)",
+          "description": "Learning syntax, algorithms, and data structures."
+        },
+        "module2": {
+          "title": "Frontend Development (React/Vue)",
+          "description": "Creating interactive user interfaces."
+        },
+        "module3": {
+          "title": "Backend Development (Node.js/Django)",
+          "description": "Server logic and API development."
+        },
+        "module4": {
+          "title": "Databases (SQL/NoSQL)",
+          "description": "Designing and managing databases."
+        },
+        "module5": {
+          "title": "DevOps and Cloud Technology Fundamentals",
+          "description": "Deployment, containerization, and introduction to cloud platforms."
+        },
+        "module6": {
+          "title": "Cybersecurity and Data Protection",
+          "description": "Basic principles of protecting data and systems."
+        }
+      }
+    },
+    "robotics": {
+      "title": "RoboCraft: Engineering Thinking and Design",
+      "descriptionLong": "Create the future with your own hands with the 'RoboCraft: Engineering Thinking and Design' course. This course offers an exciting dive into the world of robotics, from design to programming autonomous systems. You’ll work with real robotics platforms, learning the basics of mechatronics, electronics, and artificial intelligence. Ideal for young engineers and inventors dreaming of their own smart machines.",
+      "duration": "7 months",
+      "certificates": {
+        "certificate1": "RoboCraft Engineer-Robotics Certificate",
+        "certificate2": "Participation in the Final Project (creating your own robot)"
+      },
+      "modules": {
+        "module1": {
+          "title": "Fundamentals of Mechanics and Schematics",
+          "description": "Designing cases, selecting motors, and basics of electrical circuits."
+        },
+        "module2": {
+          "title": "Microcontroller Programming (Arduino/Raspberry Pi)",
+          "description": "Writing code to control robot movements and sensors."
+        },
+        "module3": {
+          "title": "Sensors and Actuators: Interaction with the World",
+          "description": "Learning to work with various sensors and actuators."
+        },
+        "module4": {
+          "title": "Computer Vision and AI Basics for Robots",
+          "description": "Object detection, navigation, and decision-making."
+        },
+        "module5": {
+          "title": "Designing and Assembling Autonomous Robots",
+          "description": "Creating and testing your own robotics systems."
+        }
+      }
+    },
+    "drawing": {
+      "title": "Artistic Flow: From Sketch to Masterpiece",
+      "descriptionLong": "Unleash your inner artist with the 'Artistic Flow: From Sketch to Masterpiece' course. This course is designed for those with any level of training to master the art of drawing. We explore various techniques from classical drawing to digital art and help you develop your unique style. Individual consultations with experienced artists and participation in virtual exhibitions await you.",
+      "duration": "3 months",
+      "certificates": {
+        "certificate1": "Master of Drawing and Composition Certificate",
+        "certificate2": "Publication of the best work in the educational center’s online gallery"
+      },
+      "modules": {
+        "module1": {
+          "title": "Drawing Fundamentals: Line, Shape, Volume",
+          "description": "Basic principles of sketching and depicting volume on a plane."
+        },
+        "module2": {
+          "title": "Color and Light: Theory and Practice",
+          "description": "Studying color palettes, shadows, and highlights."
+        },
+        "module3": {
+          "title": "Portrait and Human Figure",
+          "description": "Anatomical basics and techniques for depicting emotions in portraits."
+        },
+        "module4": {
+          "title": "Landscape and Still Life",
+          "description": "Working with different genres and their compositional features."
+        }
+      }
+    },
+    "russian": {
+      "title": "Great Russian: From A to Z",
+      "descriptionLong": "Discover the richness of the Russian language and culture with the 'Great Russian: From A to Z' course. This course offers comprehensive learning of the Russian language, from grammar basics to the nuances of literary style. You’ll read classic and modern literature, watch Russian films, and participate in lively discussions. Ideal for those who want to communicate fluently, read, and understand the Russian-speaking world.",
+      "duration": "5 months",
+      "certificates": {
+        "certificate1": "Russian Language Proficiency Certificate (B2/C1 level)",
+        "certificate2": "Access to a library of Russian literature and films"
+      },
+      "modules": {
+        "module1": {
+          "title": "Phonetics and Basic Vocabulary",
+          "description": "Correct pronunciation and everyday vocabulary basics."
+        },
+        "module2": {
+          "title": "Grammar: Cases and Conjugations",
+          "description": "In-depth study of the Russian grammatical system."
+        },
+        "module3": {
+          "title": "Oral Speech and Listening",
+          "description": "Developing fluent communication and listening comprehension skills."
+        },
+        "module4": {
+          "title": "Reading and Text Analysis",
+          "description": "Working with literary and journalistic texts."
+        },
+        "module5": {
+          "title": "Cultural Studies and Etiquette",
+          "description": "Understanding Russian traditions, customs, and communication norms."
+        }
+      }
+    },
+    "oratory": {
+      "title": "Voice and Impact: Mastering the Art of Public Speaking",
+      "descriptionLong": "Master the art of confident speech with the 'Voice and Impact: Mastering the Art of Public Speaking' course. This course helps you build confidence in public speaking, structure your thoughts, and deliver them effectively to any audience. You’ll work on diction, intonation, gestures, and facial expressions. Ideal for leaders, teachers, managers, and aspiring thought leaders.",
+      "duration": "8 weeks",
+      "certificates": {
+        "certificate1": "Master of Public Speaking Certificate",
+        "certificate2": "Video recording of the best speech for your portfolio"
+      },
+      "modules": {
+        "module1": {
+          "title": "Fundamentals of Public Speaking: Overcoming Fear",
+          "description": "Relaxation techniques, voice control, and breathing exercises."
+        },
+        "module2": {
+          "title": "Speech Structure and Argumentation",
+          "description": "Building persuasive speeches and using logical arguments."
+        },
+        "module3": {
+          "title": "Body Language and Nonverbal Communication",
+          "description": "Using gestures, facial expressions, and postures to enhance impact."
+        },
+        "module4": {
+          "title": "Improvisation and Q&A",
+          "description": "Developing quick response and wit skills."
+        }
+      }
+    },
+    "computerLiteracy": {
+      "title": "Digital Navigator: Computer Literacy for Everyone",
+      "descriptionLong": "Master the digital world with the 'Digital Navigator: Computer Literacy for Everyone' course. This course is designed for those who want to confidently use computers and the internet in everyday life and work. You’ll learn to work with basic software, search for information securely, communicate online, and much more. The course is based on practical tasks and real-life usage scenarios.",
+      "duration": "6 weeks",
+      "certificates": {
+        "certificate1": "Digital Navigator Course Completion Certificate",
+        "certificate2": "Digital Security Guide"
+      },
+      "modules": {
+        "module1": {
+          "title": "Operating System Fundamentals (Windows/macOS)",
+          "description": "Navigating the interface, managing files and folders."
+        },
+        "module2": {
+          "title": "Working with Office Software (Word, Excel, PowerPoint)",
+          "description": "Creating documents, spreadsheets, and presentations."
+        },
+        "module3": {
+          "title": "Internet and Email",
+          "description": "Safe information search and email correspondence."
+        },
+        "module4": {
+          "title": "Digital Security and Privacy",
+          "description": "Protection against viruses, phishing, and safeguarding personal data."
+        }
+      }
+    },
+    "about1": {
+      "team": {
+        "roles": {
+          "ceo_founder": "CEO and Founder",
+          "cto": "Chief Technology Officer",
+          "head_of_edu": "Head of Educational Programs",
+          "lead_developer": "Lead Developer",
+          "marketing_director": "Marketing Director",
+          "ux_ui_designer": "UX/UI Designer",
+          "community_manager": "Community Manager",
+          "data_scientist": "Data Scientist"
+        },
+        "descriptions": {
+          "ceo_founder": "A visionary driving our mission with boundless energy and strategic thinking.",
+          "cto": "A technology maestro crafting our platform with exceptional precision and innovation.",
+          "head_of_edu": "The chief architect of our educational programs, inspiring the next generation.",
+          "lead_developer": "A lead developer turning ideas into flawless code.",
+          "marketing_director": "A strategist spreading our message to the world, creating a strong presence.",
+          "ux_ui_designer": "An artist creating intuitive and beautiful user interfaces.",
+          "community_manager": "The heart of our team, building a supportive and united community.",
+          "data_scientist": "An analyst uncovering hidden patterns to optimize our growth."
+        }
+      }
+    }
+  }
+}
