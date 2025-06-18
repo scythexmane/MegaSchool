@@ -26,7 +26,7 @@ const ContactPage = () => {
 
       <div className="max-w-7xl mx-auto py-12 lg:py-20 relative z-10">
         <motion.h1
-          className="text-5xl lg:text-6xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] drop-shadow-[0_0_10px_var(--gradient-from)]"
+          className="text-5xl lg:text-6xl p-3 font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] drop-shadow-[0_0_10px_var(--gradient-from)]"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

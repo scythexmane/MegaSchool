@@ -10,7 +10,7 @@ const teamMembers = [
     name: "Алиса Иванова",
     role: "ceo_founder",
     img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887",
-    description: "Визионер, движущий нашу миссию вперед с безграничной энергией и стратегическим мышлением.",
+    description: "Визионер, движущий нашу миссию вперед.",
     social: { linkedin: "https://linkedin.com/in/alisaivanova", twitter: "https://twitter.com/alisa" },
     featured: true,
   },
@@ -19,7 +19,7 @@ const teamMembers = [
     name: "Максим Петров",
     role: "cto",
     img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1887",
-    description: "Мастер технологий, создающий нашу платформу с невероятной точностью и инновациями.",
+    description: "Мастер технологий, создающий нашу платформу.",
     social: { linkedin: "https://linkedin.com/in/maksimpetrov", github: "https://github.com/maksimp" },
   },
   {
@@ -27,7 +27,7 @@ const teamMembers = [
     name: "Елена Сидорова",
     role: "head_of_edu",
     img: "https://avatars.mds.yandex.net/i?id=fb4292f7c3b3ad02a6d0114578d8523a_l-5238039-images-thumbs&ref=rim&n=13&w=640&h=640",
-    description: "Главный архитектор наших образовательных программ, вдохновляющая следующее поколение.",
+    description: "Главный архитектор наших программ.",
     social: { linkedin: "https://linkedin.com/in/elenasidorova", dribbble: "https://dribbble.com/elenas" },
   },
   {
@@ -35,7 +35,7 @@ const teamMembers = [
     name: "Дмитрий Козлов",
     role: "lead_developer",
     img: "https://avatars.mds.yandex.net/i?id=0685051206bb8d635a0cb47b59df7984-4755486-images-thumbs&ref=rim&n=33&w=480&h=240",
-    description: "Ведущий разработчик, превращающий идеи в безупречный код.",
+    description: "Ведущий разработчик.",
     social: { linkedin: "https://linkedin.com/in/dmitrykozlov", github: "https://github.com/dmitryk" },
   },
   {
@@ -43,7 +43,7 @@ const teamMembers = [
     name: "Анна Новикова",
     role: "marketing_director",
     img: "https://www.drbarryweintraub.com/wp-content/uploads/2022/09/portrait-beautiful-smiling-blond-model-dressed.jpg",
-    description: "Стратег, который доносит наше послание до мира, создавая мощное присутствие.",
+    description: "Стратег, который доносит наше послание до мира.",
     social: { linkedin: "https://linkedin.com/in/annanovikova", twitter: "https://twitter.com/annan" },
   },
   {
@@ -51,7 +51,7 @@ const teamMembers = [
     name: "Иван Сергеев",
     role: "ux_ui_designer",
     img: "https://avatars.mds.yandex.net/i?id=a0fe3d4e67e6da3bebd7b5bb8e863258_l-10836596-images-thumbs&n=13",
-    description: "Художник, создающий интуитивно понятные и красивые пользовательские интерфейсы.",
+    description: "Художник, создающий интуитивно понятные.",
     social: { linkedin: "https://linkedin.com/in/ivanserg", dribbble: "https://dribbble.com/ivanserg" },
   },
   {
@@ -59,7 +59,7 @@ const teamMembers = [
     name: "София Лебедева",
     role: "community_manager",
     img: "https://avatars.mds.yandex.net/i?id=d61581eafb95ac139e140acfd4a04e1ac58030a1-7732367-images-thumbs&ref=rim&n=33&w=375&h=250",
-    description: "Сердце нашей команды, объединяющее всех и создающее поддерживающее сообщество.",
+    description: "Сердце нашей команды, объединяющее всех.",
     social: { linkedin: "https://linkedin.com/in/sofialebedeva", twitter: "https://twitter.com/sofial" },
   },
   {
@@ -67,7 +67,7 @@ const teamMembers = [
     name: "Николай Орлов",
     role: "data_scientist",
     img: "https://avatars.mds.yandex.net/i?id=2eeaf03f4fb7ba2c2123def64c97ce7ff41bf0fe-5147142-images-thumbs&n=13",
-    description: "Аналитик, раскрывающий скрытые закономерности для оптимизации нашего роста.",
+    description: "Аналитик, раскрывающий скрытые закономерности.",
     social: { linkedin: "https://linkedin.com/in/nikolayorlov", github: "https://github.com/nikolayo" },
   },
 ];

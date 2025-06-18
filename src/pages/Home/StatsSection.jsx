@@ -190,7 +190,7 @@ const StatsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-16
+            className="text-4xl p-3 md:text-5xl lg:text-6xl font-extrabold mb-16
                        bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text"
           >
             {t("ourAchievements")}

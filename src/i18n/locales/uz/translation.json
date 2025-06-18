@@ -409,14 +409,14 @@
         "data_scientist": "Ma'lumotlar bo‘yicha mutaxassis"
       },
       "descriptions": {
-        "ceo_founder": "Bizning missiyamizni cheksiz energiya va strategik fikrlash bilan oldinga olib boruvchi vizyoner. Uning rahbarligi bizni buyuk yutuqlarga ilhomlantiradi.",
-        "cto": "Texnologiyalar ustasi, bizning platformamizni ajoyib aniqlik va innovatsiyalar bilan yaratadi. U bizning yechimlarimizning texnik mukammalligi uchun mas'uldir.",
-        "head_of_edu": "Ta'lim dasturlarimizning bosh arxitektori, keyingi avlodni ilhomlantiradi. U ta'limimizning dolzarbligi va samaradorligini ta'minlaydi.",
-        "lead_developer": "G‘oyalarni mukammal kodga aylantiruvchi yetakchi dasturchi. Uning tafsilotlarga e'tibori va tajribasi barqarorlik va unumdorlik uchun juda muhimdir.",
-        "marketing_director": "Bizning xabarimizni dunyoga yetkazuvchi strateg, kuchli mavjudlikni yaratadi. U biz va auditoriyamiz o‘rtasida ko‘priklar quradi.",
-        "ux_ui_designer": "Intuitiv va chiroyli foydalanuvchi interfeyslarini yaratuvchi rassom. Uning tufayli platformamiz nafaqat funksional, balki foydalanish uchun yoqimli.",
-        "community_manager": "Hammani birlashtiruvchi va qo‘llab-quvvatlovchi hamjamiyat yaratuvchi jamoamizning yuragi. U foydalanuvchilarimizning ovozi va bog‘lovchi halqadir.",
-        "data_scientist": "Bizning o‘sishimizni optimallashtirish uchun yashirin naqshlarni ochib beruvchi tahlilchi. Uning zukkoligi bizga asosli qarorlar qabul qilish va doimiy ravishda yaxshilanishga yordam beradi."
+        "ceo_founder": "Bizning missiyamizni cheksiz energiya yutuqlarga ilhomlantiradi.",
+        "cto": "Texnologiyalar ustasi, bizning platformamizni yaratadi.",
+        "head_of_edu": "Ta'lim dasturlarimizning bosh arxitektori",
+        "lead_developer": "G‘oyalarni mukammal kodga aylantiruvchi yetakchi dasturchi.",
+        "marketing_director": "Bizning xabarimizni dunyoga yetkazuvchi strateg.",
+        "ux_ui_designer": "Intuitiv va chiroyli foydalanuvchi interfeyslarini uchun yoqimli.",
+        "community_manager": "Hammani birlashtiruvchi va qo‘llab-quvvatlovchi.",
+        "data_scientist": "Bizning optimallashtirish uchun ochib beruvchi tahlilchi."
       }
     }
   },

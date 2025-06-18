@@ -82,7 +82,7 @@ const ContactFormSection = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] mb-8 text-center drop-shadow-[0_0_10px_var(--gradient-from)]">
+      <h2 className="text-3xl p-3 lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] mb-8 text-center drop-shadow-[0_0_10px_var(--gradient-from)]">
         {t("contact.form.title")}
       </h2>
 
@@ -90,7 +90,7 @@ const ContactFormSection = () => {
         <motion.div className="relative group">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
+            className="block  text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
           >
             {t("contact.form.name")}
           </label>
@@ -174,7 +174,7 @@ const ContactFormSection = () => {
         <motion.div className="relative group">
           <label
             htmlFor="subject"
-            className="block text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
+            className="block  text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
           >
             {t("contact.form.subject")}
           </label>

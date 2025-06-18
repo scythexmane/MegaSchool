@@ -29,7 +29,7 @@ const RealtimeContactSection = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <h2 className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] mb-8 drop-shadow-[0_0_10px_var(--gradient-from)]">
+      <h2 className="text-3xl p-3 lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] mb-8 drop-shadow-[0_0_10px_var(--gradient-from)]">
         {t("contact.realtime.title")}
       </h2>
 

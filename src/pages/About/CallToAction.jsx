@@ -49,7 +49,7 @@ const CallToAction = () => {
         <div className="relative z-10 text-center">
           <motion.h2
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] to-[var(--text-secondary)]"
+            className="text-3xl p-3 sm:text-4xl lg:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-primary)] to-[var(--text-secondary)]"
           >
             {t("about.cta.title")}
           </motion.h2>

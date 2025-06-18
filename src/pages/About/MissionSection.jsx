@@ -27,36 +27,36 @@ const MissionSection = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionVariants}
-      className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8" // Adjusted section padding for mobile
     >
-      <div className="relative z-10 bg-[var(--card-bg)] rounded-3xl shadow-2xl ring-1 ring-[var(--card-border)] backdrop-blur-md p-10 sm:p-14 lg:p-20 max-w-7xl mx-auto overflow-hidden border border-[var(--card-border)]">
-        <div className="absolute inset-0 z-0 blur-3xl opacity-25 pointer-events-none">
-          <div className="absolute top-[-20%] left-[-10%] w-[300px] h-[300px] bg-[var(--gradient-from)]/50 rounded-full mix-blend-overlay animate-blob-pulse-slow" />
-          <div className="absolute bottom-[-25%] right-[-10%] w-[400px] h-[400px] bg-[var(--gradient-to)]/50 rounded-full mix-blend-overlay animate-blob-pulse-slow delay-500" />
+      <div className="relative z-10 bg-[var(--card-bg)] rounded-2xl sm:rounded-3xl shadow-2xl ring-1 ring-[var(--card-border)] backdrop-blur-md p-6 sm:p-10 lg:p-16 max-w-7xl mx-auto overflow-hidden border border-[var(--card-border)]"> {/* Adjusted card padding and border radius */}
+        <div className="absolute inset-0 z-0 blur-2xl sm:blur-3xl opacity-25 pointer-events-none"> {/* Adjusted blur for blobs */}
+          <div className="absolute top-[-10%] left-[-5%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] bg-[var(--gradient-from)]/50 rounded-full mix-blend-overlay animate-blob-pulse-slow" /> {/* Adjusted size and position */}
+          <div className="absolute bottom-[-15%] right-[-5%] w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-[var(--gradient-to)]/50 rounded-full mix-blend-overlay animate-blob-pulse-slow delay-500" /> {/* Adjusted size and position */}
         </div>
-        <div className="relative z-10 grid md:grid-cols-2 gap-14 items-center">
+        <div className="relative z-10 grid md:grid-cols-2 gap-10 sm:gap-14 items-center"> {/* Adjusted gap */}
           <motion.div className="md:pr-10" variants={textVariants}>
-            <div className="inline-flex items-center space-x-2 text-[var(--gradient-from)] mb-6 px-4 py-2 bg-[var(--gradient-from)]/10 rounded-full border border-[var(--gradient-from)]/20 shadow-md">
+            <div className="inline-flex items-center space-x-2 text-[var(--gradient-from)] mb-4 sm:mb-6 px-3 py-1.5 sm:px-4 sm:py-2 bg-[var(--gradient-from)]/10 rounded-full border border-[var(--gradient-from)]/20 shadow-md"> {/* Adjusted padding and spacing */}
               <AnimatedIcon
                 name="Target"
-                size={28}
-                className="text-[var(--gradient-from)] drop-shadow-md"
+                size={20} // Smaller icon size for mobile
+                className="text-[var(--gradient-from)] drop-shadow-md sm:text-28" // Adjusted base size, then sm: size
                 animateProps={{ rotate: [0, 10, -10, 0] }}
                 initialProps={{ rotate: 0 }}
               />
-              <span className="text-sm font-semibold tracking-widest uppercase">
+              <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase whitespace-nowrap"> {/* Adjusted font size and ensured no wrapping */}
                 {t("about.mission.heading")}
               </span>
             </div>
-            <h2 className="text-4xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] leading-tight mb-4 sm:mb-6"> {/* Adjusted font sizes and margin-bottom */}
               {t("about.mission.title")}
             </h2>
-            <p className="mt-5 text-lg text-[var(--text-secondary)] leading-relaxed max-w-prose">
+            <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-prose"> {/* Adjusted font sizes and margin-top */}
               {t("about.mission.text")}
             </p>
           </motion.div>
           <motion.div
-            className="relative rounded-3xl overflow-hidden aspect-video shadow-xl ring-1 ring-[var(--card-border)] group transform transition-all duration-500 ease-out hover:shadow-[var(--gradient-from)]/40 hover:ring-[var(--gradient-from)]"
+            className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-video shadow-xl ring-1 ring-[var(--card-border)] group transform transition-all duration-500 ease-out hover:shadow-[var(--gradient-from)]/40 hover:ring-[var(--gradient-from)]" // Adjusted border radius
             variants={imageVariants}
             whileHover={{ scale: 1.02, rotateX: 2, rotateY: -2 }}
             transition={{ type: "spring", stiffness: 200, damping: 10 }}

@@ -93,40 +93,7 @@ const CourseCard = ({ course }) => {
           <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
             {t(course.description)}
           </p>
-          <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-[var(--text-secondary)] mb-6">
-            <div className="flex items-center gap-2">
-              <IconWrapper color="rgba(59,130,246,0.2)">
-                <DollarSign size={18} className="text-[var(--gradient-from)]" />
-              </IconWrapper>
-              <span>{course.price || t("priceNotSpecified")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <IconWrapper color="rgba(59,130,246,0.2)">
-                <TrendingUp size={18} className="text-[var(--gradient-to)]" />
-              </IconWrapper>
-              <span>{t("level")}: {t(course.level)}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <IconWrapper color="rgba(59,130,246,0.2)">
-                <Calendar size={18} className="text-[var(--gradient-from)]" />
-              </IconWrapper>
-              <span>{course.duration || t("durationNotSpecified")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <IconWrapper color="rgba(59,130,246,0.2)">
-                <BookOpen size={18} className="text-[var(--gradient-to)]" />
-              </IconWrapper>
-              <span>{t("lessonsCount", { count: course.lessons || 0 })}</span>
-            </div>
-            {course.instructor && (
-              <div className="flex items-center gap-2 col-span-2">
-                <IconWrapper color="rgba(59,130,246,0.2)">
-                  <UserRound size={18} className="text-[var(--gradient-from)]" />
-                </IconWrapper>
-                <span>{t("instructor")}: {course.instructor}</span>
-              </div>
-            )}
-          </div>
+        
           {/* Кнопка "Узнать больше" теперь не обязательна, так как вся карточка кликабельна,
               но если хотите оставить, она будет просто частью ссылки */}
           <motion.button

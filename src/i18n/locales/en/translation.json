@@ -409,14 +409,14 @@
         "data_scientist": "Data Scientist"
       },
       "descriptions": {
-        "ceo_founder": "A visionary driving our mission with boundless energy and strategic thinking. Their leadership inspires us to achieve greatness.",
-        "cto": "A technology maestro crafting our platform with exceptional precision and innovation. They ensure the technical excellence of our solutions.",
-        "head_of_edu": "The chief architect of our educational programs, inspiring the next generation. They ensure our education is relevant and effective.",
-        "lead_developer": "A lead developer turning ideas into flawless code. Their attention to detail and expertise are crucial for stability and performance.",
-        "marketing_director": "A strategist spreading our message to the world, creating a strong presence. They build bridges between us and our audience.",
-        "ux_ui_designer": "An artist creating intuitive and beautiful user interfaces. Thanks to them, our platform is not only functional but also enjoyable to use.",
-        "community_manager": "The heart of our team, building a supportive and united community. They are the voice and link for our users.",
-        "data_scientist": "An analyst uncovering hidden patterns to optimize our growth. Their insight helps us make informed decisions and continuously improve."
+        "ceo_founder": "A visionary driving our mission .",
+        "cto": "A technology maestro crafting our platform.",
+        "head_of_edu": "The chief architect of our educational programs.",
+        "lead_developer": "A lead developer turning ideas into flawless code.",
+        "marketing_director": "A strategist spreading our message to the world.",
+        "ux_ui_designer": "An artist creating intuitive user interfaces.",
+        "community_manager": "The heart of our team, building a united community.",
+        "data_scientist": "An analyst to optimize our growth."
       }
     }
   },
