@@ -16,14 +16,17 @@ const ContactFormSection = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = t("contact.form.errors.nameRequired");
+    if (!formData.name.trim())
+      newErrors.name = t("contact.form.errors.nameRequired");
     if (!formData.email.trim()) {
       newErrors.email = t("contact.form.errors.emailRequired");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = t("contact.form.errors.emailInvalid");
     }
-    if (!formData.subject.trim()) newErrors.subject = t("contact.form.errors.subjectRequired");
-    if (!formData.message.trim()) newErrors.message = t("contact.form.errors.messageRequired");
+    if (!formData.subject.trim())
+      newErrors.subject = t("contact.form.errors.subjectRequired");
+    if (!formData.message.trim())
+      newErrors.message = t("contact.form.errors.messageRequired");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -31,7 +34,8 @@ const ContactFormSection = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    if (errors[name]) setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    if (errors[name])
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
   const handleSubmit = async (e) => {
@@ -58,7 +62,11 @@ const ContactFormSection = () => {
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const inputVariants = {
@@ -90,7 +98,7 @@ const ContactFormSection = () => {
         <motion.div className="relative group">
           <label
             htmlFor="name"
-            className="block  text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
+            className="block p-3 text-sm font-medium text-[var(--text-secondary)] mb-2 transition-colors duration-200 group-focus-within:text-[var(--gradient-from)]"
           >
             {t("contact.form.name")}
           </label>
@@ -108,7 +116,11 @@ const ContactFormSection = () => {
               placeholder={t("contact.form.namePlaceholder")}
               className={`w-full p-3 pl-10 rounded-lg bg-[var(--card-bg)] text-[var(--text-primary)] placeholder-[var(--text-secondary)]
                          focus:outline-none ring-offset-2 ring-offset-[var(--bg-from)]
-                         ${errors.name ? "border-red-500 ring-red-500" : "border-[var(--card-border)]"}
+                         ${
+                           errors.name
+                             ? "border-red-500 ring-red-500"
+                             : "border-[var(--card-border)]"
+                         }
                          transition-all duration-200`}
               variants={inputVariants}
               whileFocus="focused"
@@ -150,7 +162,11 @@ const ContactFormSection = () => {
               placeholder={t("contact.form.emailPlaceholder")}
               className={`w-full p-3 pl-10 rounded-lg bg-[var(--card-bg)] text-[var(--text-primary)] placeholder-[var(--text-secondary)]
                          focus:outline-none ring-offset-2 ring-offset-[var(--bg-from)]
-                         ${errors.email ? "border-red-500 ring-red-500" : "border-[var(--card-border)]"}
+                         ${
+                           errors.email
+                             ? "border-red-500 ring-red-500"
+                             : "border-[var(--card-border)]"
+                         }
                          transition-all duration-200`}
               variants={inputVariants}
               whileFocus="focused"
@@ -192,7 +208,11 @@ const ContactFormSection = () => {
               placeholder={t("contact.form.subjectPlaceholder")}
               className={`w-full p-3 pl-10 rounded-lg bg-[var(--card-bg)] text-[var(--text-primary)] placeholder-[var(--text-secondary)]
                          focus:outline-none ring-offset-2 ring-offset-[var(--bg-from)]
-                         ${errors.subject ? "border-red-500 ring-red-500" : "border-[var(--card-border)]"}
+                         ${
+                           errors.subject
+                             ? "border-red-500 ring-red-500"
+                             : "border-[var(--card-border)]"
+                         }
                          transition-all duration-200`}
               variants={inputVariants}
               whileFocus="focused"
@@ -229,9 +249,14 @@ const ContactFormSection = () => {
               rows="5"
               placeholder={t("contact.form.messagePlaceholder")}
               className={`w-full p-3 rounded-lg bg-[var(--card-bg)] text-[var(--text-primary)] placeholder-[var(--text-secondary)]
-                         focus:outline-none ring-offset-2 ring-offset-[var(--bg-from)]
-                         ${errors.message ? "border-red-500 ring-red-500" : "border-[var(--card-border)]"}
-                         transition-all duration-200`}
+                       focus:outline-none ring-offset-2 ring-offset-[var(--bg-from)]
+                       ${
+                         errors.message
+                           ? "border-red-500 ring-red-500"
+                           : "border-[var(--card-border)]"
+                       }
+                       transition-all duration-200
+                       resize-none`}
               variants={inputVariants}
               whileFocus="focused"
               initial="rest"
@@ -284,10 +309,22 @@ const ContactFormSection = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.8 }}
             className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-xl flex items-center gap-3 z-50
-                        ${status === "success" ? "bg-[var(--gradient-from)]" : "bg-red-600"} text-[var(--text-primary)]`}
+                        ${
+                          status === "success"
+                            ? "bg-[var(--gradient-from)]"
+                            : "bg-red-600"
+                        } text-[var(--text-primary)]`}
           >
-            {status === "success" ? <CheckCircle size={24} /> : <XCircle size={24} />}
-            <span>{status === "success" ? t("contact.form.successMessage") : t("contact.form.errorMessage")}</span>
+            {status === "success" ? (
+              <CheckCircle size={24} />
+            ) : (
+              <XCircle size={24} />
+            )}
+            <span>
+              {status === "success"
+                ? t("contact.form.successMessage")
+                : t("contact.form.errorMessage")}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
