@@ -6,32 +6,6 @@ import { useTranslation } from "react-i18next";
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  // ----- Состояние и логика для темы -----
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      return true;
-    } else {
-      document.documentElement.classList.remove('dark');
-      return false;
-    }
-  });
-
-  const toggleTheme = () => {
-    setIsDarkMode(prevMode => {
-      const newMode = !prevMode;
-      if (newMode) {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
-      }
-      return newMode;
-    });
-  };
-  // ------------------------------------
-
   const languageOptions = [
     { value: "en", label: "Eng", countryCode: "GB" },
     { value: "ru", label: "Rus", countryCode: "RU" },
@@ -57,6 +31,7 @@ const LanguageSwitcher = () => {
     const newLang = option.value;
     if (i18n.language === newLang) return;
 
+    // Optional: Add CSS transitions for a smoother language change
     document.body.classList.add("fade-out");
     setTimeout(() => {
       i18n.changeLanguage(newLang);
@@ -163,9 +138,6 @@ const LanguageSwitcher = () => {
         styles={customStylesForReactSelect} // Используем customStyles для переменных
         classNamePrefix="language-select"
       />
-
-      {/* Кнопка для переключения темы */}
-      
     </div>
   );
 };

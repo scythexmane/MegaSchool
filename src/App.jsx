@@ -13,12 +13,30 @@ import ContactPage from "./pages/Contact/ContactPage.jsx";
 import CoursePage from "./pages/Courses/CoursePage.jsx";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  // Инициализация darkMode из localStorage или системных предпочтений
+  const [darkMode, setDarkMode] = useState(() => {
+    // Проверяем localStorage на наличие предпочтений темы
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      return storedTheme === 'dark';
+    }
+    // Если в localStorage нет, проверяем системные предпочтения пользователя
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
   const [introShown, setIntroShown] = useState(false);
   const [fakeReloading, setFakeReloading] = useState(false);
 
+  // Эффект для применения класса 'dark' к html элементу при изменении darkMode
+  // и для сохранения предпочтений в localStorage
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
   }, [darkMode]);
 
   // 👇 Метод для смены языка с фейк-загрузкой
@@ -45,6 +63,10 @@ const App = () => {
             <Navbar
               darkMode={darkMode}
               setDarkMode={setDarkMode}
+              // changeLangWithEffect больше не используется напрямую в LanguageSwitcher,
+              // так как LanguageSwitcher сам обрабатывает смену языка через i18n.changeLanguage.
+              // Если эта пропса нужна для чего-то другого в Navbar, оставьте ее.
+              // Если нет, ее можно убрать.
               changeLangWithEffect={changeLangWithEffect}
             />
             <main className="flex-grow">

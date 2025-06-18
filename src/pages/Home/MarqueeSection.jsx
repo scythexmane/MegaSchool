@@ -48,7 +48,7 @@ const MarqueeSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6 }}
-        className="text-center px-4 text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 sm:mb-10" // Adjusted font size and margin-bottom
+        className="text-center p-3 px-4 text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 sm:mb-10" // Adjusted font size and margin-bottom
         style={{
           background: "linear-gradient(to right, var(--gradient-from), var(--gradient-to))",
           WebkitBackgroundClip: "text",

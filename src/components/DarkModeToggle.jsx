@@ -1,13 +1,28 @@
+// DarkModeToggle.jsx
 import React from "react";
-import { Moon, Sun } from "lucide-react"; // react-icons o‘rniga lucide ishlatyapsan
+import { Sun, Moon } from "lucide-react";
 
 const DarkModeToggle = ({ darkMode, setDarkMode }) => {
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode); // Обновляем состояние в родительском компоненте
+
+    if (newMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
     <button
-      onClick={() => setDarkMode(!darkMode)}
-      className="text-xl p-1 hover:text-yellow-500 dark:hover:text-blue-400"
+      onClick={toggleDarkMode}
+      className="p-2 rounded-full transition-colors duration-300 hover:bg-[var(--card-border)] text-[var(--text-primary)]"
+      aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+      {darkMode ? <Moon size={24} /> : <Sun size={24} />}
     </button>
   );
 };

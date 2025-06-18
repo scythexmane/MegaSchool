@@ -164,13 +164,13 @@ const CoursesSection = () => {
         ></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> {/* Adjusted horizontal padding */}
+      <div className="relative  z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> {/* Adjusted horizontal padding */}
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6
+          className="text-4xl p-3 sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6
                      bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text" /* Adjusted font size */
         >
           {t("coursesSectionTitle")}
