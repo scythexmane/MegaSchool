@@ -1,25 +1,38 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 
+// Обновленные данные филиалов с координатами широты и долготы
 const branches = [
-  { id: 1, name: "MegaSchool Center", address: "Amir Temur St, 107, Tashkent", phone: "+998 71 234 56 78", email: "center@megaschool.uz" },
-  { id: 2, name: "MegaSchool Chilanzar", address: "Chilanzar, Block 15, House 20", phone: "+998 71 271 22 33", email: "chilanzar@megaschool.uz" },
-  { id: 3, name: "MegaSchool Mirzo-Ulugbek", address: "Buyuk Ipak Yuli St, 12, Mirzo-Ulugbek", phone: "+998 71 267 89 00", email: "ulugbek@megaschool.uz" },
-  { id: 4, name: "MegaSchool Yunusabad", address: "Yunusabad, C-5, House 35", phone: "+998 71 200 55 66", email: "yunusabad@megaschool.uz" },
+  { id: 1, name: "MegaSchool Center", address: "Amir Temur St, 107, Tashkent", phone: "+998 71 234 56 78", email: "center@megaschool.uz", lat: 41.3134, lng: 69.2801 }, // Центр
+  { id: 2, name: "MegaSchool Chilanzar", address: "Chilanzar, Block 15, House 20", phone: "+998 71 271 22 33", email: "chilanzar@megaschool.uz", lat: 41.2750, lng: 69.1980 }, // Чиланзар
+  { id: 3, name: "MegaSchool Mirzo-Ulugbek", address: "Buyuk Ipak Yuli St, 12, Mirzo-Ulugbek", phone: "+998 71 267 89 00", email: "ulugbek@megaschool.uz", lat: 41.3391, lng: 69.3424 }, // Мирзо-Улугбек
+  { id: 4, name: "MegaSchool Yunusabad", address: "Yunusabad, C-5, House 35", phone: "+998 71 200 55 66", email: "yunusabad@megaschool.uz", lat: 41.3486, lng: 69.2678 }, // Юнусабад
 ];
 
 const ContactSection = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({ name: "", email: "", message: "", branch: "" });
+  const [selectedBranchCoords, setSelectedBranchCoords] = useState({ lat: 41.2995, lng: 69.2401 }); // Координаты по умолчанию для Ташкента (центр)
   const [mapCardTransform, setMapCardTransform] = useState({
     rotateX: 0,
     rotateY: 0,
     scale: 1,
-    boxShadow: "0 10px 25px rgba(0,0,0,0.05)", // Уменьшена интенсивность тени
+    boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
   });
   const mapCardRef = useRef(null);
+
+  // Обновление карты при изменении выбранного филиала
+  useEffect(() => {
+    const branch = branches.find((b) => b.name === formData.branch);
+    if (branch) {
+      setSelectedBranchCoords({ lat: branch.lat, lng: branch.lng });
+    } else {
+      // Если филиал не выбран или сброшен, показываем центр Ташкента
+      setSelectedBranchCoords({ lat: 41.2995, lng: 69.2401 });
+    }
+  }, [formData.branch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +58,7 @@ const ContactSection = () => {
       rotateX,
       rotateY,
       scale: 1.01,
-      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 5 + 10}px ${(Math.abs(x) + Math.abs(y)) * 10 + 20}px rgba(0,0,0,0.1), 0 0 15px rgba(59,130,246,0.2)`, // Легкая тень без затемнения
+      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 5 + 10}px ${(Math.abs(x) + Math.abs(y)) * 10 + 20}px rgba(0,0,0,0.1), 0 0 15px rgba(59,130,246,0.2)`,
     });
   };
 
@@ -73,7 +86,7 @@ const ContactSection = () => {
     },
     hover: {
       scale: 1.02,
-      boxShadow: "0 15px 30px rgba(0,0,0,0.1)", // Легкая тень при наведении
+      boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
       transition: { duration: 0.2 },
     },
   };
@@ -97,6 +110,24 @@ const ContactSection = () => {
     },
     tap: { scale: 0.97 },
   };
+
+  // Функция для генерации URL карты Google Maps с маркером
+  const getMapEmbedUrl = (lat, lng) => {
+    // Используем Google Maps Embed API для отображения карты с маркером
+    // Замените YOUR_API_KEY на ваш реальный ключ Google Maps API
+    // Для простого отображения без ключа, можно использовать более базовый URL, но с маркером это сложнее без API ключа
+    // Для быстрого тестового примера, я использую ссылку на "Посмотреть на Google Картах"
+    // В реальном приложении вам нужен ключ API и iframe, который выглядит так:
+    // `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${lat},${lng}&zoom=15`
+    // Или для отображения района:
+    // `https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=${lat},${lng}&zoom=15`
+
+    // Пока что используем более простой вариант, который открывает Google Maps в новом окне
+    // Если вам нужен именно встроенный iframe, то придется получать Google Maps Embed API Key.
+    // Для быстрого рабочего прототипа можно использовать прямой URL.
+    return `https://maps.google.com/maps?q=${lat},${lng}&hl=ru&z=15&output=embed`;
+  };
+
 
   return (
     <motion.section
@@ -123,7 +154,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
+          className="text-4xl p-3 md:text-5xl lg:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
         >
           {t("contactUsTitleSimple")}
         </motion.h2>
@@ -171,21 +202,21 @@ const ContactSection = () => {
               style={{
                 transform: `perspective(1000px) rotateX(${mapCardTransform.rotateX}deg) rotateY(${mapCardTransform.rotateY}deg) scale(${mapCardTransform.scale})`,
                 boxShadow: mapCardTransform.boxShadow,
-                backgroundColor: "var(--card-bg)", // Убедимся, что фон карточки светлый
+                backgroundColor: "var(--card-bg)",
               }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               className="rounded-2xl overflow-hidden border border-[var(--card-border)] transition-all duration-100 ease-out"
             >
               <iframe
-                src="https://maps.app.goo.gl/yyvNqPn4yzLduGveA"
+                src={getMapEmbedUrl(selectedBranchCoords.lat, selectedBranchCoords.lng)} // Используем динамический URL карты
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Map of Tashkent"
+                title={`Map of ${formData.branch || "Tashkent"}`} // Динамический заголовок карты
               ></iframe>
             </motion.div>
 

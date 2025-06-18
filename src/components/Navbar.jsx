@@ -93,7 +93,12 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             <span>+998 (90) 123‑45‑67</span>
           </a>
 
-          {/* LanguageSwitcher убран из десктопной версии, чтобы был только в бургере на мобильных */}
+          {/* LanguageSwitcher для десктопа */}
+          {/* Скрываем на экранах меньше md, так как там он будет в мобильном меню */}
+          <div className="hidden md:block">
+            <LanguageSwitcher />
+          </div>
+          
           <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 
           <button
