@@ -15,6 +15,13 @@
   --blob-pink: #f472b6; /* Pink-400 */
   --marquee-fade-from: #ffffff;
   --marquee-fade-to: rgba(255, 255, 255, 0);
+
+  /* Specific colors for react-select components in light mode */
+  --select-menu-bg: rgba(255, 255, 255, 0.95); /* Светлый фон меню */
+  --select-option-hover-bg: rgba(240, 240, 240, 0.95); /* Светлый фон опции при наведении */
+  --select-option-selected-bg: rgba(220, 220, 220, 0.95); /* Светлый фон выбранной опции */
+  --select-text-color: var(--text-primary); /* Цвет текста селектора в светлом режиме */
+  --select-arrow-color: var(--text-primary); /* Цвет стрелки селектора в светлом режиме */
 }
 
 .dark {
@@ -32,7 +39,30 @@
   --blob-pink: #be185d; /* Darker pink */
   --marquee-fade-from: rgb(3, 7, 18);
   --marquee-fade-to: rgba(3, 7, 18, 0);
+
+  /* Specific colors for react-select components in dark mode */
+  --select-menu-bg: #2b2b2b; /* Темный фон меню */
+  --select-option-hover-bg: #4a4a4a; /* Темный фон опции при наведении */
+  --select-option-selected-bg: #3a3a3a; /* Темный фон выбранной опции */
+  --select-text-color: var(--text-primary); /* Цвет текста селектора в темном режиме */
+  --select-arrow-color: var(--text-primary); /* Цвет стрелки селектора в темном режиме */
 }
+
+/* Применение переменных к html/body для основного фона и текста */
+html {
+  background-color: var(--bg-from); /* Основной фон из переменной */
+  color: var(--text-primary); /* Основной цвет текста из переменной */
+}
+
+/* Если у вас body имеет свои стили, убедитесь, что они тоже используют переменные или унаследованы */
+body {
+  /* background-color: #0a0f1c; */ /* УДАЛИТЕ ИЛИ ЗАКОММЕНТИРУЙТЕ ЭТО */
+  /* Если вам нужен именно этот цвет, используйте переменную для него и примените к body */
+  background-color: var(--bg-from); /* Используем переменную */
+  color: var(--text-primary); /* Используем переменную */
+}
+
+/* Остальные ваши анимации и стили */
 body.fade-out {
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -42,9 +72,7 @@ body.fade-in {
   opacity: 1;
   transition: opacity 0.5s ease;
 }
-body {
-  background-color: #0a0f1c;
-}
+
 /* Animations */
 @keyframes gradient-flow {
   0% {
@@ -140,4 +168,15 @@ body {
     var(--marquee-fade-from),
     var(--marquee-fade-to)
   );
+}
+
+/* Ensure react-select's internal focus ring is removed for custom control */
+.language-select__control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Optional: If flags look a bit too sharp, this can help */
+.react-country-flag {
+  vertical-align: middle; /* Align flags better */
 }

@@ -350,36 +350,38 @@
   "certification": "Sertficat",
   "learningStages": "Oqish etaplari",
   "module": "Modul",
+ 
   "about": {
-    "intro": {
-      "title": "Kelajakni yaratamiz. Liderlarni o‘qitamiz.",
-      "subtitle": "Biz shunchaki o‘quv markazi emasmiz. Biz bilim orqali dunyoni o‘zgartirayotgan g‘ayratli insonlar, texnologlar va vizionerlar hamjamiyatimiz."
+    "pageIntro": {
+      "title": "Расширяем горизонты будущего через инновационное образование.",
+      "subtitle": "Познакомьтесь с нашим учебным центром, призванным развивать таланты и достигать совершенства.",
+      "cta": "Узнать о наших программах"
     },
-    "mission": {
-      "heading": "Bizning Missiyamiz",
-      "title": "Sifatli ta’limdan foydalanishni demokratlashtirish.",
-      "text": "Biz ishonamizki, har bir inson, qayerda joylashganidan va tajribasidan qat’i nazar, raqamli iqtisodiyotda muvaffaqiyatli martaba qurish uchun eng yaxshi bilim va vositalarga ega bo‘lishga loyiqdir."
-    },
-    "whyUs": {
-      "title": "Nima uchun bizni tanlashadi?",
-      "subtitle": "Bizning yondashuvimiz amaliyotga, qo‘llab-quvvatlashga va karyerangiz uchun muhim bo‘lgan natijaga qaratilgan.",
-      "feature1": {
-        "title": "Ilg‘or dastur",
-        "description": "Yetakchi IT-kompaniyalar ekspertlari bilan hamkorlikda ishlab chiqilgan o‘quv rejalari."
+    "team": {
+      "title": "Наша Команда: Движущая Сила Инноваций",
+      "subtitle": "Встречайте талантливых профессионалов, которые стоят за нашим успехом и воплощают нашу миссию в жизнь.",
+      "roles": {
+        "ceo_founder": "Генеральный Директор и Основатель",
+        "cto": "Технический Директор",
+        "head_of_edu": "Руководитель Образовательных Программ",
+        "lead_developer": "Ведущий Разработчик",
+        "marketing_director": "Директор по Маркетингу",
+        "ux_ui_designer": "UX/UI Дизайнер",
+        "community_manager": "Менеджер Сообщества",
+        "data_scientist": "Специалист по Данным"
       },
-      "feature2": {
-        "title": "Amaliyotchi-mutaxassislar",
-        "description": "Har kuni real biznes muammolarini hal qiladigan mentorlardan bilim oling."
-      },
-      "feature3": {
-        "title": "Karyeraviy qo‘llab-quvvatlash",
-        "description": "Rezyume tuzish, suhbatga tayyorlanish va birinchi ishingizni topishga yordam beramiz."
-      },
-      "feature4": {
-        "title": "Moslashuvchan format",
-        "description": "Dunyoning istalgan nuqtasidan materiallarga 24/7 kirish imkoniyati bilan o‘z tezligingizda o‘qing."
+      "descriptions": {
+        "ceo_founder": "Визионер, движущий нашу миссию вперед с безграничной энергией и стратегическим мышлением. Ее лидерство вдохновляет нас на великие свершения.",
+        "cto": "Мастер технологий, создающий нашу платформу с невероятной точностью и инновациями. Он отвечает за техническое превосходство наших решений.",
+        "head_of_edu": "Главный архитектор наших образовательных программ, вдохновляющая следующее поколение. Она обеспечивает актуальность и эффективность нашего обучения.",
+        "lead_developer": "Ведущий разработчик, превращающий идеи в безупречный код. Его внимание к деталям и опыт критически важны для стабильности и производительности.",
+        "marketing_director": "Стратег, который доносит наше послание до мира, создавая мощное присутствие. Она строит мосты между нами и нашей аудиторией.",
+        "ux_ui_designer": "Художник, создающий интуитивно понятные и красивые пользовательские интерфейсы. Благодаря ему, наша платформа не только функциональна, но и приятна в использовании.",
+        "community_manager": "Сердце нашей команды, объединяющее всех и создающее поддерживающее сообщество. Она является голосом наших пользователей и связующим звеном.",
+        "data_scientist": "Аналитик, раскрывающий скрытые закономерности для оптимизации нашего роста. Его проницательность помогает нам принимать обоснованные решения и постоянно улучшаться."
       }
-    },
+    }
+  },
     "history": {
       "title": "Muvaffaqiyat sari yo‘limiz",
       "subtitle": "G‘oyadan ta’lim texnologiyalari liderigacha bo‘lgan yo‘l.",
@@ -425,8 +427,7 @@
       "subtitle": "Bizning yordamimiz bilan o‘z hayotini o‘zgartirgan minglab talabalarga qo‘shiling. Sizning muvaffaqiyat hikoyangiz shu yerdan boshlanadi.",
       "email_placeholder": "Sizning emailingiz",
       "button": "Qo‘shilish"
-    }
-  },
+    },
   "header": {
     "about": "Biz haqimizda"
   },
