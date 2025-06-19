@@ -813,5 +813,34 @@
         }
       }
     }
+  },
+  "contactUsTitleSimple": "Biz bilan Bog‘laning",
+  "ourBranches": "Bizning Filiallar",
+  "selectBranch": "Filialni Tanlang",
+  "chooseBranchOption": "MegaSchool filialini tanlang...",
+  "sendUsAMessage": "Bizga Xabar Yuboring",
+  "formSubmittedMessage": "Xabaringiz uchun rahmat! Tez orada siz bilan bog‘lanamiz.",
+  "enrollNow": "Kursga yozilish",
+  "contact": {
+    "form": {
+      "name": "Ismingiz",
+      "namePlaceholder": "To‘liq ismingizni kiriting",
+      "phone": "Telefon Raqamingiz",
+      "phonePlaceholder": "991234567",
+      "message": "Xabaringiz",
+      "messagePlaceholder": "So‘rovingiz haqida yozing...",
+      "branch": "Filial",
+      "branchPlaceholder": "Filialni tanlang",
+      "send": "Xabar Yuborish",
+      "errors": {
+        "nameRequired": "Iltimos, ismingizni kiriting.",
+        "phoneRequired": "Iltimos, telefon raqamingizni kiriting.",
+        "phoneInvalid": "Iltimos, to‘g‘ri telefon raqamini kiriting (9 raqam, +998 bilan yoki bilansiz).",
+        "messageRequired": "Iltimos, xabaringizni kiriting.",
+        "branchRequired": "Iltimos, filialni tanlang.",
+        "submitFailed": "Xabar yuborishda xato yuz berdi. Iltimos, qayta urinib ko‘ring.",
+        "messageTooLong": "Xabar juda uzun, iltimos, qisqartiring."
+      }
+    }
   }
 }

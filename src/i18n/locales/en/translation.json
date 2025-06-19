@@ -814,5 +814,34 @@
         }
       }
     }
+  },
+   "contactUsTitleSimple": "Contact Us",
+  "ourBranches": "Our Branches",
+  "selectBranch": "Select Branch",
+  "chooseBranchOption": "Choose a MegaSchool branch...",
+  "sendUsAMessage": "Send Us a Message",
+  "formSubmittedMessage": "Thank you for your message! We will contact you soon.",
+  "enrollNow": "Enroll Now",
+  "contact": {
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "Enter your full name",
+      "phone": "Your Phone Number",
+      "phonePlaceholder": "991234567",
+      "message": "Your Message",
+      "messagePlaceholder": "Tell us about your request...",
+      "branch": "Branch",
+      "branchPlaceholder": "Select a branch",
+      "send": "Send Message",
+      "errors": {
+        "nameRequired": "Please enter your name.",
+        "phoneRequired": "Please enter your phone number.",
+        "phoneInvalid": "Please enter a valid phone number (9 digits, with or without +998).",
+        "messageRequired": "Please enter your message.",
+        "branchRequired": "Please select a branch.",
+        "submitFailed": "Failed to send message. Please try again.",
+        "messageTooLong": "Message is too long, please shorten it."
+      }
+    }
   }
 }

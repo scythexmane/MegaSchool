@@ -1,74 +1,168 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
 
-// Обновленные данные филиалов с координатами широты и долготы
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail, MapPin, Send, X } from "lucide-react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// Leaflet marker ikonkasini sozlash
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+});
+
 const branches = [
-  { id: 1, name: "MegaSchool Center", address: "Amir Temur St, 107, Tashkent", phone: "+998 71 234 56 78", email: "center@megaschool.uz", lat: 41.3134, lng: 69.2801 }, // Центр
-  { id: 2, name: "MegaSchool Chilanzar", address: "Chilanzar, Block 15, House 20", phone: "+998 71 271 22 33", email: "chilanzar@megaschool.uz", lat: 41.2750, lng: 69.1980 }, // Чиланзар
-  { id: 3, name: "MegaSchool Mirzo-Ulugbek", address: "Buyuk Ipak Yuli St, 12, Mirzo-Ulugbek", phone: "+998 71 267 89 00", email: "ulugbek@megaschool.uz", lat: 41.3391, lng: 69.3424 }, // Мирзо-Улугбек
-  { id: 4, name: "MegaSchool Yunusabad", address: "Yunusabad, C-5, House 35", phone: "+998 71 200 55 66", email: "yunusabad@megaschool.uz", lat: 41.3486, lng: 69.2678 }, // Юнусабад
+  {
+    id: 1,
+    name: "MegaSchool Yunusabad",
+    address: "Yunusabad, Tashkent",
+    phone: "+998977201222",
+    email: "yunusabad@megaschool.uz",
+    lat: 41.372415,
+    lng: 69.277172,
+  },
+  {
+    id: 2,
+    name: "MegaSchool Eco Bozor",
+    address: "Eco Bozor, Yunusabad District, Tashkent",
+    phone: "+998977201222",
+    email: "ecobozor@megaschool.uz",
+    lat: 41.351020,
+    lng: 69.352978,
+  },
+  {
+    id: 3,
+    name: "MegaSchool Qora Suv 6",
+    address: "Qora Suv 6, Tashkent",
+    phone: "+998977201222",
+    email: "qorasuv@megaschool.uz",
+    lat: 41.321130,
+    lng: 69.355067,
+  },
+  {
+    id: 4,
+    name: "MegaSchool Servo Vostok",
+    address: "Servo Vostok, Tashkent",
+    phone: "+998997401222",
+    email: "servovostok@megaschool.uz",
+    lat: 41.355440,
+    lng: 69.361550,
+  },
 ];
+
+// Xarita markazini yangilash komponenti
+const MapUpdater = ({ selectedBranch }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (selectedBranch) {
+      map.setView([selectedBranch.lat, selectedBranch.lng], 16);
+    } else {
+      map.setView([41.347, 69.277], 12); // Tashkent markazi
+    }
+  }, [selectedBranch, map]);
+  return null;
+};
+
+// Maxsus xabar oynasi komponenti
+const Notification = ({ message, type, onClose }) => (
+  <motion.div
+    initial={{ opacity: 0, y: -50 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -50 }}
+    transition={{ duration: 0.3 }}
+    className={`fixed top-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg text-white flex items-center gap-2 max-w-sm z-50 ${
+      type === "success" ? "bg-green-600" : "bg-red-600"
+    }`}
+  >
+    <span>{message}</span>
+    <button onClick={onClose} className="ml-auto">
+      <X size={20} />
+    </button>
+  </motion.div>
+);
 
 const ContactSection = () => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({ name: "", email: "", message: "", branch: "" });
-  const [selectedBranchCoords, setSelectedBranchCoords] = useState({ lat: 41.2995, lng: 69.2401 }); // Координаты по умолчанию для Ташкента (центр)
-  const [mapCardTransform, setMapCardTransform] = useState({
-    rotateX: 0,
-    rotateY: 0,
-    scale: 1,
-    boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
-  });
-  const mapCardRef = useRef(null);
+  const [formData, setFormData] = useState({ name: "", phone: "", message: "", branch: "" });
+  const [errors, setErrors] = useState({});
+  const [notification, setNotification] = useState(null);
 
-  // Обновление карты при изменении выбранного филиала
-  useEffect(() => {
-    const branch = branches.find((b) => b.name === formData.branch);
-    if (branch) {
-      setSelectedBranchCoords({ lat: branch.lat, lng: branch.lng });
-    } else {
-      // Если филиал не выбран или сброшен, показываем центр Ташкента
-      setSelectedBranchCoords({ lat: 41.2995, lng: 69.2401 });
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = t("contact.form.errors.nameRequired");
+    
+    const cleanedPhone = formData.phone.replace(/[^\d]/g, "").replace(/^\+998/, "");
+    console.log("Input phone:", formData.phone, "Cleaned phone:", cleanedPhone); // Debug
+    if (!formData.phone.trim()) {
+      newErrors.phone = t("contact.form.errors.phoneRequired");
+    } else if (!/^[0-9]{9}$/.test(cleanedPhone)) {
+      newErrors.phone = t("contact.form.errors.phoneInvalid");
     }
-  }, [formData.branch]);
+    
+    if (!formData.message.trim()) newErrors.message = t("contact.form.errors.messageRequired");
+    if (!formData.branch) newErrors.branch = t("contact.form.errors.branchRequired");
+    setErrors(newErrors);
+    console.log("Validation errors:", newErrors); // Debug
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const cleanedPhone = formData.phone.replace(/[^\d]/g, "").replace(/^\+998/, "");
+    const messageText = `📩 New Contact Form Submission\n👤 Name: ${formData.name}\n📞 Phone: ${cleanedPhone}\n🏢 Branch: ${formData.branch}\n💬 Message: ${formData.message}`;
+    if (messageText.length > 4096) {
+      setNotification({ message: t("contact.form.errors.messageTooLong"), type: "error" });
+      setTimeout(() => setNotification(null), 3000);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot7897650391:AAFgCxaXbPqD0zIxvfZ2O8Cb8RFvgIIpcEI/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: "1105646647",
+            text: encodeURIComponent(messageText),
+          }),
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("Telegram API response:", responseData); // Debug
+
+      if (response.ok && responseData.ok) {
+        setNotification({ message: t("formSubmittedMessage"), type: "success" });
+        setTimeout(() => {
+          setNotification(null);
+          window.location.reload(); // Sahifa yangilanadi
+        }, 1000);
+      } else {
+        console.error("Telegram API error:", responseData);
+        setNotification({
+          message: `${t("contact.form.errors.submitFailed")}: ${responseData.description || "Unknown error"}`,
+          type: "error",
+        });
+        setTimeout(() => setNotification(null), 3000);
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setNotification({ message: `${t("contact.form.errors.submitFailed")}: ${error.message}`, type: "error" });
+      setTimeout(() => setNotification(null), 3000);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(t("formSubmittedMessage"));
-    setFormData({ name: "", email: "", message: "", branch: "" });
-  };
-
-  const handleMouseMove = (e) => {
-    if (!mapCardRef.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = mapCardRef.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) / (width / 2);
-    const y = (clientY - (top + height / 2)) / (height / 2);
-    const rotateY = x * 8;
-    const rotateX = -y * 8;
-    setMapCardTransform({
-      rotateX,
-      rotateY,
-      scale: 1.01,
-      boxShadow: `0 ${(Math.abs(x) + Math.abs(y)) * 5 + 10}px ${(Math.abs(x) + Math.abs(y)) * 10 + 20}px rgba(0,0,0,0.1), 0 0 15px rgba(59,130,246,0.2)`,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setMapCardTransform({
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
-    });
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const sectionVariants = {
@@ -92,97 +186,89 @@ const ContactSection = () => {
   };
 
   const inputVariants = {
-    rest: { borderColor: "var(--card-border)", boxShadow: "0 0 0px transparent" },
+    rest: { borderColor: "#e2e8f0", boxShadow: "0 0 0px transparent" },
     focus: {
-      borderColor: "var(--gradient-from)",
+      borderColor: "#3b82f6",
       boxShadow: "0 0 15px rgba(59,130,246,0.6)",
       transition: { duration: 0.3 },
     },
   };
 
   const submitButtonVariants = {
-    rest: { scale: 1, backgroundPosition: "0% 50%" },
+    rest: { scale: 1 },
     hover: {
       scale: 1.03,
-      backgroundPosition: "100% 50%",
       boxShadow: "0 10px 25px rgba(59,130,246,0.6)",
       transition: { duration: 0.3 },
     },
     tap: { scale: 0.97 },
   };
 
-  // Функция для генерации URL карты Google Maps с маркером
-  const getMapEmbedUrl = (lat, lng) => {
-    // Используем Google Maps Embed API для отображения карты с маркером
-    // Замените YOUR_API_KEY на ваш реальный ключ Google Maps API
-    // Для простого отображения без ключа, можно использовать более базовый URL, но с маркером это сложнее без API ключа
-    // Для быстрого тестового примера, я использую ссылку на "Посмотреть на Google Картах"
-    // В реальном приложении вам нужен ключ API и iframe, который выглядит так:
-    // `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${lat},${lng}&zoom=15`
-    // Или для отображения района:
-    // `https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=${lat},${lng}&zoom=15`
-
-    // Пока что используем более простой вариант, который открывает Google Maps в новом окне
-    // Если вам нужен именно встроенный iframe, то придется получать Google Maps Embed API Key.
-    // Для быстрого рабочего прототипа можно использовать прямой URL.
-    return `https://maps.google.com/maps?q=${lat},${lng}&hl=ru&z=15&output=embed`;
-  };
-
+  const selectedBranch = branches.find((b) => b.name === formData.branch);
 
   return (
     <motion.section
+      className="py-16 md:py-20 lg:py-32 bg-gray-100 dark:bg-gray-900 relative overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
-      whileInView="visible"
+      animate="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="py-20 md:py-32 animated-bg relative overflow-hidden"
     >
-      <div className="absolute inset-0 z-0 opacity-20 dark:opacity-30">
+      <AnimatePresence>
+        {notification && (
+          <Notification
+            message={notification.message}
+            type={notification.type}
+            onClose={() => setNotification(null)}
+          />
+        )}
+      </AnimatePresence>
+      <div className="absolute inset-0 opacity-20 dark:opacity-30 z-0">
         <div
-          className="absolute top-1/4 left-[10%] w-64 h-64 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"
-          style={{ backgroundColor: "var(--blob-blue)" }}
+          className="absolute top-1/4 left-[10%] w-48 h-48 sm:w-64 sm:h-64 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-pulse"
+          style={{ backgroundColor: "#3b82f6" }}
         ></div>
         <div
-          className="absolute bottom-1/3 right-[15%] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"
-          style={{ backgroundColor: "var(--blob-purple)" }}
+          className="absolute bottom-1/3 right-[15%] w-48 h-48 sm:w-72 sm:h-72 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-pulse animation-delay-2000"
+          style={{ backgroundColor: "#a855f7" }}
         ></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-10 sm:mb-12 md:mb-16 bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text"
           initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-          className="text-4xl p-3 md:text-5xl lg:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
         >
           {t("contactUsTitleSimple")}
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.2, staggerChildren: 0.1 }}
             className="flex flex-col gap-6"
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2, staggerChildren: 0.1 }}
           >
-            <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-200 mb-4">
               {t("ourBranches")}
             </h3>
             <motion.div variants={cardVariants} whileHover="hover">
               <label
                 htmlFor="branch-select"
-                className="block text-[var(--text-secondary)] text-lg font-medium mb-3"
+                className="block text-sm sm:text-lg font-medium text-gray-600 dark:text-gray-400 mb-2"
               >
                 {t("selectBranch")}
               </label>
               <select
                 id="branch-select"
                 name="branch"
-                onChange={handleChange}
                 value={formData.branch}
-                className="w-full p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-colors duration-200"
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                  errors.branch ? "border-red-500" : ""
+                }`}
               >
                 <option value="">{t("chooseBranchOption")}</option>
                 {branches.map((branch) => (
@@ -191,33 +277,40 @@ const ContactSection = () => {
                   </option>
                 ))}
               </select>
+              {errors.branch && (
+                <p className="text-red-500 text-sm mt-1">{errors.branch}</p>
+              )}
             </motion.div>
 
             <motion.div
-              ref={mapCardRef}
               variants={cardVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              style={{
-                transform: `perspective(1000px) rotateX(${mapCardTransform.rotateX}deg) rotateY(${mapCardTransform.rotateY}deg) scale(${mapCardTransform.scale})`,
-                boxShadow: mapCardTransform.boxShadow,
-                backgroundColor: "var(--card-bg)",
-              }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="rounded-2xl overflow-hidden border border-[var(--card-border)] transition-all duration-100 ease-out"
+              animate="visible"
+              className="rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
             >
-              <iframe
-                src={getMapEmbedUrl(selectedBranchCoords.lat, selectedBranchCoords.lng)} // Используем динамический URL карты
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`Map of ${formData.branch || "Tashkent"}`} // Динамический заголовок карты
-              ></iframe>
+              <MapContainer
+                center={[41.347, 69.277]}
+                zoom={12}
+                style={{ height: "300px", width: "100%", minHeight: "300px" }}
+                scrollWheelZoom={false}
+                className="sm:h-[400px] md:h-[450px]"
+              >
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                {branches.map((branch) => (
+                  <Marker key={branch.id} position={[branch.lat, branch.lng]}>
+                    <Popup>
+                      <b>{branch.name}</b>
+                      <p>{branch.address}</p>
+                      <p>{branch.phone}</p>
+                      <p>{branch.email}</p>
+                    </Popup>
+                  </Marker>
+                ))}
+                <MapUpdater selectedBranch={selectedBranch} />
+              </MapContainer>
             </motion.div>
 
             {formData.branch && (
@@ -226,21 +319,21 @@ const ContactSection = () => {
                 animate={{ opacity: 1, y: 0, height: "auto" }}
                 exit={{ opacity: 0, y: -20, height: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="mt-6 bg-[var(--card-bg)] rounded-lg p-6 shadow-lg border border-[var(--card-border)] flex flex-col gap-2 overflow-hidden"
+                className="mt-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 flex flex-col gap-2"
               >
-                <h4 className="font-bold text-xl bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
+                <h4 className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text">
                   {formData.branch}
                 </h4>
-                <p className="text-[var(--text-secondary)] flex items-center gap-2">
-                  <MapPin size={18} className="text-[var(--gradient-to)]" />{" "}
+                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
+                  <MapPin size={18} className="text-purple-600" />
                   {branches.find((b) => b.name === formData.branch)?.address}
                 </p>
-                <p className="text-[var(--text-secondary)] flex items-center gap-2">
-                  <Phone size={18} className="text-[var(--gradient-from)]" />{" "}
+                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
+                  <Phone size={18} className="text-blue-600" />
                   {branches.find((b) => b.name === formData.branch)?.phone}
                 </p>
-                <p className="text-[var(--text-secondary)] flex items-center gap-2">
-                  <Mail size={18} className="text-[var(--gradient-to)]" />{" "}
+                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
+                  <Mail size={18} className="text-purple-600" />
                   {branches.find((b) => b.name === formData.branch)?.email}
                 </p>
               </motion.div>
@@ -250,20 +343,19 @@ const ContactSection = () => {
           <motion.div
             variants={cardVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="bg-[var(--card-bg)] rounded-2xl p-8 md:p-10 shadow-xl border border-[var(--card-border)]"
+            animate="visible"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl border border-gray-300 dark:border-gray-700"
           >
-            <h3 className="text-3xl font-extrabold text-center mb-8 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text">
               {t("sendUsAMessage")}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
                 >
-                  {t("yourName")}
+                  {t("contact.form.name")}
                 </label>
                 <motion.input
                   type="text"
@@ -271,39 +363,47 @@ const ContactSection = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder={t("namePlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
-                  required
+                  placeholder={t("contact.form.namePlaceholder")}
+                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                    errors.name ? "border-red-500" : ""
+                  }`}
                   variants={inputVariants}
                   whileFocus="focus"
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
               <div>
                 <label
-                  htmlFor="email"
-                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                  htmlFor="phone"
+                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
                 >
-                  {t("yourEmail")}
+                  {t("contact.form.phone")}
                 </label>
                 <motion.input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
-                  placeholder={t("emailPlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
-                  required
+                  placeholder="991234567"
+                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                    errors.phone ? "border-red-500" : ""
+                  }`}
                   variants={inputVariants}
                   whileFocus="focus"
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-[var(--text-secondary)] text-lg font-medium mb-2"
+                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
                 >
-                  {t("yourMessage")}
+                  {t("contact.form.message")}
                 </label>
                 <motion.textarea
                   id="message"
@@ -311,12 +411,16 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="5"
-                  placeholder={t("messagePlaceholder")}
-                  className="w-full p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ease-in-out"
-                  required
+                  placeholder={t("contact.form.messagePlaceholder")}
+                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                    errors.message ? "border-red-500" : ""
+                  }`}
                   variants={inputVariants}
                   whileFocus="focus"
                 />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
               <motion.button
                 type="submit"
@@ -324,11 +428,10 @@ const ContactSection = () => {
                 initial="rest"
                 whileHover="hover"
                 whileTap="tap"
-                className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold text-sm sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <span className="relative z-10">{t("submit")}</span>
-                <Send size={20} className="relative z-10" />
-                <span className="absolute inset-0 bg-gradient-to-r from-[var(--gradient-to)] to-[var(--gradient-from)] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                <span>{t("enrollNow")}</span>
+                <Send size={20} />
               </motion.button>
             </form>
           </motion.div>
