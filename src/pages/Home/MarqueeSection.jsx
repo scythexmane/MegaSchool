@@ -32,6 +32,10 @@ const marqueeItemsSecondary = [
   { id: "develop", key: "development", icon: <TrendingUp size={32} />, iconColor: "text-green-300" },
   { id: "discover", key: "discovery", icon: <Compass size={32} />, iconColor: "text-purple-300" },
   { id: "infinity", key: "infinity_concept", icon: <Infinity size={32} />, iconColor: "text-teal-300" },
+   { id: "data_science", key: "data_science", icon: <Database size={32} />, iconColor: "text-cyan-500" },
+  { id: "cyber_security", key: "cyber_security", icon: <Shield size={32} />, iconColor: "text-emerald-500" },
+  { id: "design", key: "design", icon: <Palette size={32} />, iconColor: "text-violet-500" },
+  { id: "marketing", key: "marketing", icon: <Megaphone size={32} />, iconColor: "text-rose-500" },
 ];
 
 const MarqueeSection = () => {
@@ -58,7 +62,7 @@ const MarqueeSection = () => {
         {t("marqueeSectionTitle")}
       </motion.h2>
 
-      <Marquee pauseOnHover gradient={false} speed={40} className="relative z-10 py-3 sm:py-4 mt-6"> {/* Adjusted speed and vertical padding */}
+      <Marquee pauseOnHover gradient={false} speed={40} className="relative z-10 py-3 sm:py-4 mt-6">
         {marqueeItemsPrimary.map((item) => (
           <motion.div
             key={item.id}
@@ -76,7 +80,7 @@ const MarqueeSection = () => {
         ))}
       </Marquee>
 
-      <Marquee pauseOnHover gradient={false} speed={25} direction="right" className="relative z-0 py-2 mt-4 sm:mt-6"> {/* Adjusted speed and vertical padding */}
+      <Marquee pauseOnHover gradient={false} speed={25} direction="right" className="relative z-0 py-2 mt-4 sm:mt-6">
         {marqueeItemsPrimary.map((item) => (
           <motion.div
             key={`${item.id}-alt`}
@@ -94,7 +98,7 @@ const MarqueeSection = () => {
         ))}
       </Marquee>
 
-      <Marquee pauseOnHover gradient={false} speed={55} className="relative z-0 py-1.5 mt-4 sm:mt-6"> {/* Adjusted speed and vertical padding */}
+      <Marquee pauseOnHover gradient={false} speed={55} className="relative z-0 py-1.5 mt-4 sm:mt-6">
         {marqueeItemsSecondary.map((item) => (
           <motion.div
             key={`${item.id}-abstract`}
