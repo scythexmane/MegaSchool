@@ -23,6 +23,14 @@ const Footer = () => {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  const socialLinks = [
+    { Icon: Instagram, url: "https://instagram.com/megaschooluz" },
+    { Icon: Send, url: "https://t.me/megaschooluz" },
+    { Icon: Facebook, url: "https://facebook.com/megaschooluz" },
+    { Icon: Linkedin, url: "https://linkedin.com/company/megaschooluz" },
+    { Icon: Youtube, url: "https://youtube.com/@megaschooluz" },
+  ];
+
   // Обновляем тему при изменении className на html
   useEffect(() => {
     const checkTheme = () =>
@@ -117,7 +125,11 @@ const Footer = () => {
                   className="relative"
                 >
                   <Link
-                    to={`/${key.toLowerCase().replace("all", "").replace("us", "").replace("1", "")}`}
+                    to={`/${key
+                      .toLowerCase()
+                      .replace("all", "")
+                      .replace("us", "")
+                      .replace("1", "")}`}
                     className="transition-colors duration-200"
                   >
                     {t(key)}
@@ -169,10 +181,10 @@ const Footer = () => {
             {t("footer.followUs")}
           </h4>
           <div className="flex flex-wrap gap-4 mb-8">
-            {[Instagram, Send, Facebook, Linkedin, Youtube].map((Icon, i) => (
+            {socialLinks.map(({ Icon, url }, i) => (
               <motion.a
                 key={i}
-                href="#"
+                href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--text-secondary)] hover:text-[var(--gradient-from)] transition"
@@ -184,7 +196,6 @@ const Footer = () => {
               </motion.a>
             ))}
           </div>
-
           <h4 className="text-xl font-semibold mb-4 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
             {t("footer.newsletter")}
           </h4>
@@ -193,12 +204,15 @@ const Footer = () => {
             className="flex flex-col gap-3 w-full max-w-sm"
           >
             <input
-              type="email"
-              name="email"
+              type="tel"
+              name="phone"
               placeholder={t("footer.yourEmailPlaceholder")}
               required
+              pattern="[0-9+ ]*"
+              inputMode="tel"
               className="p-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] placeholder-[var(--text-secondary)] focus:outline-none"
             />
+
             <motion.button
               type="submit"
               whileHover={{ scale: 1.05 }}
@@ -214,14 +228,21 @@ const Footer = () => {
       {/* Нижняя часть */}
       <div className="max-w-7xl mx-auto mt-10 pt-8 border-t border-[var(--card-border)] text-center text-sm relative z-10 text-[var(--text-secondary)]">
         <p className="mb-2">
-          © {currentYear} MegaSchool. {t("footer.allRightsReserved")}
+          © {currentYear} MegaSchool. <br /> {t("footer.allRightsReserved")}
         </p>
+        <p className="mb-2">By Megaschool Students.</p>
         <p>
-          <Link to="/privacy-policy" className="hover:text-[var(--gradient-from)] mx-2">
+          <Link
+            to="/privacy-policy"
+            className="hover:text-[var(--gradient-from)] mx-2"
+          >
             {t("footer.privacyPolicy")}
           </Link>
           |
-          <Link to="/terms-of-service" className="hover:text-[var(--gradient-from)] mx-2">
+          <Link
+            to="/terms-of-service"
+            className="hover:text-[var(--gradient-from)] mx-2"
+          >
             {t("footer.termsOfService")}
           </Link>
         </p>

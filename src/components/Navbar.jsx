@@ -90,7 +90,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="hidden xl:flex items-center space-x-2 px-4 py-2 rounded-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold shadow-lg hover:shadow-xl transform transition"
           >
             <PhoneIcon />
-            <span>+998 (90) 123‑45‑67</span>
+            <span>+998 (90) 720‑12‑22</span>
           </a>
 
           {/* LanguageSwitcher для десктопа */}

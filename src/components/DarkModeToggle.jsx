@@ -22,7 +22,7 @@ const DarkModeToggle = ({ darkMode, setDarkMode }) => {
       className="p-2 rounded-full transition-colors duration-300 hover:bg-[var(--card-border)] text-[var(--text-primary)]"
       aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {darkMode ? <Moon size={24} /> : <Sun size={24} />}
+      {darkMode ?  <Sun size={24} />  : <Moon size={24}/>}
     </button>
   );
 };
