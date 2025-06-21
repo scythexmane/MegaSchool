@@ -1,13 +1,12 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, Send, X } from "lucide-react";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { Phone, Mail, MapPin, Send, X, Sun, Moon } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-// Leaflet marker ikonkasini sozlash
+// Leaflet marker setup
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -54,29 +53,29 @@ const branches = [
   },
 ];
 
-// Xarita markazini yangilash komponenti
+// MapUpdater component
 const MapUpdater = ({ selectedBranch }) => {
   const map = useMap();
   useEffect(() => {
     if (selectedBranch) {
       map.setView([selectedBranch.lat, selectedBranch.lng], 16);
     } else {
-      map.setView([41.347, 69.277], 12); // Tashkent markazi
+      map.setView([41.347, 69.277], 12); // Tashkent center
     }
   }, [selectedBranch, map]);
   return null;
 };
 
-// Maxsus xabar oynasi komponenti
+// Enhanced Notification component
 const Notification = ({ message, type, onClose }) => (
   <motion.div
-    initial={{ opacity: 0, y: -50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.3 }}
-    className={`fixed top-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg text-white flex items-center gap-2 max-w-sm z-50 ${
+    initial={{ opacity: 0, x: "100%", scale: 0.8 }}
+    animate={{ opacity: 1, x: 0, scale: 1 }}
+    exit={{ opacity: 0, x: "100%", scale: 0.8 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg text-white flex items-center gap-2 max-w-sm z-50 ${
       type === "success" ? "bg-green-600" : "bg-red-600"
-    }`}
+    } backdrop-blur-md glow-${type}`}
   >
     <span>{message}</span>
     <button onClick={onClose} className="ml-auto">
@@ -90,13 +89,37 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", message: "", branch: "" });
   const [errors, setErrors] = useState({});
   const [notification, setNotification] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const formRef = useRef(null);
+
+  // Mouse position tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const blobX = useTransform(mouseX, (x) => x * 0.3);
+  const blobY = useTransform(mouseY, (y) => y * 0.3);
+
+  // Handle mouse movement within form
+  const handleMouseMove = (e) => {
+    if (formRef.current) {
+      const rect = formRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      mouseX.set(x);
+      mouseY.set(y);
+    }
+  };
+
+  // Theme toggle
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle("dark");
+  };
 
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = t("contact.form.errors.nameRequired");
     
     const cleanedPhone = formData.phone.replace(/[^\d]/g, "").replace(/^\+998/, "");
-    console.log("Input phone:", formData.phone, "Cleaned phone:", cleanedPhone); // Debug
     if (!formData.phone.trim()) {
       newErrors.phone = t("contact.form.errors.phoneRequired");
     } else if (!/^[0-9]{9}$/.test(cleanedPhone)) {
@@ -106,7 +129,6 @@ const ContactSection = () => {
     if (!formData.message.trim()) newErrors.message = t("contact.form.errors.messageRequired");
     if (!formData.branch) newErrors.branch = t("contact.form.errors.branchRequired");
     setErrors(newErrors);
-    console.log("Validation errors:", newErrors); // Debug
     return Object.keys(newErrors).length === 0;
   };
 
@@ -130,22 +152,19 @@ const ContactSection = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             chat_id: "1105646647",
-            text: encodeURIComponent(messageText),
+            text: messageText,
           }),
         }
       );
 
       const responseData = await response.json();
-      console.log("Telegram API response:", responseData); // Debug
-
       if (response.ok && responseData.ok) {
         setNotification({ message: t("formSubmittedMessage"), type: "success" });
         setTimeout(() => {
           setNotification(null);
-          window.location.reload(); // Sahifa yangilanadi
+          window.location.reload();
         }, 1000);
       } else {
-        console.error("Telegram API error:", responseData);
         setNotification({
           message: `${t("contact.form.errors.submitFailed")}: ${responseData.description || "Unknown error"}`,
           type: "error",
@@ -153,7 +172,6 @@ const ContactSection = () => {
         setTimeout(() => setNotification(null), 3000);
       }
     } catch (error) {
-      console.error("Submission error:", error);
       setNotification({ message: `${t("contact.form.errors.submitFailed")}: ${error.message}`, type: "error" });
       setTimeout(() => setNotification(null), 3000);
     }
@@ -176,20 +194,20 @@ const ContactSection = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 100, damping: 15 },
+      transition: { type: "spring", stiffness: 120, damping: 15 },
     },
     hover: {
-      scale: 1.02,
-      boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
+      scale: 1.03,
+      boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
       transition: { duration: 0.2 },
     },
   };
 
   const inputVariants = {
-    rest: { borderColor: "#e2e8f0", boxShadow: "0 0 0px transparent" },
+    rest: { borderColor: "var(--card-border)", boxShadow: "0 0 0px transparent" },
     focus: {
-      borderColor: "#3b82f6",
-      boxShadow: "0 0 15px rgba(59,130,246,0.6)",
+      borderColor: "var(--gradient-from)",
+      boxShadow: "0 0 15px var(--gradient-from)",
       transition: { duration: 0.3 },
     },
   };
@@ -197,18 +215,18 @@ const ContactSection = () => {
   const submitButtonVariants = {
     rest: { scale: 1 },
     hover: {
-      scale: 1.03,
-      boxShadow: "0 10px 25px rgba(59,130,246,0.6)",
+      scale: 1.05,
+      boxShadow: "0 10px 25px var(--gradient-from)",
       transition: { duration: 0.3 },
     },
-    tap: { scale: 0.97 },
+    tap: { scale: 0.95 },
   };
 
   const selectedBranch = branches.find((b) => b.name === formData.branch);
 
   return (
     <motion.section
-      className="py-16 md:py-20 lg:py-32 bg-gray-100 dark:bg-gray-900 relative overflow-hidden"
+      className="py-8 md:py-12 lg:py-16 bg-gradient-to-b from-[var(--bg-from)] to-[var(--bg-to)] relative overflow-hidden p-4 sm:p-8"
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
@@ -223,41 +241,32 @@ const ContactSection = () => {
           />
         )}
       </AnimatePresence>
-      <div className="absolute inset-0 opacity-20 dark:opacity-30 z-0">
-        <div
-          className="absolute top-1/4 left-[10%] w-48 h-48 sm:w-64 sm:h-64 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-pulse"
-          style={{ backgroundColor: "#3b82f6" }}
-        ></div>
-        <div
-          className="absolute bottom-1/3 right-[15%] w-48 h-48 sm:w-72 sm:h-72 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-pulse animation-delay-2000"
-          style={{ backgroundColor: "#a855f7" }}
-        ></div>
-      </div>
 
+ 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center mb-10 sm:mb-12 md:mb-16 bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6 sm:mb-8 md:mb-12 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 120 }}
         >
           {t("contactUsTitleSimple")}
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
           <motion.div
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-4"
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.2, staggerChildren: 0.1 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-200 mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-4">
               {t("ourBranches")}
             </h3>
             <motion.div variants={cardVariants} whileHover="hover">
               <label
                 htmlFor="branch-select"
-                className="block text-sm sm:text-lg font-medium text-gray-600 dark:text-gray-400 mb-2"
+                className="block text-sm sm:text-base font-medium text-[var(--text-secondary)] mb-2"
               >
                 {t("selectBranch")}
               </label>
@@ -266,7 +275,7 @@ const ContactSection = () => {
                 name="branch"
                 value={formData.branch}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                className={`w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-[var(--select-menu-bg)] border border-[var(--card-border)] text-[var(--select-text-color)] focus:ring-2 focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ${
                   errors.branch ? "border-red-500" : ""
                 }`}
               >
@@ -286,14 +295,14 @@ const ContactSection = () => {
               variants={cardVariants}
               initial="hidden"
               animate="visible"
-              className="rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)]"
             >
               <MapContainer
                 center={[41.347, 69.277]}
                 zoom={12}
-                style={{ height: "300px", width: "100%", minHeight: "300px" }}
+                style={{ height: "250px", width: "100%", minHeight: "250px" }}
                 scrollWheelZoom={false}
-                className="sm:h-[400px] md:h-[450px]"
+                className="sm:h-[350px] md:h-[400px]"
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -319,21 +328,21 @@ const ContactSection = () => {
                 animate={{ opacity: 1, y: 0, height: "auto" }}
                 exit={{ opacity: 0, y: -20, height: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="mt-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 flex flex-col gap-2"
+                className="mt-4 bg-[var(--card-bg)] rounded-lg p-4 sm:p-6 shadow-lg border border-[var(--card-border)] flex flex-col gap-2"
               >
-                <h4 className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text">
+                <h4 className="font-bold text-lg sm:text-xl bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
                   {formData.branch}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
-                  <MapPin size={18} className="text-purple-600" />
+                <p className="text-[var(--text-secondary)] flex items-center gap-2 text-sm sm:text-base">
+                  <MapPin size={18} className="text-[var(--gradient-to)]" />
                   {branches.find((b) => b.name === formData.branch)?.address}
                 </p>
-                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
-                  <Phone size={18} className="text-blue-600" />
+                <p className="text-[var(--text-secondary)] flex items-center gap-2 text-sm sm:text-base">
+                  <Phone size={18} className="text-[var(--gradient-from)]" />
                   {branches.find((b) => b.name === formData.branch)?.phone}
                 </p>
-                <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2 text-sm sm:text-base">
-                  <Mail size={18} className="text-purple-600" />
+                <p className="text-[var(--text-secondary)] flex items-center gap-2 text-sm sm:text-base">
+                  <Mail size={18} className="text-[var(--gradient-to)]" />
                   {branches.find((b) => b.name === formData.branch)?.email}
                 </p>
               </motion.div>
@@ -344,16 +353,36 @@ const ContactSection = () => {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl border border-gray-300 dark:border-gray-700"
+            className="bg-[var(--card-bg)] backdrop-blur-xl rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl border border-[var(--card-border)] relative overflow-hidden"
+            ref={formRef}
+            onMouseMove={handleMouseMove}
           >
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-700 text-transparent bg-clip-text">
+            <motion.div
+              className="absolute w-32 sm:w-48 h-32 sm:h-48 rounded-full blur-3xl opacity-30 z-0"
+              style={{
+                backgroundColor: "var(--blob-blue)",
+                x: blobX,
+                y: blobY,
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 15, -15, 0],
+                opacity: [0.3, 0.4, 0.3],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            <h3 className="text-xl sm:text-2xl font-extrabold text-center mb-4 sm:mb-6 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text relative z-10">
               {t("sendUsAMessage")}
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
+                  className="block text-[var(--text-secondary)] text-sm sm:text-base font-medium mb-2"
                 >
                   {t("contact.form.name")}
                 </label>
@@ -364,7 +393,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t("contact.form.namePlaceholder")}
-                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ${
                     errors.name ? "border-red-500" : ""
                   }`}
                   variants={inputVariants}
@@ -377,7 +406,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
+                  className="block text-[var(--text-secondary)] text-sm sm:text-base font-medium mb-2"
                 >
                   {t("contact.form.phone")}
                 </label>
@@ -388,7 +417,7 @@ const ContactSection = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="991234567"
-                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ${
                     errors.phone ? "border-red-500" : ""
                   }`}
                   variants={inputVariants}
@@ -401,7 +430,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-gray-600 dark:text-gray-400 text-sm sm:text-lg font-medium mb-2"
+                  className="block text-[var(--text-secondary)] text-sm sm:text-base font-medium mb-2"
                 >
                   {t("contact.form.message")}
                 </label>
@@ -410,9 +439,9 @@ const ContactSection = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="5"
+                  rows="4"
                   placeholder={t("contact.form.messagePlaceholder")}
-                  className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${
+                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] transition-all duration-200 ${
                     errors.message ? "border-red-500" : ""
                   }`}
                   variants={inputVariants}
@@ -425,18 +454,48 @@ const ContactSection = () => {
               <motion.button
                 type="submit"
                 variants={submitButtonVariants}
-                initial="rest"
                 whileHover="hover"
                 whileTap="tap"
-                className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold text-sm sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <span>{t("enrollNow")}</span>
-                <Send size={20} />
+                <Send size={18} />
               </motion.button>
             </form>
           </motion.div>
         </div>
       </div>
+
+      <motion.div
+        className="absolute top-[30%] left-[5%] w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-3xl opacity-40 z-0"
+        style={{ backgroundColor: "var(--blob-blue)" }}
+        animate={{
+          x: [0, 25, -25, 0],
+          y: [0, 25, -25, 0],
+          scale: [1, 1.15, 1],
+          opacity: [0.4, 0.5, 0.4],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-[15%] right-[5%] w-56 sm:w-72 h-56 sm:h-72 rounded-full blur-3xl opacity-40 z-0"
+        style={{ backgroundColor: "var(--blob-purple)" }}
+        animate={{
+          x: [0, -35, 35, 0],
+          y: [0, 35, -35, 0],
+          scale: [1, 1.2, 1],
+          opacity: [0.4, 0.6, 0.4],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
     </motion.section>
   );
 };
