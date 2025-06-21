@@ -37,7 +37,7 @@ const GoogleMapSection = () => {
           allowFullScreen
           className="w-full h-full rounded-xl border border-[var(--card-border)] shadow-xl z-0"
           style={{
-            minHeight: "400px",
+            minHeight: "450px",
             border: "1px solid var(--card-border)",
             borderRadius: "0.75rem",
             boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)",

@@ -171,7 +171,6 @@
   "marketingModule3Desc": "Practicing voice clarity and speech delivery.",
   "marketingModule4": "Improvisation",
   "marketingModule4Desc": "Skills for improvisation and responding to questions.",
-  "computerLiteracy": "Computer Literacy",
   "computerLiteracyDescriptionLong": "The computer literacy course teaches the basics of working with computers and office software.",
   "certificateComputerLiteracy1": "Certificate in Computer Literacy Fundamentals",
   "certificateComputerLiteracy2": "Certificate in Office Software",
@@ -233,11 +232,6 @@
   "discovery": "Discovery",
   "exploration": "Exploration",
   "infinity_concept": "Infinity",
-  "contactUsTitleSimple": "Contact Us",
-  "ourBranches": "Our Branches",
-  "selectBranch": "Select a Branch:",
-  "chooseBranchOption": "Choose a MegaSchool branch...",
-  "sendUsAMessage": "Send Us a Message",
   "yourName": "Your Name",
   "namePlaceholder": "Enter your full name",
   "yourEmail": "Your Email",
@@ -245,7 +239,6 @@
   "yourMessage": "Your Message",
   "messagePlaceholder": "Tell us about your request...",
   "sendMessage": "Send Message",
-  "formSubmittedMessage": "Thank you for your message! We’ll get back to you soon.",
   "footerDescription": "Your path to success in the world of modern technologies.",
   "quickLinks": "Quick Links",
   "aboutUs": "About Us",
@@ -420,7 +413,38 @@
       }
     }
   },
-    "submit": "Send",
+  "cta": {
+    "phone": {
+      "input": "Your phone number",
+      "button": "Submit request"
+    }
+  },
+
+  "testimonial1": "This course changed my life! The instructors are amazing and the content is top-notch.",
+  "testimonial2": "A solid foundation for anyone looking to learn. Very practical examples.",
+  "testimonial3": "Good content, but I wish there were more interactive exercises.",
+  "testimonial4": "Absolutely fantastic! Highly recommend it to everyone.",
+  "testimonial5": "The best platform I've ever used for online learning. Five stars!",
+  "testimonial6": "Well-structured lessons, but some topics felt a bit rushed.",
+  "testimonial7": "Incredibly insightful and engaging. I learned so much in a short time.",
+  "testimonial8": "Decent course, but customer support could be more responsive.",
+  "testimonial9": "Exceeded all my expectations. The community is also very supportive.",
+  "testimonial10": "Great value for money, though a few lectures could be more detailed.",
+  "coding": "Coding",
+  "artificialIntelligence": "AI",
+  "education": "Education",
+  "dataScience": "Data Science",
+  "cyberSecurity": "Cyber Security",
+  "energy": "Energy",
+  "global": "Global Impact",
+  "community": "Community",
+  "webDevelopment": "Web Dev",
+  "mobileDevelopment": "Mobile Dev",
+  "cloudComputing": "Cloud Computing",
+  "blockchain": "Blockchain",
+  "connectivity": "Connectivity",
+  "securityMeasure": "Security",
+  "submit": "Send",
   "footer": {
     "description": "MegaSchool is your trusted partner in education. We offer innovative programs to develop future skills, helping you achieve your goals.",
     "quickLinks": "Quick Links",
@@ -435,6 +459,14 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"
   },
+  "notfound": {
+    "title": "Page Not Found",
+    "subtitle": "This page doesn't exist 😅",
+    "home": "Go Home"
+  },
+  "graduates": "Graduates",
+  "placements": "Placements",
+  "awards": "Awards",
   "contact": {
     "title": "Contact Us",
     "subtitle": "We’re ready to answer all your questions and provide the information you need. Choose a convenient contact method.",
@@ -485,7 +517,6 @@
     }
   },
   "back": "Back",
-  "enrollNow": "Enroll in the Course",
   "courseNotFound": "Course Not Found",
   "backToHome": "Back to Home",
   "cost": "Cost",
@@ -815,7 +846,7 @@
       }
     }
   },
-   "contactUsTitleSimple": "Contact Us",
+  "contactUsTitleSimple": "Contact Us",
   "ourBranches": "Our Branches",
   "selectBranch": "Select Branch",
   "chooseBranchOption": "Choose a MegaSchool branch...",
@@ -844,5 +875,4 @@
       }
     }
   }
-  
 }

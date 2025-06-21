@@ -388,7 +388,7 @@
   "header": {
     "about": "Biz haqimizda"
   },
-    "submit": "Jonatish",
+  "submit": "Jonatish",
   "about1": {
     "pageIntro": {
       "title": "Innovatsion ta'lim orqali kelajakni kengaytirish.",
@@ -420,6 +420,44 @@
       }
     }
   },
+  "cta": {
+  "phone": {
+    "input": "Telefon raqamingiz",
+    "button": "Ariza qoldirish"
+  }
+},
+"notfound": {
+  "title": "Sahifa topilmadi",
+  "subtitle": "Bunday sahifa mavjud emas 😅",
+  "home": "Bosh sahifaga"
+},
+  "testimonial1": "Bu kurs hayotimni o'zgartirdi! O'qituvchilar ajoyib va ​​kontent a'lo darajada.",
+  "testimonial2": "O'rganmoqchi bo'lgan har bir kishi uchun mustahkam poydevor. Juda amaliy misollar.",
+  "testimonial3": "Kontent yaxshi, lekin ko'proq interaktiv mashqlar bo'lishini xohlardim.",
+  "testimonial4": "Mutlaqo fantastik! Uni hammaga tavsiya qilaman.",
+  "testimonial5": "Onlayn ta'lim uchun men ishlatgan eng yaxshi platforma. Besh yulduz!",
+  "testimonial6": "Yaxshi tuzilgan darslar, lekin ba'zi mavzular biroz shoshilinch tuyuldi.",
+  "testimonial7": "Juda chuqur va qiziqarli. Qisqa vaqt ichida juda ko'p narsani o'rgandim.",
+  "testimonial8": "Munosib kurs, ammo mijozlarga xizmat ko'rsatish tezroq javob berishi mumkin edi.",
+  "testimonial9": "Mening barcha kutganlarimdan oshib ketdi. Jamiyat ham juda qo'llab-quvvatlaydi.",
+  "testimonial10": "Narx va sifat nisbati juda yaxshi, ammo ba'zi ma'ruzalar batafsilroq bo'lishi mumkin edi.",
+  "coding": "Dasturlash",
+  "artificialIntelligence": "Sun'iy Intellekt",
+  "education": "Ta'lim",
+  "dataScience": "Ma'lumotlar Fanlari",
+  "cyberSecurity": "Kiberxavfsizlik",
+  "energy": "Energiya",
+  "global": "Global Ta'sir",
+  "community": "Jamiyat",
+  "webDevelopment": "Veb-ishlab chiqish",
+  "mobileDevelopment": "Mobil-ishlab chiqish",
+  "cloudComputing": "Bulutli hisoblash",
+  "blockchain": "Blokcheyn",
+  "connectivity": "Ulanish",
+  "securityMeasure": "Xavfsizlik",
+  "graduates": "Bitiruvchilar",
+  "placements": "Ishga Joylashtirish",
+  "awards": "Mukofotlar",
   "footer": {
     "description": "MegaSchool — ta'limga bo‘lgan ishonchli hamkoringiz. Biz kelajak ko‘nikmalarini rivojlantirish uchun innovatsion dasturlarni taklif qilamiz, bu sizga maqsadlaringizga erishishga yordam beradi.",
     "quickLinks": "Tez havolalar",

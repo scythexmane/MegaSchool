@@ -64,8 +64,8 @@ const CallToAction = () => {
             className="mt-8 max-w-sm mx-auto flex flex-col sm:flex-row gap-4 group"
           >
             <input
-              type="email"
-              placeholder={t("about.cta.email_placeholder")}
+              type="tel"
+              placeholder={t("cta.phone.input")}
               className="w-full px-5 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--gradient-from)] focus:border-[var(--gradient-from)] focus:outline-none transition-all duration-300"
             />
             <motion.button
@@ -75,7 +75,7 @@ const CallToAction = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.span variants={{ rest: { x: 0 }, hover: { x: -8 } }}>
-                {t("about.cta.button")}
+                {t("cta.phone.button")}
               </motion.span>
               <motion.div
                 variants={{ rest: { x: -50, opacity: 0 }, hover: { x: 0, opacity: 1 } }}

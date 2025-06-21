@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import IntroSplash from "./pages/IntroSplash.jsx";
 import FakeReload from "./pages/FakeReload";
+import NotFound from "./NotFound.jsx";
 
 import Home from "./pages/Home/Home.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
@@ -16,12 +17,12 @@ const App = () => {
   // Инициализация darkMode из localStorage или системных предпочтений
   const [darkMode, setDarkMode] = useState(() => {
     // Проверяем localStorage на наличие предпочтений темы
-    const storedTheme = localStorage.getItem('theme');
+    const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
-      return storedTheme === 'dark';
+      return storedTheme === "dark";
     }
     // Если в localStorage нет, проверяем системные предпочтения пользователя
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
   const [introShown, setIntroShown] = useState(false);
@@ -31,11 +32,11 @@ const App = () => {
   // и для сохранения предпочтений в localStorage
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
 
@@ -76,6 +77,7 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/courses/:id" element={<CoursePage />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />

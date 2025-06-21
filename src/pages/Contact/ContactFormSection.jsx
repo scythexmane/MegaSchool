@@ -226,7 +226,7 @@ const ContactSection = () => {
 
   return (
     <motion.section
-      className="py-8 md:py-12 lg:py-16 bg-gradient-to-b from-[var(--bg-from)] to-[var(--bg-to)] relative overflow-hidden p-4 sm:p-8"
+      className="py-8 md:py-12  lg:py-16 bg-gradient-to-b from-[var(--bg-from)] to-[var(--bg-to)] relative overflow-hidden p-4 sm:p-8"
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
@@ -245,7 +245,7 @@ const ContactSection = () => {
  
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6 sm:mb-8 md:mb-12 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
+          className="text-2xl p-3 sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6 sm:mb-8 md:mb-12 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 120 }}
@@ -302,7 +302,7 @@ const ContactSection = () => {
                 zoom={12}
                 style={{ height: "250px", width: "100%", minHeight: "250px" }}
                 scrollWheelZoom={false}
-                className="sm:h-[350px] md:h-[400px]"
+                className="sm:h-[250px] md:h-[400px]"
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
