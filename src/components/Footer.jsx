@@ -226,26 +226,13 @@ const Footer = () => {
       </div>
 
       {/* Нижняя часть */}
-      <div className="max-w-7xl mx-auto mt-10 pt-8 border-t border-[var(--card-border)] text-center text-sm relative z-10 text-[var(--text-secondary)]">
-        <p className="mb-2">
-          © {currentYear} MegaSchool. <br /> {t("footer.allRightsReserved")}
+      <div className="max-w-7xl mx-auto mt-10 border-t border-[var(--card-border)] text-xs text-[var(--text-secondary)] px-4 pt-5 pb-5 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:gap-0">
+        <p className="whitespace-nowrap text-center sm:text-left">
+          © {currentYear} MegaSchool. {t("footer.allRightsReserved")}
         </p>
-        <p className="mb-2">By Megaschool Students.</p>
-        <p>
-          <Link
-            to="/privacy-policy"
-            className="hover:text-[var(--gradient-from)] mx-2"
-          >
-            {t("footer.privacyPolicy")}
-          </Link>
-          |
-          <Link
-            to="/terms-of-service"
-            className="hover:text-[var(--gradient-from)] mx-2"
-          >
-            {t("footer.termsOfService")}
-          </Link>
-        </p>
+        <div className="flex items-center gap-4 text-center sm:text-right">
+          <span className="opacity-60">By Megaschool Students</span>
+        </div>
       </div>
     </motion.footer>
   );
