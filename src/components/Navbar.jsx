@@ -26,7 +26,7 @@ const PhoneIcon = () => (
   </svg>
 );
 
-const Navbar = ({ darkMode, setDarkMode }) => {
+const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
@@ -95,9 +95,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
           {/* LanguageSwitcher для десктопа */}
           {/* Скрываем на экранах меньше md, так как там он будет в мобильном меню */}
-          <div className="hidden md:block">
-            <LanguageSwitcher />
-          </div>
+         <div className="hidden md:block">
+        <LanguageSwitcher changeLangWithEffect={changeLangWithEffect} />
+      </div>
           
           <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 
@@ -108,6 +108,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           >
             {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
           </button>
+          
         </div>
       </div>
 

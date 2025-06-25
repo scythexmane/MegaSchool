@@ -1,10 +1,35 @@
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import ReactCountryFlag from "react-country-flag";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
+import ReactCountryFlag from "react-country-flag";
+import { useClickAway } from "react-use";
+import clsx from "clsx";
 
-const LanguageSwitcher = () => {
+const ArrowIcon = ({ isOpen }) => (
+  <motion.svg
+    className="w-4 h-4 text-[var(--select-arrow-color)]"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    animate={{ rotate: isOpen ? 180 : 0 }}
+    transition={{ duration: 0.2, ease: "easeInOut" }}
+  >
+    <path
+      d="M6 9L12 15L18 9"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </motion.svg>
+);
+
+const LanguageSwitcher = ({ changeLangWithEffect }) => {
   const { i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+
+  useClickAway(ref, () => setIsOpen(false));
 
   const languageOptions = [
     { value: "en", label: "Eng", countryCode: "GB" },
@@ -12,132 +37,92 @@ const LanguageSwitcher = () => {
     { value: "uz", label: "Uzb", countryCode: "UZ" },
   ];
 
-  const getSelectedOption = (lang) => {
-    // Ensure 'en' maps to 'GB' for consistency with flag codes
-    return languageOptions.find((option) => option.value === lang) || languageOptions[0]; // Fallback to English
+  const currentOption =
+    languageOptions.find((option) => option.value === i18n.language) ||
+    languageOptions[0];
+
+  const handleSelect = (option) => {
+    setIsOpen(false);
+    if (i18n.language === option.value) return;
+
+    if (changeLangWithEffect) {
+      changeLangWithEffect(option.value); // ✅ используем с анимацией
+    } else {
+      i18n.changeLanguage(option.value); // fallback
+    }
   };
 
-  const [selectedOption, setSelectedOption] = useState(
-    getSelectedOption(i18n.language)
-  );
-
-  useEffect(() => {
-    setSelectedOption(getSelectedOption(i18n.language));
-  }, [i18n.language]);
-
-  const handleChange = (option) => {
-    setSelectedOption(option);
-
-    const newLang = option.value;
-    if (i18n.language === newLang) return;
-
-    // Optional: Add CSS transitions for a smoother language change
-    document.body.classList.add("fade-out");
-    setTimeout(() => {
-      i18n.changeLanguage(newLang);
-      document.body.classList.remove("fade-out");
-      document.body.classList.add("fade-in");
-      setTimeout(() => {
-        document.body.classList.remove("fade-in");
-      }, 500);
-    }, 400);
-  };
-
-  // Custom component for rendering the selected value in the control
-  const CustomControl = ({ children, ...props }) => (
-    <div
-      {...props.innerProps}
-      className="flex items-center justify-between w-full h-10 px-2 cursor-pointer"
-      // Цвет текста будет задан через reactSelectClassNames.singleValue и CustomOption
-      style={{ color: 'var(--select-text-color)' }} // Применяем цвет текста из переменной
-    >
-      {props.hasValue && props.selectProps.value ? (
-        <div className="flex items-center flex-grow">
-          <ReactCountryFlag
-            countryCode={props.selectProps.value.countryCode}
-            svg
-            className="w-4 h-4 rounded-[2px] shadow-sm"
-          />
-          <span className="ml-2 font-normal text-sm">
-            {props.selectProps.value.label}
-          </span>
-        </div>
-      ) : (
-        <div className="flex items-center"></div>
-      )}
-      {children}
-    </div>
-  );
-
-  // Custom component for rendering each option in the dropdown list
-  const CustomOption = (props) => (
-    <div
-      {...props.innerProps}
-      className={`flex items-center px-3 py-2 cursor-pointer text-sm transition-colors duration-200 ease-in-out`}
-      style={{
-        backgroundColor: props.isFocused
-          ? 'var(--select-option-hover-bg)'
-          : props.isSelected
-          ? 'var(--select-option-selected-bg)'
-          : 'transparent',
-        color: 'var(--select-text-color)' // Цвет текста опции
-      }}
-    >
-      <ReactCountryFlag
-        countryCode={props.data.countryCode}
-        svg
-        className="w-4 h-4 mr-2 rounded-[2px] shadow-sm"
-      />
-      <span>{props.data.label}</span>
-    </div>
-  );
-
-  // Define custom classNames for react-select components
-  const reactSelectClassNames = {
-    control: (state) => `!bg-transparent !border-none !shadow-none !cursor-pointer min-h-10 ${state.isFocused ? 'outline-none' : ''}`,
-    valueContainer: () => '!p-0 flex-nowrap overflow-hidden',
-    singleValue: () => '!m-0 !p-0',
-    indicatorSeparator: () => '!hidden',
-    dropdownIndicator: (state) => `transition-transform duration-200 ease-in-out ${state.isFocused ? 'rotate-180' : ''}`,
-    menu: () => `rounded-lg shadow-md mt-2 overflow-hidden`,
-    menuList: () => `p-2`,
-    option: (state) => ``, // Handled by CustomOption's className and style directly for more control
-  };
-
-  // Важно: для menu и menuList нужно явно указать цвет фона через style,
-  // так как Tailwind не может напрямую работать с CSS-переменными в своих классах,
-  // если переменные определены вне utility-классов Tailwind.
-  const customStylesForReactSelect = {
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: 'var(--select-menu-bg)', // Фон выпадающего списка
-      borderRadius: '8px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      marginTop: '8px',
-      overflow: 'hidden',
-    }),
-    dropdownIndicator: (provided) => ({
-      ...provided,
-      color: 'var(--select-arrow-color)', // Цвет стрелки
-    }),
+  const menuVariants = {
+    hidden: {
+      opacity: 0,
+      y: -5,
+      transition: { duration: 0.15, ease: "easeOut" },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.15, ease: "easeOut" },
+    },
   };
 
   return (
-    <div className="min-w-[120px] font-sans text-sm relative z-10">
-      <Select
-        value={selectedOption}
-        onChange={handleChange}
-        options={languageOptions}
-        isSearchable={false}
-        classNames={reactSelectClassNames}
-        components={{
-          Control: CustomControl,
-          Option: CustomOption,
-          SingleValue: () => null,
-        }}
-        styles={customStylesForReactSelect} // Используем customStyles для переменных
-        classNamePrefix="language-select"
-      />
+    <div
+      ref={ref}
+      className="relative w-[90px] font-sans text-sm"
+      key={i18n.language} // ✅ перерендер при смене языка
+    >
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className={clsx(
+          "flex items-center justify-between h-9 px-3 cursor-pointer",
+          "bg-[var(--select-menu-bg)] border border-[var(--card-border)] rounded-lg",
+          "transition-colors duration-150 hover:bg-[var(--select-option-hover-bg)]"
+        )}
+      >
+        <div className="flex items-center gap-2 text-[var(--select-text-color)] font-medium">
+          <ReactCountryFlag
+            countryCode={currentOption.countryCode}
+            svg
+            className="w-4 h-4 rounded-full"
+          />
+          <span>{currentOption.label}</span>
+        </div>
+        <ArrowIcon isOpen={isOpen} />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="absolute top-full mt-2 left-0 right-0 z-10 list-none m-0 p-1.5 
+              bg-[var(--select-menu-bg)] border border-[var(--card-border)] 
+              rounded-lg shadow-lg shadow-black/20"
+          >
+            {languageOptions.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelect(option)}
+                className={clsx(
+                  "flex items-center gap-2 p-2 rounded-md cursor-pointer font-medium",
+                  i18n.language === option.value
+                    ? "text-white bg-[var(--select-option-selected-bg)]"
+                    : "text-[var(--select-text-color)] hover:bg-[var(--select-option-hover-bg)]"
+                )}
+              >
+                <ReactCountryFlag
+                  countryCode={option.countryCode}
+                  svg
+                  className="w-4 h-4 rounded-full"
+                />
+                <span>{option.label}</span>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

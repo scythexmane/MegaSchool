@@ -4,7 +4,7 @@ const Hero = lazy(() => import("./Hero.jsx"));
 const CoursesSection = lazy(() => import("./CoursesSection.jsx"));
 const MarqueeSection = lazy(() => import("./MarqueeSection.jsx"));
 const StatsSection = lazy(() => import("./StatsSection.jsx"));
-const TestimonialsSection = lazy(() => import("./Feedback.jsx"));
+// const TestimonialsSection = lazy(() => import("./Feedback.jsx"));
 const CTASection = lazy(() => import("./CTA.jsx"));
 const PartnersSection = lazy(() => import("./PartnersSection.jsx"));
 
@@ -32,7 +32,7 @@ const Home = () => {
           <CoursesSection />
           <MarqueeSection />
           <StatsSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           <CTASection />
           <PartnersSection />
         </ErrorBoundary>

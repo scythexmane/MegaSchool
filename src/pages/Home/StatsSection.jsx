@@ -155,9 +155,9 @@ const AchievementsSection = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
+          className="text-4xl p-3 md:text-5xl font-bold mb-16 bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text"
         >
-          {t("achievementsTitle", "Our Achievements")}
+          {t("ourAchievements", "Our Achievements")}
         </motion.h2>
 
         <motion.div
@@ -178,7 +178,7 @@ const AchievementsSection = () => {
                   {stat.icon}
                 </div>
                 <div className="text-left">
-                  <h3 className="text-4xl md:text-5xl font-bold">
+                  <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">
                     {inView && (
                       <CountUp
                         end={stat.value}
@@ -188,7 +188,7 @@ const AchievementsSection = () => {
                       />
                     )}
                   </h3>
-                  <p className="text-base md:text-lg text-white/80">{t(stat.labelKey)}</p>
+                  <p className="text-base md:text-lg bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-transparent bg-clip-text">{t(stat.labelKey)}</p>
                 </div>
                 <div className="h-[50px] mt-2 flex items-center justify-center opacity-80">
                   {renderChart(stat)}
