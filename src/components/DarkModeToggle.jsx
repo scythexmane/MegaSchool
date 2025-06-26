@@ -1,68 +1,205 @@
-// MagicDarkModeToggle.jsx
-import React from "react";
-import { Sun, Moon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+// ThemeSwitcherGrid.jsx
+import React, { useState, useEffect } from "react";
 
-const MagicDarkModeToggle = ({ darkMode, setDarkMode }) => {
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    document.documentElement.classList.toggle("dark", newMode);
-    localStorage.setItem("theme", newMode ? "dark" : "light");
+const ThemeSwitcherGrid = ({ className = "" }) => {
+  const [isNight, setIsNight] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
+  });
+
+  useEffect(() => {
+    if (isNight) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", isNight ? "dark" : "light");
+  }, [isNight]);
+
+  const toggleTheme = () => {
+    setIsNight((prev) => !prev);
   };
 
   return (
-    <motion.button
-      onClick={toggleDarkMode}
-      aria-label={
-        darkMode
-          ? "Переключиться на светлую тему"
-          : "Переключиться на тёмную тему"
-      }
-      className="relative w-10 h-10 rounded-full flex items-center justify-center
-                 overflow-hidden cursor-pointer
-                 shadow-lg hover:shadow-xl active:shadow-md"
-      whileTap={{ scale: 0.95 }}
-      // Анимация фона самой кнопки с новыми градиентами
-      initial={false}
-      animate={{
-        background: darkMode
-          ? "linear-gradient(155deg, rgba(0, 11, 36, 1) 0%, rgba(39, 45, 69, 1) 55%, rgba(33, 43, 65, 1) 100%)" // ТЕМНЫЙ градиент
-          : "linear-gradient(155deg,rgba(247, 247, 247, 1) 0%, rgba(179, 193, 230, 1) 0%, rgba(230, 230, 230, 1) 100%)", // СВЕТЛЫЙ градиент
-      }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+    <button
+      className={`theme-switcher-grid ${isNight ? "night-theme" : ""} ${className}`}
+      id="theme-switcher-grid"
+      aria-label="Switch theme"
+      onClick={toggleTheme}
     >
-      {/* Анимированная градиентная рамка/подсветка */}
-   
+      <style>{`
+        :root {
+          --bg-color-light: #f0f0e8;
+          --bg-color-dark: #1c2135;
+          --border-color-light: #1c2135;
+          --border-color-dark: #f0f0e8;
+          --sun-color: #fabc1c;
+          --moon-color: #fffdf2;
+          --day-bg-color: #0dbdf6;
+          --night-bg-color: #272a30;
+          --cloud-color: #fffdf2;
+          --star-color: #fffdf2;
+        }
 
-      {/* Контейнер для иконок с центрированием */}
-      <div className="relative z-10 flex items-center justify-center">
-        <AnimatePresence mode="wait" initial={false}>
-          {darkMode ? (
-            <motion.div
-              key="sun-icon"
-              initial={{ opacity: 0, scale: 0.7, rotate: -90 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              exit={{ opacity: 0, scale: 0.7, rotate: 90 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <Sun size={20} className="text-yellow-400" /> {/* Цвет иконки солнца */}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="moon-icon"
-              initial={{ opacity: 0, scale: 0.7, rotate: 90 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              exit={{ opacity: 0, scale: 0.7, rotate: -90 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <Moon size={20} className="text-indigo-400" /> {/* Цвет иконки луны */}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.button>
+        .theme-switcher-grid {
+          display: grid;
+          grid-template-columns: repeat(54, 1px);
+          grid-template-rows: repeat(24, 1px);
+          gap: 0;
+          position: relative;
+          background-color: var(--day-bg-color);
+          border-radius: 49px;
+          border: 1px solid var(--border-color-light);
+          cursor: pointer;
+          transition: background-color 0.8s ease, border-color 0.8s ease;
+          appearance: none;
+          padding: 0;
+        }
+
+        .theme-switcher-grid.night-theme {
+          background-color: var(--night-bg-color);
+          border-color: var(--border-color-dark);
+        }
+
+        .sun {
+          background-color: var(--sun-color);
+          grid-column: 3 / 23;
+          grid-row: 3 / 23;
+          border-radius: 50%;
+          transition: grid-column 0.8s ease, background-color 0.8s ease;
+          height: 20px;
+        }
+
+        .theme-switcher-grid.night-theme .sun {
+          grid-column: 33 / 53;
+          background-color: var(--moon-color);
+        }
+
+        .moon-overlay {
+          position: absolute;
+          border-radius: 50%;
+          transition: left 0.8s ease, background-color 0.8s ease;
+          z-index: 1;
+          background-color: var(--day-bg-color);
+        }
+
+        .theme-switcher-grid.night-theme .moon-overlay {
+          display: block;
+          left: calc(28 / 54 * 100%);
+          top: calc(4 / 29 * 100%);
+          width: 18px;
+          height: 18px;
+          background-color: var(--night-bg-color);
+        }
+
+        .cloud-ball {
+          background-color: var(--cloud-color);
+          border-radius: 50%;
+          width: 9px;
+          height: 9px;
+          position: absolute;
+          transition: all 0.8s ease;
+          z-index: 2;
+        }
+
+        #ball1 {
+          top: calc((8 / 24) * 100%);
+          left: calc((12 / 54) * 100%);
+        }
+
+        #ball2 {
+          top: calc((8 / 24) * 100%);
+          left: calc((17 / 54) * 100%);
+        }
+
+        #ball3 {
+          top: calc((8 / 24) * 100%);
+          left: calc((22 / 54) * 100%);
+        }
+
+        #ball4 {
+          top: calc((6 / 24) * 100%);
+          left: calc((17 / 54) * 100%);
+        }
+
+        .theme-switcher-grid.night-theme #ball1 {
+          top: calc((16 / 24) * 100%);
+          left: calc((16 / 54) * 100%);
+          width: 2px;
+          height: 2px;
+        }
+
+        .theme-switcher-grid.night-theme #ball2 {
+          top: calc((3 / 24) * 100%);
+          left: calc((22 / 54) * 100%);
+          width: 2px;
+          height: 2px;
+        }
+
+        .theme-switcher-grid.night-theme #ball3 {
+          top: calc((10 / 24) * 100%);
+          left: calc((29 / 54) * 100%);
+          width: 2px;
+          height: 2px;
+        }
+
+        .theme-switcher-grid.night-theme #ball4 {
+          top: calc((5 / 24) * 100%);
+          left: calc((34 / 54) * 100%);
+          width: 2px;
+          height: 2px;
+        }
+
+        .star {
+          background-color: var(--star-color);
+          width: 1px;
+          height: 1px;
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.8s ease;
+          border-radius: 50%;
+        }
+
+        #star1 {
+          top: calc((7 / 24) * 100%);
+          left: calc((10 / 54) * 100%);
+        }
+
+        #star2 {
+          top: calc((9 / 24) * 100%);
+          left: calc((16 / 54) * 100%);
+        }
+
+        #star3 {
+          top: calc((13 / 24) * 100%);
+          left: calc((23 / 54) * 100%);
+        }
+
+        #star4 {
+          top: calc((18 / 24) * 100%);
+          left: calc((29 / 54) * 100%);
+        }
+
+        .theme-switcher-grid.night-theme #star1,
+        .theme-switcher-grid.night-theme #star2,
+        .theme-switcher-grid.night-theme #star3,
+        .theme-switcher-grid.night-theme #star4 {
+          opacity: 1;
+        }
+      `}</style>
+
+      <div className="sun" id="sun" aria-hidden="true"></div>
+      <div className="moon-overlay" id="moon-overlay" aria-hidden="true"></div>
+      <div className="cloud-ball" id="ball1" aria-hidden="true"></div>
+      <div className="cloud-ball" id="ball2" aria-hidden="true"></div>
+      <div className="cloud-ball" id="ball3" aria-hidden="true"></div>
+      <div className="cloud-ball" id="ball4" aria-hidden="true"></div>
+      <div className="star" id="star1" aria-hidden="true"></div>
+      <div className="star" id="star2" aria-hidden="true"></div>
+      <div className="star" id="star3" aria-hidden="true"></div>
+      <div className="star" id="star4" aria-hidden="true"></div>
+    </button>
   );
 };
 
-export default MagicDarkModeToggle;
+export default ThemeSwitcherGrid;
