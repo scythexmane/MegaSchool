@@ -1,28 +1,16 @@
 // ThemeSwitcherGrid.jsx
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const ThemeSwitcherGrid = ({ className = "" }) => {
-  const [isNight, setIsNight] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme === "dark";
-  });
-
-  useEffect(() => {
-    if (isNight) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", isNight ? "dark" : "light");
-  }, [isNight]);
-
+const ThemeSwitcherGrid = ({ className = "", darkMode, setDarkMode }) => {
   const toggleTheme = () => {
-    setIsNight((prev) => !prev);
+    setDarkMode((prev) => !prev);
   };
 
   return (
     <button
-      className={`theme-switcher-grid ${isNight ? "night-theme" : ""} ${className}`}
+      className={`theme-switcher-grid ${
+        darkMode ? "night-theme" : ""
+      } ${className}`}
       id="theme-switcher-grid"
       aria-label="Switch theme"
       onClick={toggleTheme}
