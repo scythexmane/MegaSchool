@@ -13,6 +13,9 @@ import Courses from "./pages/Courses/Courses.jsx";
 import About from "./pages/About/About.jsx";
 import ContactPage from "./pages/Contact/ContactPage.jsx";
 import CoursePage from "./pages/Courses/CoursePage.jsx";
+import OfferPage from "./pages/OfferPage.jsx";
+
+
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -54,6 +57,7 @@ const App = () => {
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/offer" element={<OfferPage />} />
                 <Route path="/courses/:id" element={<CoursePage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

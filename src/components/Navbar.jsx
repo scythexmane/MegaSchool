@@ -26,39 +26,52 @@ const PhoneIcon = () => (
   </svg>
 );
 
-const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
+const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect }) => {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Закрываем меню при смене маршрута
     setMenuOpen(false);
   }, [pathname]);
 
   const navLinks = [
-    { name: t('home'), path: '/' },
-    { name: t('courses'), path: '/courses' },
-    { name: t('aboutNav'), path: '/about' },
-    { name: t('contact1'), path: '/contact' },
+    { name: t("home"), path: "/" },
+    { name: t("courses"), path: "/courses" },
+    { name: t("aboutNav"), path: "/about" },
+    { name: t("contact1"), path: "/contact" },
   ];
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className="sticky top-0 z-50 backdrop-blur bg-[var(--card-bg)] border-b border-[var(--card-border)]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-        {/* Логотип - размер не меняется */}
-        <Link to="/" aria-label="Главная">
-          <img src={darkMode ? logoDark : logoLight} alt="Логотип" className="h-10 transition-all duration-500" />
-        </Link>
+        {/* Логотип */}
+        <div className="flex items-center space-x-6">
+          <Link to="/" aria-label="Главная">
+            <img
+              src={darkMode ? logoDark : logoLight}
+              alt="Логотип"
+              className="h-10 transition-all duration-500"
+            />
+          </Link>
 
-        {/* Десктоп-навигация */}
+          {/* Кнопка Оферты */}
+          <Link
+            to="/offer"
+            className="hidden md:inline-flex items-center px-4 py-1 rounded-2xl bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          >
+            {t("offer")}
+          </Link>
+        </div>
+
+        {/* Навигация */}
         <div className="hidden md:flex space-x-8">
-          {navLinks.map(link => {
+          {navLinks.map((link) => {
             const active = pathname === link.path;
             return (
               <Link
@@ -66,16 +79,16 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
                 to={link.path}
                 className={`relative font-medium transition-colors duration-300 text-[var(--text-secondary)]
                   ${active
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]'
-                    : 'hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[var(--gradient-from)] hover:to-[var(--gradient-to)]'}`
-                }
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]"
+                    : "hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[var(--gradient-from)] hover:to-[var(--gradient-to)]"
+                  }`}
               >
                 {link.name}
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute left-0 bottom-0 h-0.5 w-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)]"
-                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 )}
               </Link>
@@ -93,22 +106,19 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
             <span>+998 (90) 720‑12‑22</span>
           </a>
 
-          {/* LanguageSwitcher для десктопа */}
-          {/* Скрываем на экранах меньше md, так как там он будет в мобильном меню */}
-         <div className="hidden md:block">
-        <LanguageSwitcher changeLangWithEffect={changeLangWithEffect} />
-      </div>
-          
+          <div className="hidden md:block">
+            <LanguageSwitcher changeLangWithEffect={changeLangWithEffect} />
+          </div>
+
           <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 
           <button
-            onClick={() => setMenuOpen(prev => !prev)}
+            onClick={() => setMenuOpen((prev) => !prev)}
             className="md:hidden p-2 rounded hover:bg-[var(--card-border)] transition"
-            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
           >
             {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
           </button>
-          
         </div>
       </div>
 
@@ -116,7 +126,6 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Оверлей для закрытия меню по клику вне его */}
             <motion.div
               className="fixed inset-0 bg-black/50 z-40"
               initial={{ opacity: 0 }}
@@ -132,7 +141,7 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              {navLinks.map(link => {
+              {navLinks.map((link) => {
                 const active = pathname === link.path;
                 return (
                   <Link
@@ -141,19 +150,23 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
                     onClick={() => setMenuOpen(false)}
                     className={`w-full text-center py-3 rounded-lg font-medium transition-colors duration-200
                       ${active
-                        ? 'bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white'
-                        : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]'}`
-                    }
+                        ? "bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] text-white"
+                        : "text-[var(--text-primary)] hover:bg-[var(--card-border)]"
+                      }`}
                   >
                     {link.name}
                   </Link>
                 );
               })}
 
-              {/* LanguageSwitcher внутри мобильного меню */}
-              <div className="w-full text-center py-3">
-                <LanguageSwitcher />
-              </div>
+              {/* Кнопка офферты в мобильном меню */}
+              <Link
+                to="/offer"
+                onClick={() => setMenuOpen(false)}
+                className="w-full inline-flex justify-center items-center py-2.5 px-4 font-semibold text-white rounded-full bg-gradient-to-r from-[var(--gradient-from)] to-[var(--gradient-to)] shadow hover:scale-105 transform transition"
+              >
+                {t("offer")}
+              </Link>
 
               <a
                 href="tel:+998901234567"
@@ -162,6 +175,10 @@ const Navbar = ({ darkMode, setDarkMode, changeLangWithEffect}) => {
                 <PhoneIcon />
                 <span>+998 (90) 123‑45‑67</span>
               </a>
+
+              <div className="w-full text-center py-3">
+                <LanguageSwitcher />
+              </div>
             </motion.div>
           </>
         )}

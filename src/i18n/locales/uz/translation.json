@@ -37,6 +37,16 @@
     "title": "Biz haqimizda",
     "subtitle": "MegaSchool — bolalar va kattalar uchun turli fanlar bo‘yicha ta'lim beruvchi zamonaviy ta'lim markazi."
   },
+  "offer":"Offerta",
+  "offerPage": {
+    "searchPlaceholder": "Matnda qidirish...",
+    "selectTopic": "Mavzu tanlash",
+    "allTopics": "Barcha mavzular",
+    "noResults": "Hech narsa topilmadi. So'rovingizni yoki filtrlarni o'zgartirib ko'ring.",
+    "lastUpdated": "Oxirgi yangilanish sanasi: {{date}}",
+    "showTopics": "Teg Korsatish",
+    "hideTopics": "Teg Berkitish"
+  },
   "mission": {
     "title": "Bizning missiyamiz",
     "description": "MegaSchoolning maqsadi — har bir o‘quvchiga yuqori darajada zamonaviy bilim va ko‘nikmalar taqdim etish. Biz IT, tillar va tabiiy fanlar bo‘yicha ishonchli va samarali ta'limni taklif qilamiz."
@@ -421,19 +431,19 @@
     }
   },
   "cta": {
-  "phone": {
-    "input": "Telefon raqamingiz",
-    "button": "Ariza qoldirish"
-  }
-},
+    "phone": {
+      "input": "Telefon raqamingiz",
+      "button": "Ariza qoldirish"
+    }
+  },
   "processing": "Yuqori samarali ishlov berish tizimlari",
   "architecture": "Tizim dizayni va arxitekturasi",
   "creativity": "Ijodiy fikrlash orqali innovatsiyalar",
-"notfound": {
-  "title": "Sahifa topilmadi",
-  "subtitle": "Bunday sahifa mavjud emas 😅",
-  "home": "Bosh sahifaga"
-},
+  "notfound": {
+    "title": "Sahifa topilmadi",
+    "subtitle": "Bunday sahifa mavjud emas 😅",
+    "home": "Bosh sahifaga"
+  },
   "testimonial1": "Bu kurs hayotimni o'zgartirdi! O'qituvchilar ajoyib va ​​kontent a'lo darajada.",
   "testimonial2": "O'rganmoqchi bo'lgan har bir kishi uchun mustahkam poydevor. Juda amaliy misollar.",
   "testimonial3": "Kontent yaxshi, lekin ko'proq interaktiv mashqlar bo'lishini xohlardim.",

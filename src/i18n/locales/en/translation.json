@@ -37,6 +37,17 @@
     "title": "About Us",
     "subtitle": "MegaSchool is a modern educational center providing training in various subjects for children and adults."
   },
+  "offer":"Offer",
+  "offerPage": {
+    "searchPlaceholder": "Search text...",
+    "selectTopic": "Select Topic",
+    "allTopics": "All Topics",
+    "noResults": "No results found. Try changing your query or filters.",
+    "lastUpdated": "Last updated: {{date}}",
+    "showTopics":"Show Topics",
+    "hideTopics":"Hide Topics"
+
+  },
   "mission": {
     "title": "Our Mission",
     "description": "MegaSchool’s goal is to provide every student with high-quality modern knowledge and skills. We offer reliable and effective training in IT, languages, and natural sciences."
